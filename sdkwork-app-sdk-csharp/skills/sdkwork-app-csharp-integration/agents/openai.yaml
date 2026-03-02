@@ -1,0 +1,8 @@
+interface:
+  display_name: "SDKWORK App csharp Integration"
+  short_description: "Integrate sdkwork-app-sdk-csharp with staged progressive loading."
+  default_prompt: "Use $sdkwork-app-csharp-integration to integrate sdkwork-app-sdk-csharp into my application with staged progressive loading."
+
+policy:
+  allow_implicit_invocation: true
+

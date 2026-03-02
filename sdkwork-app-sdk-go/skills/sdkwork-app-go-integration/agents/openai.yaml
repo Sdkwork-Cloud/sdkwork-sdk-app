@@ -1,0 +1,8 @@
+interface:
+  display_name: "SDKWORK App go Integration"
+  short_description: "Integrate sdkwork-app-sdk-go with staged progressive loading."
+  default_prompt: "Use $sdkwork-app-go-integration to integrate sdkwork-app-sdk-go into my application with staged progressive loading."
+
+policy:
+  allow_implicit_invocation: true
+

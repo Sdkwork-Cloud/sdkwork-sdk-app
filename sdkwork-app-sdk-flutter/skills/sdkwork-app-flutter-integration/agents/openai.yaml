@@ -1,0 +1,8 @@
+interface:
+  display_name: "SDKWORK App flutter Integration"
+  short_description: "Integrate sdkwork-app-sdk-flutter with staged progressive loading."
+  default_prompt: "Use $sdkwork-app-flutter-integration to integrate sdkwork-app-sdk-flutter into my application with staged progressive loading."
+
+policy:
+  allow_implicit_invocation: true
+

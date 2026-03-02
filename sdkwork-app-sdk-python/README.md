@@ -135,6 +135,32 @@ client.set_access_token("your-access-token")
 - `client.list` - list API
 - `client.code` - code API
 
+
+## Publishing
+
+This SDK includes cross-platform publish scripts in `bin/`:
+- `bin/publish-core.mjs`
+- `bin/publish.sh`
+- `bin/publish.ps1`
+
+### Check
+
+```bash
+./bin/publish.sh --action check
+```
+
+### Publish
+
+```bash
+./bin/publish.sh --action publish --channel release
+```
+
+```powershell
+.\bin\publish.ps1 --action publish --channel test --dry-run
+```
+
+> Set `PYPI_TOKEN` for release (or `TEST_PYPI_TOKEN` for test channel).
+
 ## License
 
 MIT

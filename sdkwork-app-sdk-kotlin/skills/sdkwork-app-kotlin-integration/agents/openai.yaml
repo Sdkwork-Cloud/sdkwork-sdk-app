@@ -1,0 +1,8 @@
+interface:
+  display_name: "SDKWORK App kotlin Integration"
+  short_description: "Integrate sdkwork-app-sdk-kotlin with staged progressive loading."
+  default_prompt: "Use $sdkwork-app-kotlin-integration to integrate sdkwork-app-sdk-kotlin into my application with staged progressive loading."
+
+policy:
+  allow_implicit_invocation: true
+
