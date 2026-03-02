@@ -1,0 +1,10 @@
+package com.sdkwork.app
+
+data class UserSearchRequest(
+    val keyword: String? = null,
+    val userType: String? = null,
+    val sortField: String? = null,
+    val sortDirection: String? = null,
+    val page: Int? = null,
+    val size: Int? = null
+)

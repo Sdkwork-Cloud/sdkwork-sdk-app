@@ -1,0 +1,32 @@
+package com.sdkwork.app
+
+data class ProjectDetailVO(
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val projectId: String? = null,
+    val projectName: String? = null,
+    val projectTitle: String? = null,
+    val projectDescription: String? = null,
+    val projectType: String? = null,
+    val projectTypeName: String? = null,
+    val projectCode: String? = null,
+    val projectIcon: String? = null,
+    val coverImageUrl: String? = null,
+    val projectTags: List<String>? = null,
+    val workspaceId: String? = null,
+    val workspaceName: String? = null,
+    val creatorId: String? = null,
+    val creatorName: String? = null,
+    val author: String? = null,
+    val sitePath: String? = null,
+    val domainPrefix: String? = null,
+    val startTime: String? = null,
+    val endTime: String? = null,
+    val isTemplate: Boolean? = null,
+    val createTime: String? = null,
+    val updateTime: String? = null,
+    val members: List<MemberVO>? = null,
+    val status: String? = null,
+    val statusName: String? = null,
+    val settings: ProjectSettings? = null
+)

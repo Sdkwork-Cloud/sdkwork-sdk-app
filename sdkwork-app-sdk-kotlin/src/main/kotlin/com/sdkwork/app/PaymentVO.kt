@@ -1,0 +1,30 @@
+package com.sdkwork.app
+
+data class PaymentVO(
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val paymentOrderId: String? = null,
+    val merchantOrderId: String? = null,
+    val status: String? = null,
+    val amount: String? = null,
+    val paymentMethod: String? = null,
+    val paymentUrl: String? = null,
+    val qrCode: String? = null,
+    val paymentId: Int? = null,
+    val paymentSn: String? = null,
+    val orderId: Int? = null,
+    val subject: String? = null,
+    val paymentProvider: String? = null,
+    val paymentProviderName: String? = null,
+    val productType: String? = null,
+    val productTypeName: String? = null,
+    val statusName: String? = null,
+    val expireTime: String? = null,
+    val needQuery: Boolean? = null,
+    val queryInterval: Int? = null,
+    val remark: String? = null,
+    val paymentParams: Map<String, Any>? = null,
+    val transactionId: String? = null,
+    val outTradeNo: String? = null,
+    val successTime: String? = null
+)

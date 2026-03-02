@@ -1,0 +1,57 @@
+import Foundation
+
+public class VoiceSpeakerApi {
+    private let client: HttpClient
+    
+    public init(client: HttpClient) {
+        self.client = client
+    }
+
+    /// 创建语音生成任务
+    public func createGeneration(body: VoiceSpeakerGenerationForm) async throws -> PlusApiResultGenerationTaskVO? {
+        let response = try await client.post(ApiPaths.appPath("/generation/voice-speaker"), body: body)
+        return response as? PlusApiResultGenerationTaskVO
+    }
+
+    /// 克隆说话人
+    public func cloneSpeaker(body: VoiceSpeakerCloneForm) async throws -> PlusApiResultGenerationTaskVO? {
+        let response = try await client.post(ApiPaths.appPath("/generation/voice-speaker/clone"), body: body)
+        return response as? PlusApiResultGenerationTaskVO
+    }
+
+    /// 获取说话人详情
+    public func getSpeakerDetail(speakerId: String) async throws -> PlusApiResultVoiceSpeakerGenerationVO? {
+        let response = try await client.get(ApiPaths.appPath("/generation/voice-speaker/\(speakerId)"))
+        return response as? PlusApiResultVoiceSpeakerGenerationVO
+    }
+
+    /// 删除说话人
+    public func deleteSpeaker(speakerId: String) async throws -> PlusApiResultVoid? {
+        let response = try await client.delete(ApiPaths.appPath("/generation/voice-speaker/\(speakerId)"))
+        return response as? PlusApiResultVoid
+    }
+
+    /// 获取任务列表
+    public func listTasks(params: [String: Any]? = nil) async throws -> PlusApiResultPageGenerationTaskVO? {
+        let response = try await client.get(ApiPaths.appPath("/generation/voice-speaker/tasks"), params: params)
+        return response as? PlusApiResultPageGenerationTaskVO
+    }
+
+    /// 获取任务状态
+    public func getTaskStatus(taskId: String) async throws -> PlusApiResultGenerationTaskVO? {
+        let response = try await client.get(ApiPaths.appPath("/generation/voice-speaker/tasks/\(taskId)"))
+        return response as? PlusApiResultGenerationTaskVO
+    }
+
+    /// 取消任务
+    public func cancelTask(taskId: String) async throws -> PlusApiResultVoid? {
+        let response = try await client.delete(ApiPaths.appPath("/generation/voice-speaker/tasks/\(taskId)"))
+        return response as? PlusApiResultVoid
+    }
+
+    /// 获取说话人列表
+    public func listSpeakers(params: [String: Any]? = nil) async throws -> PlusApiResultPageVoiceSpeakerListVO? {
+        let response = try await client.get(ApiPaths.appPath("/generation/voice-speaker/list"), params: params)
+        return response as? PlusApiResultPageVoiceSpeakerListVO
+    }
+}

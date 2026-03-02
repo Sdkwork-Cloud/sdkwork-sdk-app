@@ -1,0 +1,31 @@
+package com.sdkwork.app
+
+data class ModelInfoDetailVO(
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val modelId: String? = null,
+    val model: String? = null,
+    val name: String? = null,
+    val description: String? = null,
+    val channel: String? = null,
+    val vendor: String? = null,
+    val modelType: String? = null,
+    val family: String? = null,
+    val version: String? = null,
+    val openSource: Boolean? = null,
+    val apiEndpoint: String? = null,
+    val ownedBy: String? = null,
+    val scenes: SceneContent? = null,
+    val tags: TagsContent? = null,
+    val limitInfo: ModelLimitInfo? = null,
+    val priceInfo: ModelPrice? = null,
+    val metadata: ModelMetadata? = null,
+    val defaultTemperature: Double? = null,
+    val defaultTopP: Double? = null,
+    val defaultFrequencyPenalty: Double? = null,
+    val defaultPresencePenalty: Double? = null,
+    val status: String? = null,
+    val usageCount: Int? = null,
+    val totalTokens: Int? = null,
+    val avgResponseTime: Int? = null
+)

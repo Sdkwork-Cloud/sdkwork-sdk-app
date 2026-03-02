@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace App.Models
+{
+    public class GenerationTaskVO
+    {
+        public string? CreatedAt { get; set; }
+        public string? UpdatedAt { get; set; }
+        public int? TaskId { get; set; }
+        public string? RequestId { get; set; }
+        public string? Type { get; set; }
+        public string? Model { get; set; }
+        public string? Channel { get; set; }
+        public string? Status { get; set; }
+        public int? Progress { get; set; }
+        public GenerationInput? InputParams { get; set; }
+        public GenerationOutput? OutputResult { get; set; }
+        public double? Cost { get; set; }
+        public string? ErrorCode { get; set; }
+        public string? ErrorMessage { get; set; }
+        public int? RetryCount { get; set; }
+        public int? MaxRetry { get; set; }
+        public string? StartedAt { get; set; }
+        public string? CompletedAt { get; set; }
+        public int? ConversationId { get; set; }
+        public int? MessageId { get; set; }
+        public int? ParentId { get; set; }
+        public string? BatchId { get; set; }
+        public string? BizScene { get; set; }
+        public int? BizId { get; set; }
+        public bool? Done { get; set; }
+    }
+}

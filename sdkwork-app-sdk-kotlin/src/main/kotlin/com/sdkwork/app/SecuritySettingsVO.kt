@@ -1,0 +1,16 @@
+package com.sdkwork.app
+
+data class SecuritySettingsVO(
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val twoFactorEnabled: Boolean? = null,
+    val biometricEnabled: Boolean? = null,
+    val autoLockEnabled: Boolean? = null,
+    val autoLockMinutes: Int? = null,
+    val loginNotificationsEnabled: Boolean? = null,
+    val ipRestrictionEnabled: Boolean? = null,
+    val allowedIps: List<String>? = null,
+    val passwordStrengthCheckEnabled: Boolean? = null,
+    val passwordExpiryDays: Int? = null,
+    val lastPasswordChangeTime: String? = null
+)

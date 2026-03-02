@@ -1,0 +1,33 @@
+package com.sdkwork.app
+
+data class ProductDetailVO(
+    val createdAt: String? = null,
+    val updatedAt: String? = null,
+    val id: String? = null,
+    val title: String? = null,
+    val type: String? = null,
+    val description: String? = null,
+    val summary: String? = null,
+    val categoryId: String? = null,
+    val categoryName: String? = null,
+    val brandId: String? = null,
+    val brandName: String? = null,
+    val tagIds: List<String>? = null,
+    val tags: List<String>? = null,
+    val mainImage: String? = null,
+    val images: List<String>? = null,
+    val videoUrl: String? = null,
+    val price: Double? = null,
+    val originalPrice: Double? = null,
+    val stock: Int? = null,
+    val sales: Int? = null,
+    val status: String? = null,
+    val recommended: Boolean? = null,
+    val hot: Boolean? = null,
+    val sort: Int? = null,
+    val shelfTime: String? = null,
+    val offShelfTime: String? = null,
+    val attributes: List<ProductAttributeVO>? = null,
+    val skus: List<SkuVO>? = null,
+    val reviewStatistics: Map<String, Any>? = null
+)
