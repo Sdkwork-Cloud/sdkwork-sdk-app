@@ -84,3 +84,5 @@ import com.sdkwork.app.api.StatisticsApi;
 import com.sdkwork.app.api.MemberApi;
 import com.sdkwork.app.api.ListApi;
 import com.sdkwork.app.api.CodeApi;
+import com.sdkwork.app.api.AuthApi;
+import com.sdkwork.app.api.GenerationApi;

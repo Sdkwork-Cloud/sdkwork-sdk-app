@@ -83,6 +83,8 @@ import com.sdkwork.app.api.StatisticsApi
 import com.sdkwork.app.api.MemberApi
 import com.sdkwork.app.api.ListApi
 import com.sdkwork.app.api.CodeApi
+import com.sdkwork.app.api.AuthApi
+import com.sdkwork.app.api.GenerationApi
 
 class SdkworkAppClient {
     private val httpClient: HttpClient
@@ -168,6 +170,8 @@ class SdkworkAppClient {
     lateinit var member: MemberApi
     lateinit var list: ListApi
     lateinit var code: CodeApi
+    lateinit var auth: AuthApi
+    lateinit var generation: GenerationApi
 
     constructor(baseUrl: String) {
         this.httpClient = HttpClient(baseUrl)
@@ -252,6 +256,8 @@ class SdkworkAppClient {
         member = MemberApi(httpClient)
         list = ListApi(httpClient)
         code = CodeApi(httpClient)
+        auth = AuthApi(httpClient)
+        generation = GenerationApi(httpClient)
     }
 
     constructor(config: SdkConfig) {
@@ -337,6 +343,8 @@ class SdkworkAppClient {
         member = MemberApi(httpClient)
         list = ListApi(httpClient)
         code = CodeApi(httpClient)
+        auth = AuthApi(httpClient)
+        generation = GenerationApi(httpClient)
     }
 
     fun setApiKey(apiKey: String): SdkworkAppClient {

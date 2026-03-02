@@ -134,7 +134,8 @@ client.set_access_token("your-access-token")
 - `client.member` - member API
 - `client.list` - list API
 - `client.code` - code API
-
+- `client.auth` - auth API
+- `client.generation` - generation API
 
 ## Publishing
 

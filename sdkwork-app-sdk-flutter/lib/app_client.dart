@@ -81,6 +81,8 @@ import '../api/statistics.dart';
 import '../api/member.dart';
 import '../api/list.dart';
 import '../api/code.dart';
+import '../api/auth.dart';
+import '../api/generation.dart';
 
 class SdkworkAppClient {
   final HttpClient _httpClient;
@@ -166,6 +168,8 @@ class SdkworkAppClient {
   late final MemberApi member;
   late final ListApi list;
   late final CodeApi code;
+  late final AuthApi auth;
+  late final GenerationApi generation;
 
   SdkworkAppClient({
     required SdkConfig config,
@@ -251,6 +255,8 @@ class SdkworkAppClient {
     member = MemberApi(_httpClient);
     list = ListApi(_httpClient);
     code = CodeApi(_httpClient);
+    auth = AuthApi(_httpClient);
+    generation = GenerationApi(_httpClient);
   }
 
   factory SdkworkAppClient.withBaseUrl({

@@ -27890,6 +27890,80 @@ class FavoriteBatchRemoveForm {
   });
 }
 
+class PasswordResetRequestForm {
+  final String? account;
+  final String? channel;
+  final String? deviceId;
+  final String? locale;
+  final String? redirectUri;
+
+  PasswordResetRequestForm({
+    this.account,
+    this.channel,
+    this.deviceId,
+    this.locale,
+    this.redirectUri
+  });
+}
+
+class PromptEnhanceRequest {
+  final String? prompt;
+  final String? scene;
+  final String? style;
+  final String? language;
+  final int? maxWords;
+
+  PromptEnhanceRequest({
+    this.prompt,
+    this.scene,
+    this.style,
+    this.language,
+    this.maxWords
+  });
+}
+
+class PromptEnhanceResponse {
+  final String? prompt;
+  final int? tokensEstimated;
+
+  PromptEnhanceResponse({
+    this.prompt,
+    this.tokensEstimated
+  });
+}
+
+class PlusApiResultPromptEnhanceResponse {
+  final int? code;
+  final String? msg;
+  final PromptEnhanceResponse? data;
+  final String? timestamp;
+  final String? traceId;
+
+  PlusApiResultPromptEnhanceResponse({
+    this.code,
+    this.msg,
+    this.data,
+    this.timestamp,
+    this.traceId
+  });
+}
+
+class PlusApiErrorResult {
+  final int? code;
+  final String? msg;
+  final dynamic? data;
+  final String? timestamp;
+  final String? traceId;
+
+  PlusApiErrorResult({
+    this.code,
+    this.msg,
+    this.data,
+    this.timestamp,
+    this.traceId
+  });
+}
+
 class UploadAvatarRequest {
   final String? file;
 

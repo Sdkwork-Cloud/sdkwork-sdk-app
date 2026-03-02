@@ -84,6 +84,8 @@ public class SdkworkAppClient {
     public let member: MemberApi
     public let list: ListApi
     public let code: CodeApi
+    public let auth: AuthApi
+    public let generation: GenerationApi
 
     public init(baseURL: String) {
         self.httpClient = HttpClient(baseURL: baseURL)
@@ -168,6 +170,8 @@ public class SdkworkAppClient {
         self.member = MemberApi(client: httpClient)
         self.list = ListApi(client: httpClient)
         self.code = CodeApi(client: httpClient)
+        self.auth = AuthApi(client: httpClient)
+        self.generation = GenerationApi(client: httpClient)
     }
 
     public init(config: SdkConfig) {
@@ -253,6 +257,8 @@ public class SdkworkAppClient {
         self.member = MemberApi(client: httpClient)
         self.list = ListApi(client: httpClient)
         self.code = CodeApi(client: httpClient)
+        self.auth = AuthApi(client: httpClient)
+        self.generation = GenerationApi(client: httpClient)
     }
 
     public func setApiKey(_ apiKey: String) -> SdkworkAppClient {

@@ -159,6 +159,8 @@ client.getHttpClient().setHeader("X-Custom-Header", "value");
 - `client.getMember()` - member API
 - `client.getList()` - list API
 - `client.getCode()` - code API
+- `client.getAuth()` - auth API
+- `client.getGeneration()` - generation API
 
 ## Usage Examples
 
@@ -810,6 +812,22 @@ Object result = client.getCode().getOrganizationBy();
 System.out.println(result);
 ```
 
+### auth
+
+```java
+// Request password reset challenge
+Object result = client.getAuth().requestPasswordResetChallenge();
+System.out.println(result);
+```
+
+### generation
+
+```java
+// Enhance generation prompt
+Object result = client.getGeneration().enhanceGenerationPrompt();
+System.out.println(result);
+```
+
 ## Error Handling
 
 ```java
@@ -819,7 +837,6 @@ try {
     System.err.println("Error: " + e.getMessage());
 }
 ```
-
 
 ## Publishing
 

@@ -146,6 +146,8 @@ client.setHeader('X-Custom-Header', 'value');
 - `client.member` - member API
 - `client.list` - list API
 - `client.code` - code API
+- `client.auth` - auth API
+- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -797,6 +799,22 @@ final result = await client.code.getOrganizationBy();
 print(result);
 ```
 
+### auth
+
+```dart
+// Request password reset challenge
+final result = await client.auth.requestPasswordResetChallenge();
+print(result);
+```
+
+### generation
+
+```dart
+// Enhance generation prompt
+final result = await client.generation.enhanceGenerationPrompt();
+print(result);
+```
+
 ## Error Handling
 
 ```dart
@@ -806,7 +824,6 @@ try {
   print('Error: $e');
 }
 ```
-
 
 ## Publishing
 

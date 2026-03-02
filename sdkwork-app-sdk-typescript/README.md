@@ -151,6 +151,8 @@ const client = new SdkworkAppClient({
 - `client.member` - member API
 - `client.list` - list API
 - `client.code` - code API
+- `client.auth` - auth API
+- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -760,6 +762,22 @@ const code = 'code';
 const result = await client.code.getOrganizationBy(code);
 ```
 
+### auth
+
+```typescript
+// Request password reset challenge
+const body = {} as any;
+const result = await client.auth.requestPasswordResetChallenge(body);
+```
+
+### generation
+
+```typescript
+// Enhance generation prompt
+const body = {} as any;
+const result = await client.generation.enhanceGenerationPrompt(body);
+```
+
 ## Error Handling
 
 ```typescript
@@ -779,7 +797,6 @@ try {
   }
 }
 ```
-
 
 ## Publishing
 

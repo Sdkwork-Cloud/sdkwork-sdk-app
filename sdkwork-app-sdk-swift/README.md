@@ -147,6 +147,8 @@ client.setHeader("X-Custom-Header", value: "value")
 - `client.member` - member API
 - `client.list` - list API
 - `client.code` - code API
+- `client.auth` - auth API
+- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -798,6 +800,22 @@ let result = try await client.code.getOrganizationBy()
 print(result)
 ```
 
+### auth
+
+```swift
+// Request password reset challenge
+let result = try await client.auth.requestPasswordResetChallenge()
+print(result)
+```
+
+### generation
+
+```swift
+// Enhance generation prompt
+let result = try await client.generation.enhanceGenerationPrompt()
+print(result)
+```
+
 ## Error Handling
 
 ```swift
@@ -807,7 +825,6 @@ do {
     print("Error: \(error)")
 }
 ```
-
 
 ## Publishing
 

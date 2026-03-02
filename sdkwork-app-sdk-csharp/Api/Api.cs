@@ -86,5 +86,7 @@ namespace App.Api
         public static MemberApi Member { get; set; }
         public static ListApi List { get; set; }
         public static CodeApi Code { get; set; }
+        public static AuthApi Auth { get; set; }
+        public static GenerationApi Generation { get; set; }
     }
 }

@@ -83,4 +83,6 @@ public struct API {
     public static let member = MemberApi.self
     public static let list = ListApi.self
     public static let code = CodeApi.self
+    public static let auth = AuthApi.self
+    public static let generation = GenerationApi.self
 }

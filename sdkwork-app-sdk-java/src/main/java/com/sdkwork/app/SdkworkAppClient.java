@@ -83,6 +83,8 @@ import com.sdkwork.app.api.StatisticsApi;
 import com.sdkwork.app.api.MemberApi;
 import com.sdkwork.app.api.ListApi;
 import com.sdkwork.app.api.CodeApi;
+import com.sdkwork.app.api.AuthApi;
+import com.sdkwork.app.api.GenerationApi;
 
 public class SdkworkAppClient {
     private final HttpClient httpClient;
@@ -167,6 +169,8 @@ public class SdkworkAppClient {
     private MemberApi member;
     private ListApi list;
     private CodeApi code;
+    private AuthApi auth;
+    private GenerationApi generation;
 
     public SdkworkAppClient(String baseUrl) {
         this.httpClient = new HttpClient(baseUrl);
@@ -251,6 +255,8 @@ public class SdkworkAppClient {
         this.member = new MemberApi(httpClient);
         this.list = new ListApi(httpClient);
         this.code = new CodeApi(httpClient);
+        this.auth = new AuthApi(httpClient);
+        this.generation = new GenerationApi(httpClient);
     }
 
     public SdkworkAppClient(Types.SdkConfig config) {
@@ -336,6 +342,8 @@ public class SdkworkAppClient {
         this.member = new MemberApi(httpClient);
         this.list = new ListApi(httpClient);
         this.code = new CodeApi(httpClient);
+        this.auth = new AuthApi(httpClient);
+        this.generation = new GenerationApi(httpClient);
     }
 
     public WorkspacesApi getWorkspaces() {
@@ -660,6 +668,14 @@ public class SdkworkAppClient {
 
     public CodeApi getCode() {
         return this.code;
+    }
+
+    public AuthApi getAuth() {
+        return this.auth;
+    }
+
+    public GenerationApi getGeneration() {
+        return this.generation;
     }
 
     public SdkworkAppClient setApiKey(String apiKey) {

@@ -80,6 +80,8 @@ from .api.statistics import StatisticsApi
 from .api.member import MemberApi
 from .api.list import ListApi
 from .api.code import CodeApi
+from .api.auth import AuthApi
+from .api.generation import GenerationApi
 
 
 class SdkworkAppClient:
@@ -168,6 +170,8 @@ class SdkworkAppClient:
         self.member: MemberApi
         self.list: ListApi
         self.code: CodeApi
+        self.auth: AuthApi
+        self.generation: GenerationApi
 
         # Initialize API modules
         self.workspaces = WorkspacesApi(self._client)
@@ -251,6 +255,8 @@ class SdkworkAppClient:
         self.member = MemberApi(self._client)
         self.list = ListApi(self._client)
         self.code = CodeApi(self._client)
+        self.auth = AuthApi(self._client)
+        self.generation = GenerationApi(self._client)
 
     def set_api_key(self, api_key: str) -> 'SdkworkAppClient':
         """Set API key for authentication."""

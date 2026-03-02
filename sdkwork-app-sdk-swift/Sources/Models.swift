@@ -13946,6 +13946,43 @@ struct FavoriteBatchRemoveForm: Codable {
     let favoriteIds: [String]?
 }
 
+struct PasswordResetRequestForm: Codable {
+    let account: String?
+    let channel: String?
+    let deviceId: String?
+    let locale: String?
+    let redirectUri: String?
+}
+
+struct PromptEnhanceRequest: Codable {
+    let prompt: String?
+    let scene: String?
+    let style: String?
+    let language: String?
+    let maxWords: Int?
+}
+
+struct PromptEnhanceResponse: Codable {
+    let prompt: String?
+    let tokensEstimated: Int?
+}
+
+struct PlusApiResultPromptEnhanceResponse: Codable {
+    let code: Int?
+    let msg: String?
+    let data: PromptEnhanceResponse?
+    let timestamp: String?
+    let traceId: String?
+}
+
+struct PlusApiErrorResult: Codable {
+    let code: Int?
+    let msg: String?
+    let data: Any?
+    let timestamp: String?
+    let traceId: String?
+}
+
 struct UploadAvatarRequest: Codable {
     let file: String?
 }

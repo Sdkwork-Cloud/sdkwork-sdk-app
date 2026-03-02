@@ -150,6 +150,8 @@ val client = SdkworkAppClient(config)
 - `client.member` - member API
 - `client.list` - list API
 - `client.code` - code API
+- `client.auth` - auth API
+- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -801,6 +803,22 @@ val result = client.code.getOrganizationBy()
 println(result)
 ```
 
+### auth
+
+```kotlin
+// Request password reset challenge
+val result = client.auth.requestPasswordResetChallenge()
+println(result)
+```
+
+### generation
+
+```kotlin
+// Enhance generation prompt
+val result = client.generation.enhanceGenerationPrompt()
+println(result)
+```
+
 ## Error Handling
 
 ```kotlin
@@ -810,7 +828,6 @@ try {
     println("Error: ${e.message}")
 }
 ```
-
 
 ## Publishing
 

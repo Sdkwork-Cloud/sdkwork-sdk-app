@@ -149,6 +149,8 @@ client.SetHeader("X-Custom-Header", "value");
 - `client.Member` - member API
 - `client.List` - list API
 - `client.Code` - code API
+- `client.Auth` - auth API
+- `client.Generation` - generation API
 
 ## Usage Examples
 
@@ -800,6 +802,22 @@ var result = await client.Code.GetOrganizationByAsync();
 Console.WriteLine(result);
 ```
 
+### auth
+
+```csharp
+// Request password reset challenge
+var result = await client.Auth.RequestPasswordResetChallengeAsync();
+Console.WriteLine(result);
+```
+
+### generation
+
+```csharp
+// Enhance generation prompt
+var result = await client.Generation.EnhanceGenerationPromptAsync();
+Console.WriteLine(result);
+```
+
 ## Error Handling
 
 ```csharp
@@ -812,7 +830,6 @@ catch (HttpRequestException ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 ```
-
 
 ## Publishing
 

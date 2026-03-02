@@ -81,3 +81,5 @@ export { StatisticsApi, createStatisticsApi } from './statistics';
 export { MemberApi, createMemberApi } from './member';
 export { ListApi, createListApi } from './list';
 export { CodeApi, createCodeApi } from './code';
+export { AuthApi, createAuthApi } from './auth';
+export { GenerationApi, createGenerationApi } from './generation';

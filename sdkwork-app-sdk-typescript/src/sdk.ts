@@ -83,6 +83,8 @@ import { StatisticsApi, createStatisticsApi } from './api/statistics';
 import { MemberApi, createMemberApi } from './api/member';
 import { ListApi, createListApi } from './api/list';
 import { CodeApi, createCodeApi } from './api/code';
+import { AuthApi, createAuthApi } from './api/auth';
+import { GenerationApi, createGenerationApi } from './api/generation';
 
 export class SdkworkAppClient {
   private httpClient: HttpClient;
@@ -168,6 +170,8 @@ export class SdkworkAppClient {
   public readonly member: MemberApi;
   public readonly list: ListApi;
   public readonly code: CodeApi;
+  public readonly auth: AuthApi;
+  public readonly generation: GenerationApi;
 
   constructor(config: SdkworkAppConfig) {
     this.httpClient = createHttpClient(config);
@@ -332,6 +336,10 @@ export class SdkworkAppClient {
     this.list = createListApi(this.httpClient);
 
     this.code = createCodeApi(this.httpClient);
+
+    this.auth = createAuthApi(this.httpClient);
+
+    this.generation = createGenerationApi(this.httpClient);
   }
 
   setApiKey(apiKey: string): this {

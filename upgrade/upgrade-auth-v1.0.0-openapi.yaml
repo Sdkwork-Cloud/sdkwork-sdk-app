@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: SDKWork App API Auth Upgrade
+  version: 1.0.0
+  description: |
+    Auth module upgrade for TypeScript SDK integration.
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: auth
+paths:
+  /app/v3/api/auth/password/reset/request:
+    post:
+      tags:
+        - auth
+      summary: Request password reset challenge
+      description: |
+        First step of forgot-password flow. Send reset challenge by email link or sms code.
+      operationId: requestPasswordResetChallenge
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetRequestForm'
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiResultVoid'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiErrorResult'
+        '429':
+          description: Too many attempts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiErrorResult'
+components:
+  schemas:
+    PasswordResetRequestForm:
+      type: object
+      required:
+        - account
+        - channel
+      properties:
+        account:
+          type: string
+          description: Email or phone.
+          example: user@example.com
+        channel:
+          type: string
+          enum:
+            - EMAIL
+            - SMS
+        deviceId:
+          type: string
+        locale:
+          type: string
+          example: zh-CN
+        redirectUri:
+          type: string
+          format: uri
+    PlusApiResultVoid:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: OK
+        data:
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+        traceId:
+          type: string
+    PlusApiErrorResult:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Invalid request
+        data:
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+        traceId:
+          type: string

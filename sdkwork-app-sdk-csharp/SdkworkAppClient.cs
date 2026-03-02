@@ -82,6 +82,8 @@ using App.Api;
 using App.Api;
 using App.Api;
 using App.Api;
+using App.Api;
+using App.Api;
 
 namespace App
 {
@@ -170,6 +172,8 @@ namespace App
         public MemberApi Member { get; }
         public ListApi List { get; }
         public CodeApi Code { get; }
+        public AuthApi Auth { get; }
+        public GenerationApi Generation { get; }
 
         public SdkworkAppClient(string baseUrl)
         {
@@ -255,6 +259,8 @@ namespace App
             Member = new MemberApi(_httpClient);
             List = new ListApi(_httpClient);
             Code = new CodeApi(_httpClient);
+            Auth = new AuthApi(_httpClient);
+            Generation = new GenerationApi(_httpClient);
         }
 
         public SdkworkAppClient(SdkConfig config)
@@ -341,6 +347,8 @@ namespace App
             Member = new MemberApi(_httpClient);
             List = new ListApi(_httpClient);
             Code = new CodeApi(_httpClient);
+            Auth = new AuthApi(_httpClient);
+            Generation = new GenerationApi(_httpClient);
         }
 
         public SdkworkAppClient SetApiKey(string apiKey)

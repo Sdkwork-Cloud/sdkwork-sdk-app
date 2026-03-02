@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: SDKWork App API Generation Upgrade
+  version: 1.0.0
+  description: |
+    Generation module upgrade for TypeScript SDK integration.
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: generation
+paths:
+  /app/v3/api/generation/prompt/enhance:
+    post:
+      tags:
+        - generation
+      summary: Enhance generation prompt
+      description: |
+        Convert short user prompt to richer prompt text for image generation pipeline.
+      operationId: enhanceGenerationPrompt
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptEnhanceRequest'
+      responses:
+        '200':
+          description: Enhanced
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiResultPromptEnhanceResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiErrorResult'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlusApiErrorResult'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PromptEnhanceRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        scene:
+          type: string
+        style:
+          type: string
+        language:
+          type: string
+          example: zh-CN
+        maxWords:
+          type: integer
+          minimum: 20
+          maximum: 300
+          default: 100
+    PromptEnhanceResponse:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+        tokensEstimated:
+          type: integer
+          minimum: 0
+    PlusApiResultPromptEnhanceResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: OK
+        data:
+          $ref: '#/components/schemas/PromptEnhanceResponse'
+        timestamp:
+          type: string
+          format: date-time
+        traceId:
+          type: string
+    PlusApiErrorResult:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Invalid request
+        data:
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+        traceId:
+          type: string

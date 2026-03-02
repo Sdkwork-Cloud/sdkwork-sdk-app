@@ -153,6 +153,8 @@ client.SetHeader("X-Custom-Header", "value")
 - `client.Member` - member API
 - `client.List` - list API
 - `client.Code` - code API
+- `client.Auth` - auth API
+- `client.Generation` - generation API
 
 ## Usage Examples
 
@@ -1047,6 +1049,28 @@ if err != nil {
 fmt.Println(result)
 ```
 
+### auth
+
+```go
+// Request password reset challenge
+result, err := client.Auth.RequestPasswordResetChallenge()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### generation
+
+```go
+// Enhance generation prompt
+result, err := client.Generation.EnhanceGenerationPrompt()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 ## Error Handling
 
 ```go
@@ -1057,7 +1081,6 @@ if err != nil {
     return
 }
 ```
-
 
 ## Publishing
 

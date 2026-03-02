@@ -88,6 +88,8 @@ type SdkworkAppClient struct {
     Member *api.MemberApi
     List *api.ListApi
     Code *api.CodeApi
+    Auth *api.AuthApi
+    Generation *api.GenerationApi
 }
 
 func NewSdkworkAppClient(baseURL string) *SdkworkAppClient {
@@ -180,6 +182,8 @@ func NewSdkworkAppClientWithConfig(config sdkhttp.Config) *SdkworkAppClient {
         Member: api.NewMemberApi(client),
         List: api.NewListApi(client),
         Code: api.NewCodeApi(client),
+        Auth: api.NewAuthApi(client),
+        Generation: api.NewGenerationApi(client),
     }
 }
 

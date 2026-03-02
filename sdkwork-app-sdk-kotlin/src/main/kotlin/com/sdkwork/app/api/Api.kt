@@ -87,4 +87,6 @@ class Api(private val client: HttpClient) {
     val member: MemberApi = MemberApi(client)
     val list: ListApi = ListApi(client)
     val code: CodeApi = CodeApi(client)
+    val auth: AuthApi = AuthApi(client)
+    val generation: GenerationApi = GenerationApi(client)
 }
