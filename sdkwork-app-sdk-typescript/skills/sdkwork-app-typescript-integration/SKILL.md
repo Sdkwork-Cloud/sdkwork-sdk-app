@@ -18,7 +18,7 @@ Integrate `sdkwork-app-sdk-typescript` into an application using progressive sta
 
 - Language: `typescript`
 - Build descriptor: `package.json`
-- SDK coordinate: `@sdkwork/app-sdk@1.0.0`
+- SDK coordinate: `@sdkwork/app-sdk@1.0.1`
 - Registry integration: `pnpm add @sdkwork/app-sdk`
 - Local-path integration: `pnpm add file:<path-to-sdkwork-app-sdk-typescript>`
 

@@ -4,7 +4,7 @@
 - Language: typescript
 - SDK package directory: `sdkwork-app-sdk-typescript`
 - Build descriptor: `package.json`
-- SDK coordinate: `@sdkwork/app-sdk@1.0.0`
+- SDK coordinate: `@sdkwork/app-sdk@1.0.1`
 
 ## Integration Commands
 
