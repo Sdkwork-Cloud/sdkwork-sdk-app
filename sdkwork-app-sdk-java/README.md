@@ -10,14 +10,14 @@ Add to your `pom.xml`:
 <dependency>
     <groupId>com.sdkwork</groupId>
     <artifactId>app-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
 Or with Gradle:
 
 ```groovy
-implementation 'com.sdkwork:app-sdk:1.0.0'
+implementation 'com.sdkwork:app-sdk:1.0.1'
 ```
 
 ## Quick Start

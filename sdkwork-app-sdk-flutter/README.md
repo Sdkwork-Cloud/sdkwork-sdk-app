@@ -8,7 +8,7 @@ Add to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  app_sdk: ^1.0.0
+  app_sdk: ^1.0.1
 ```
 
 ## Quick Start

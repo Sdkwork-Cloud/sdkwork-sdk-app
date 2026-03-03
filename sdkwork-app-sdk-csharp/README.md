@@ -11,7 +11,7 @@ dotnet add package App
 Or add to your `.csproj`:
 
 ```xml
-<PackageReference Include="App" Version="1.0.0" />
+<PackageReference Include="App" Version="1.0.1" />
 ```
 
 ## Quick Start

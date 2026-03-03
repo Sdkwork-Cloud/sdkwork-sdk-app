@@ -7,7 +7,7 @@
     <LangVersion>latest</LangVersion>
     <RootNamespace>App</RootNamespace>
     <AssemblyName>App</AssemblyName>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>SDKWork Team</Authors>
     <Description>sdkwork-app-sdk SDK</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

@@ -7,13 +7,13 @@ Professional Kotlin SDK for SDKWork API.
 Add to your `build.gradle.kts`:
 
 ```kotlin
-implementation("com.sdkwork:app-sdk:1.0.0")
+implementation("com.sdkwork:app-sdk:1.0.1")
 ```
 
 Or with Gradle Groovy:
 
 ```groovy
-implementation 'com.sdkwork:app-sdk:1.0.0'
+implementation 'com.sdkwork:app-sdk:1.0.1'
 ```
 
 ## Quick Start
