@@ -12,9 +12,27 @@ class CouponsApi {
     return response is PlusApiResultUserCouponVO ? response : null;
   }
 
+  /// 积分兑换优惠券
+  Future<PlusApiResultUserCouponVO?> exchangeCouponByPoints(String couponId, CouponPointsExchangeForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/coupons/${couponId}/exchange/points'), body: body, contentType: 'application/json');
+    return response is PlusApiResultUserCouponVO ? response : null;
+  }
+
+  /// 兑换优惠券
+  Future<PlusApiResultUserCouponVO?> redeemCoupon(CouponRedeemForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/coupons/redeem'), body: body, contentType: 'application/json');
+    return response is PlusApiResultUserCouponVO ? response : null;
+  }
+
   /// 使用优惠券
   Future<PlusApiResultUserCouponVO?> useCoupon(String userCouponId, Map<String, dynamic>? params) async {
     final response = await _client.post(ApiPaths.appPath('/coupons/my/${userCouponId}/use'), params: params);
+    return response is PlusApiResultUserCouponVO ? response : null;
+  }
+
+  /// 回滚积分兑换优惠券
+  Future<PlusApiResultUserCouponVO?> rollbackPointsExchangeCoupon(String userCouponId, CouponRollbackForm? body) async {
+    final response = await _client.post(ApiPaths.appPath('/coupons/my/${userCouponId}/rollback'), body: body, contentType: 'application/json');
     return response is PlusApiResultUserCouponVO ? response : null;
   }
 

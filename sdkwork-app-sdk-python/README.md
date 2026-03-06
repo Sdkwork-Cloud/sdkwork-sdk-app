@@ -21,7 +21,7 @@ client = SdkworkAppClient(config)
 client.set_api_key("your-api-key")
 
 # Use the SDK
-result = client.tenant.get_tenant_types()
+result = client.user.get_user_settings()
 ```
 
 ## Authentication Modes (Mutually Exclusive)
@@ -54,23 +54,25 @@ client.set_access_token("your-access-token")
 ## API Modules
 
 - `client.workspaces` - workspaces API
-- `client.voice_speakers` - voice_speakers API
+- `client.voice_speaker` - voice_speaker API
 - `client.video` - video API
-- `client.settings` - settings API
-- `client.profile` - profile API
-- `client.password` - password API
-- `client.address` - address API
+- `client.user` - user API
+- `client.tool` - tool API
 - `client.tenant` - tenant API
 - `client.social` - social API
+- `client.skill` - skill API
 - `client.shops` - shops API
 - `client.share` - share API
+- `client.settings` - settings API
 - `client.ai` - ai API
 - `client.projects` - projects API
+- `client.products` - products API
 - `client.partner` - partner API
 - `client.notification` - notification API
-- `client.app` - app API
+- `client.notes` - notes API
 - `client.news` - news API
 - `client.music` - music API
+- `client.knowledge_documents` - knowledge_documents API
 - `client.invoice` - invoice API
 - `client.image` - image API
 - `client.style` - style API
@@ -78,7 +80,7 @@ client.set_access_token("your-access-token")
 - `client.feedback` - feedback API
 - `client.favorite` - favorite API
 - `client.drive` - drive API
-- `client.app_documents` - app_documents API
+- `client.documents` - documents API
 - `client.dashboard` - dashboard API
 - `client.collection` - collection API
 - `client.chat` - chat API
@@ -86,56 +88,36 @@ client.set_access_token("your-access-token")
 - `client.category` - category API
 - `client.cart` - cart API
 - `client.assets` - assets API
+- `client.app` - app API
 - `client.announcement` - announcement API
+- `client.agent` - agent API
 - `client.advert` - advert API
+- `client.wallet` - wallet API
 - `client.vote` - vote API
 - `client.vip` - vip API
-- `client.deactivate` - deactivate API
-- `client.bind` - bind API
-- `client.avatar` - avatar API
 - `client.upload` - upload API
 - `client.search` - search API
+- `client.rtc` - rtc API
 - `client.payments` - payments API
 - `client.organization` - organization API
-- `client.disable` - disable API
-- `client.activate` - activate API
-- `client.position` - position API
-- `client.department` - department API
 - `client.orders` - orders API
-- `client.models` - models API
+- `client.model` - model API
 - `client.history` - history API
-- `client.voice_speaker` - voice_speaker API
 - `client.sound_effect` - sound_effect API
+- `client.generation` - generation API
 - `client.audio` - audio API
 - `client.feed` - feed API
 - `client.currency` - currency API
 - `client.coupons` - coupons API
 - `client.comments` - comments API
-- `client.sms` - sms API
-- `client.register` - register API
-- `client.refresh` - refresh API
-- `client.qr` - qr API
-- `client.phone` - phone API
-- `client.oauth` - oauth API
-- `client.logout` - logout API
-- `client.login` - login API
+- `client.auth` - auth API
 - `client.audit` - audit API
 - `client.analytics` - analytics API
+- `client.agent_memory` - agent_memory API
 - `client.activity` - activity API
 - `client.account` - account API
 - `client.ab` - ab API
 - `client.sku` - sku API
-- `client.products` - products API
-- `client.positions` - positions API
-- `client.members` - members API
-- `client.departments` - departments API
-- `client.children` - children API
-- `client.statistics` - statistics API
-- `client.member` - member API
-- `client.list` - list API
-- `client.code` - code API
-- `client.auth` - auth API
-- `client.generation` - generation API
 
 ## Publishing
 

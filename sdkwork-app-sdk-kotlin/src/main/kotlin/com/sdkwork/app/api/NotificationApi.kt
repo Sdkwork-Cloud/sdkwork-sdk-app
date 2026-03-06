@@ -5,102 +5,127 @@ import com.sdkwork.app.http.HttpClient
 
 class NotificationApi(private val client: HttpClient) {
 
-    /** 标记已读 */
+    /** Mark notification as unread */
+    suspend fun markAsUnread(notificationId: String): PlusApiResultNotificationVO? {
+        return client.put(ApiPaths.appPath("/notification/$notificationId/unread"), null) as? PlusApiResultNotificationVO
+    }
+
+    /** Mark notification as read */
     suspend fun markAsRead(notificationId: String): PlusApiResultNotificationVO? {
         return client.put(ApiPaths.appPath("/notification/$notificationId/read"), null) as? PlusApiResultNotificationVO
     }
 
-    /** 获取推送设置 */
+    /** Get notification settings */
     suspend fun getNotificationSettings(): PlusApiResultNotificationSettingsVO? {
         return client.get(ApiPaths.appPath("/notification/settings")) as? PlusApiResultNotificationSettingsVO
     }
 
-    /** 更新推送设置 */
+    /** Update notification settings */
     suspend fun updateNotificationSettings(body: NotificationSettingsUpdateForm): PlusApiResultNotificationSettingsVO? {
         return client.put(ApiPaths.appPath("/notification/settings"), body) as? PlusApiResultNotificationSettingsVO
     }
 
-    /** 更新类型推送设置 */
+    /** Update type settings */
     suspend fun updateTypeSettings(type: String, body: NotificationTypeSettingsForm): PlusApiResultVoid? {
         return client.put(ApiPaths.appPath("/notification/settings/$type"), body) as? PlusApiResultVoid
     }
 
-    /** 全部标记已读 */
+    /** Mark all notifications as read */
     suspend fun markAllAsRead(params: Map<String, Any>? = null): PlusApiResultVoid? {
         return client.put(ApiPaths.appPath("/notification/read/all"), null, params) as? PlusApiResultVoid
     }
 
-    /** 批量标记已读 */
+    /** Update device status */
+    suspend fun updateDeviceStatus(deviceId: String, body: DeviceStatusUpdateForm): PlusApiResultDeviceVO? {
+        return client.put(ApiPaths.appPath("/notification/devices/$deviceId/status"), body) as? PlusApiResultDeviceVO
+    }
+
+    /** Batch mark notifications as read */
     suspend fun batchMarkAsRead(body: NotificationBatchReadForm): PlusApiResultVoid? {
         return client.put(ApiPaths.appPath("/notification/batch/read"), body) as? PlusApiResultVoid
     }
 
-    /** 发送测试消息 */
+    /** Send test notification */
     suspend fun sendTest(body: TestNotificationForm): PlusApiResultVoid? {
         return client.post(ApiPaths.appPath("/notification/test"), body) as? PlusApiResultVoid
     }
 
-    /** 订阅列表 */
+    /** List subscriptions */
     suspend fun listSubscriptions(): PlusApiResultListString? {
         return client.get(ApiPaths.appPath("/notification/subscriptions")) as? PlusApiResultListString
     }
 
-    /** 订阅主题 */
+    /** Subscribe topic */
     suspend fun subscribeTopic(body: TopicSubscribeForm): PlusApiResultVoid? {
         return client.post(ApiPaths.appPath("/notification/subscriptions"), body) as? PlusApiResultVoid
     }
 
-    /** 获取设备列表 */
+    /** List devices */
     suspend fun listDevices(): PlusApiResultListDeviceVO? {
         return client.get(ApiPaths.appPath("/notification/devices")) as? PlusApiResultListDeviceVO
     }
 
-    /** 注册推送设备 */
-    suspend fun registerDevice(body: DeviceRegisterForm): PlusApiResultVoid? {
-        return client.post(ApiPaths.appPath("/notification/devices"), body) as? PlusApiResultVoid
+    /** Register device */
+    suspend fun registerDevice(body: DeviceRegisterForm): PlusApiResultDeviceVO? {
+        return client.post(ApiPaths.appPath("/notification/devices"), body) as? PlusApiResultDeviceVO
     }
 
-    /** 获取消息列表 */
+    /** List device messages */
+    suspend fun listDeviceMessages(deviceId: String, params: Map<String, Any>? = null): PlusApiResultListDeviceMessageVO? {
+        return client.get(ApiPaths.appPath("/notification/devices/$deviceId/messages"), params) as? PlusApiResultListDeviceMessageVO
+    }
+
+    /** Send device message */
+    suspend fun sendDeviceMessage(deviceId: String, body: DeviceMessageSendForm): PlusApiResultDeviceMessageVO? {
+        return client.post(ApiPaths.appPath("/notification/devices/$deviceId/messages"), body) as? PlusApiResultDeviceMessageVO
+    }
+
+    /** Control device */
+    suspend fun controlDevice(deviceId: String, body: DeviceControlForm): PlusApiResultBoolean? {
+        return client.post(ApiPaths.appPath("/notification/devices/$deviceId/control"), body) as? PlusApiResultBoolean
+    }
+
+    /** List notifications */
     suspend fun listNotifications(params: Map<String, Any>? = null): PlusApiResultPageNotificationVO? {
         return client.get(ApiPaths.appPath("/notification"), params) as? PlusApiResultPageNotificationVO
     }
 
-    /** 获取消息详情 */
+    /** Get notification detail */
     suspend fun getNotificationDetail(notificationId: String): PlusApiResultNotificationDetailVO? {
         return client.get(ApiPaths.appPath("/notification/$notificationId")) as? PlusApiResultNotificationDetailVO
     }
 
-    /** 删除消息 */
+    /** Delete notification */
     suspend fun deleteNotification(notificationId: String): PlusApiResultVoid? {
         return client.delete(ApiPaths.appPath("/notification/$notificationId")) as? PlusApiResultVoid
     }
 
-    /** 未读消息统计 */
+    /** Get unread notification count */
     suspend fun getUnreadCount(): PlusApiResultMapStringInteger? {
         return client.get(ApiPaths.appPath("/notification/unread/count")) as? PlusApiResultMapStringInteger
     }
 
-    /** 消息类型 */
+    /** List notification types */
     suspend fun listNotificationTypes(): PlusApiResultListNotificationTypeVO? {
         return client.get(ApiPaths.appPath("/notification/types")) as? PlusApiResultListNotificationTypeVO
     }
 
-    /** 取消订阅 */
+    /** Unsubscribe topic */
     suspend fun unsubscribeTopic(topic: String): PlusApiResultVoid? {
         return client.delete(ApiPaths.appPath("/notification/subscriptions/$topic")) as? PlusApiResultVoid
     }
 
-    /** 注销推送设备 */
+    /** Unregister device */
     suspend fun unregisterDevice(deviceToken: String): PlusApiResultVoid? {
         return client.delete(ApiPaths.appPath("/notification/devices/$deviceToken")) as? PlusApiResultVoid
     }
 
-    /** 清空消息 */
+    /** Clear notifications */
     suspend fun clearAllNotifications(params: Map<String, Any>? = null): PlusApiResultVoid? {
         return client.delete(ApiPaths.appPath("/notification/clear"), params) as? PlusApiResultVoid
     }
 
-    /** 批量删除消息 */
+    /** Batch delete notifications */
     suspend fun batchDeleteNotifications(): PlusApiResultVoid? {
         return client.delete(ApiPaths.appPath("/notification/batch")) as? PlusApiResultVoid
     }

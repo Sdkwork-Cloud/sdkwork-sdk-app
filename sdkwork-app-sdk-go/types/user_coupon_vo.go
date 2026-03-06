@@ -14,6 +14,11 @@ type UserCouponVO struct {
 	Discount float64 `json:"discount"`
 	MinConsume int `json:"minConsume"`
 	AcquireAt string `json:"acquireAt"`
+	AcquireRequestNo string `json:"acquireRequestNo"`
+	AcquireType string `json:"acquireType"`
+	PointCost int `json:"pointCost"`
+	PointsRefunded bool `json:"pointsRefunded"`
+	PointsRefundAt string `json:"pointsRefundAt"`
 	UseAt string `json:"useAt"`
 	ExpireAt string `json:"expireAt"`
 	Status string `json:"status"`

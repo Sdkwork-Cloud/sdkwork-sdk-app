@@ -14,6 +14,16 @@ func NewDriveApi(client *sdkhttp.Client) *DriveApi {
     return &DriveApi{client: client}
 }
 
+// Restore drive item
+func (a *DriveApi) RestoreItem(itemId string) (sdktypes.PlusApiResultDriveItemVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/drive/items/%s/restore", itemId)), nil, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultDriveItemVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultDriveItemVO](raw)
+}
+
 // Rename drive item
 func (a *DriveApi) RenameItem(itemId string, body sdktypes.DriveRenameForm) (sdktypes.PlusApiResultDriveItemVO, error) {
     raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/drive/items/%s/rename", itemId)), body, nil, nil, "")
@@ -52,6 +62,36 @@ func (a *DriveApi) UpdateItemContent(itemId string, body sdktypes.DriveContentUp
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultDriveContentVO](raw)
+}
+
+// Archive drive item
+func (a *DriveApi) ArchiveItem(itemId string) (sdktypes.PlusApiResultDriveItemVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/drive/items/%s/archive", itemId)), nil, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultDriveItemVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultDriveItemVO](raw)
+}
+
+// Favorite drive item
+func (a *DriveApi) FavoriteItem(itemId string) (sdktypes.PlusApiResultDriveItemVO, error) {
+    raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/drive/items/%s/favorite", itemId)), nil, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultDriveItemVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultDriveItemVO](raw)
+}
+
+// Unfavorite drive item
+func (a *DriveApi) UnfavoriteItem(itemId string) (sdktypes.PlusApiResultDriveItemVO, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/drive/items/%s/favorite", itemId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultDriveItemVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultDriveItemVO](raw)
 }
 
 // Copy drive item

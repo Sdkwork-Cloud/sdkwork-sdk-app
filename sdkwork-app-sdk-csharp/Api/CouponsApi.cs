@@ -24,11 +24,35 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 积分兑换优惠券
+        /// </summary>
+        public async Task<PlusApiResultUserCouponVO?> ExchangeCouponByPointsAsync(string couponId, CouponPointsExchangeForm body)
+        {
+            return await _client.PostAsync<PlusApiResultUserCouponVO>(ApiPaths.AppPath($"/coupons/{couponId}/exchange/points"), body);
+        }
+
+        /// <summary>
+        /// 兑换优惠券
+        /// </summary>
+        public async Task<PlusApiResultUserCouponVO?> RedeemCouponAsync(CouponRedeemForm body)
+        {
+            return await _client.PostAsync<PlusApiResultUserCouponVO>(ApiPaths.AppPath("/coupons/redeem"), body);
+        }
+
+        /// <summary>
         /// 使用优惠券
         /// </summary>
         public async Task<PlusApiResultUserCouponVO?> UseCouponAsync(string userCouponId, Dictionary<string, object>? query = null)
         {
             return await _client.PostAsync<PlusApiResultUserCouponVO>(ApiPaths.AppPath($"/coupons/my/{userCouponId}/use"), null, query);
+        }
+
+        /// <summary>
+        /// 回滚积分兑换优惠券
+        /// </summary>
+        public async Task<PlusApiResultUserCouponVO?> RollbackPointsExchangeCouponAsync(string userCouponId, CouponRollbackForm? body = null)
+        {
+            return await _client.PostAsync<PlusApiResultUserCouponVO>(ApiPaths.AppPath($"/coupons/my/{userCouponId}/rollback"), body);
         }
 
         /// <summary>

@@ -13,6 +13,11 @@ public class UserCouponVO {
     private Double discount;
     private Integer minConsume;
     private String acquireAt;
+    private String acquireRequestNo;
+    private String acquireType;
+    private Integer pointCost;
+    private Boolean pointsRefunded;
+    private String pointsRefundAt;
     private String useAt;
     private String expireAt;
     private String status;
@@ -116,6 +121,46 @@ public class UserCouponVO {
     
     public void setAcquireAt(String acquireAt) {
         this.acquireAt = acquireAt;
+    }
+
+    public String getAcquireRequestNo() {
+        return this.acquireRequestNo;
+    }
+    
+    public void setAcquireRequestNo(String acquireRequestNo) {
+        this.acquireRequestNo = acquireRequestNo;
+    }
+
+    public String getAcquireType() {
+        return this.acquireType;
+    }
+    
+    public void setAcquireType(String acquireType) {
+        this.acquireType = acquireType;
+    }
+
+    public Integer getPointCost() {
+        return this.pointCost;
+    }
+    
+    public void setPointCost(Integer pointCost) {
+        this.pointCost = pointCost;
+    }
+
+    public Boolean getPointsRefunded() {
+        return this.pointsRefunded;
+    }
+    
+    public void setPointsRefunded(Boolean pointsRefunded) {
+        this.pointsRefunded = pointsRefunded;
+    }
+
+    public String getPointsRefundAt() {
+        return this.pointsRefundAt;
+    }
+    
+    public void setPointsRefundAt(String pointsRefundAt) {
+        this.pointsRefundAt = pointsRefundAt;
     }
 
     public String getUseAt() {

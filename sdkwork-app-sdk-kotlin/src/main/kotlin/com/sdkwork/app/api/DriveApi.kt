@@ -5,6 +5,11 @@ import com.sdkwork.app.http.HttpClient
 
 class DriveApi(private val client: HttpClient) {
 
+    /** Restore drive item */
+    suspend fun restoreItem(itemId: String): PlusApiResultDriveItemVO? {
+        return client.put(ApiPaths.appPath("/drive/items/$itemId/restore"), null) as? PlusApiResultDriveItemVO
+    }
+
     /** Rename drive item */
     suspend fun renameItem(itemId: String, body: DriveRenameForm): PlusApiResultDriveItemVO? {
         return client.put(ApiPaths.appPath("/drive/items/$itemId/rename"), body) as? PlusApiResultDriveItemVO
@@ -23,6 +28,21 @@ class DriveApi(private val client: HttpClient) {
     /** Update drive file content */
     suspend fun updateItemContent(itemId: String, body: DriveContentUpdateForm): PlusApiResultDriveContentVO? {
         return client.put(ApiPaths.appPath("/drive/items/$itemId/content"), body) as? PlusApiResultDriveContentVO
+    }
+
+    /** Archive drive item */
+    suspend fun archiveItem(itemId: String): PlusApiResultDriveItemVO? {
+        return client.put(ApiPaths.appPath("/drive/items/$itemId/archive"), null) as? PlusApiResultDriveItemVO
+    }
+
+    /** Favorite drive item */
+    suspend fun favoriteItem(itemId: String): PlusApiResultDriveItemVO? {
+        return client.post(ApiPaths.appPath("/drive/items/$itemId/favorite"), null) as? PlusApiResultDriveItemVO
+    }
+
+    /** Unfavorite drive item */
+    suspend fun unfavoriteItem(itemId: String): PlusApiResultDriveItemVO? {
+        return client.delete(ApiPaths.appPath("/drive/items/$itemId/favorite")) as? PlusApiResultDriveItemVO
     }
 
     /** Copy drive item */

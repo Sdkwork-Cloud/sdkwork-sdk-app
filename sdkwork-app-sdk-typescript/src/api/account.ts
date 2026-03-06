@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { CashRechargeForm, CashTransferForm, CashWithdrawForm, PlusApiResultCashAccountInfoVO, PlusApiResultCashRechargeVO, PlusApiResultCashTransferVO, PlusApiResultCashWithdrawVO, PlusApiResultPageHistoryVO, PlusApiResultPointsAccountInfoVO, PlusApiResultPointsExchangeVO, PlusApiResultPointsTransferVO, PointsExchangeForm, PointsTransferForm } from '../types';
+import type { CashRechargeForm, CashTransferForm, CashWithdrawForm, PlusApiResultBigDecimal, PlusApiResultCashAccountInfoVO, PlusApiResultCashRechargeVO, PlusApiResultCashTransferVO, PlusApiResultCashWithdrawVO, PlusApiResultPageHistoryVO, PlusApiResultPointsAccountInfoVO, PlusApiResultPointsExchangeVO, PlusApiResultPointsTransferVO, PointsExchangeForm, PointsTransferForm } from '../types';
 
 
 export class AccountApi {
@@ -54,6 +54,11 @@ export class AccountApi {
 /** 获取交易历史 */
   async getHistory(params?: QueryParams): Promise<PlusApiResultPageHistoryVO> {
     return this.client.get<PlusApiResultPageHistoryVO>(appApiPath(`/account/points/history`), params);
+  }
+
+/** 获取积分兑换现金比例 */
+  async getPointsToCashRate(): Promise<PlusApiResultBigDecimal> {
+    return this.client.get<PlusApiResultBigDecimal>(appApiPath(`/account/points/exchange-rate`));
   }
 
 /** 获取现金账户信息 */

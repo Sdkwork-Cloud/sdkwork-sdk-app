@@ -61,6 +61,12 @@ public class OrdersApi {
         return response as? PlusApiResultOrderStatusVO
     }
 
+    /// 查询订单是否支付成功
+    public func getOrderPaymentSuccess(orderId: String) async throws -> PlusApiResultOrderPaymentSuccessVO? {
+        let response = try await client.get(ApiPaths.appPath("/orders/\(orderId)/payment-success"))
+        return response as? PlusApiResultOrderPaymentSuccessVO
+    }
+
     /// 获取订单统计
     public func getOrderStatistics() async throws -> PlusApiResultOrderStatisticsVO? {
         let response = try await client.get(ApiPaths.appPath("/orders/statistics"))

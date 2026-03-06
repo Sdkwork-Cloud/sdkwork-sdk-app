@@ -16,7 +16,15 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 取消点赞Feed
+        /// Create feed
+        /// </summary>
+        public async Task<PlusApiResultFeedItemVO?> CreateAsync(FeedCreateForm body)
+        {
+            return await _client.PostAsync<PlusApiResultFeedItemVO>(ApiPaths.AppPath("/feeds"), body);
+        }
+
+        /// <summary>
+        /// Unlike feed
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> UnlikeAsync(string id)
         {
@@ -24,7 +32,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 取消收藏Feed
+        /// Uncollect feed
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> UncollectAsync(string id)
         {
@@ -32,7 +40,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 分享Feed
+        /// Share feed
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> ShareAsync(string id)
         {
@@ -40,7 +48,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 点赞Feed
+        /// Like feed
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> LikeAsync(string id)
         {
@@ -48,7 +56,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 收藏Feed
+        /// Collect feed
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> CollectAsync(string id, Dictionary<string, object>? query = null)
         {
@@ -56,7 +64,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取置顶Feed
+        /// Get top feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetTopFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -64,7 +72,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 搜索Feed
+        /// Search feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> SearchFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -72,7 +80,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取推荐Feed
+        /// Get recommended feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetRecommendedFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -80,7 +88,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取最多浏览Feed
+        /// Get most viewed feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetMostViewedFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -88,7 +96,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取最多点赞Feed
+        /// Get most liked feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetMostLikedFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -96,7 +104,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取Feed列表
+        /// Get feed list
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetFeedListAsync(Dictionary<string, object>? query = null)
         {
@@ -104,7 +112,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取热门Feed
+        /// Get hot feeds
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetHotFeedsAsync(Dictionary<string, object>? query = null)
         {
@@ -112,7 +120,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取Feed详情
+        /// Get feed detail
         /// </summary>
         public async Task<PlusApiResultFeedItemVO?> GetFeedDetailAsync(string id)
         {
@@ -120,7 +128,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 检查收藏状态
+        /// Check collected status
         /// </summary>
         public async Task<PlusApiResultBoolean?> CheckCollectedAsync(string id)
         {
@@ -128,11 +136,19 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取分类Feed
+        /// Get feeds by category
         /// </summary>
         public async Task<PlusApiResultListFeedItemVO?> GetFeedsByCategoryAsync(string categoryId, Dictionary<string, object>? query = null)
         {
             return await _client.GetAsync<PlusApiResultListFeedItemVO>(ApiPaths.AppPath($"/feeds/category/{categoryId}"), query);
+        }
+
+        /// <summary>
+        /// Delete feed
+        /// </summary>
+        public async Task<PlusApiResultBoolean?> DeleteAsync(string id)
+        {
+            return await _client.DeleteAsync<PlusApiResultBoolean>(ApiPaths.AppPath($"/feeds/{id}"));
         }
     }
 }

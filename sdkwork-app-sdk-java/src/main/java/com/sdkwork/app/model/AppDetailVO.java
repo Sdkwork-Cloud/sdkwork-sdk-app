@@ -14,6 +14,10 @@ public class AppDetailVO {
     private String status;
     private Integer projectId;
     private AppPlatforms platforms;
+    private AppPlatforms installPlatforms;
+    private AppInstallSkill installSkill;
+    private AppInstallConfig installConfig;
+    private AppConfig config;
     private String packageName;
     private String bundleId;
     private String storeUrl;
@@ -121,6 +125,38 @@ public class AppDetailVO {
     
     public void setPlatforms(AppPlatforms platforms) {
         this.platforms = platforms;
+    }
+
+    public AppPlatforms getInstallPlatforms() {
+        return this.installPlatforms;
+    }
+    
+    public void setInstallPlatforms(AppPlatforms installPlatforms) {
+        this.installPlatforms = installPlatforms;
+    }
+
+    public AppInstallSkill getInstallSkill() {
+        return this.installSkill;
+    }
+    
+    public void setInstallSkill(AppInstallSkill installSkill) {
+        this.installSkill = installSkill;
+    }
+
+    public AppInstallConfig getInstallConfig() {
+        return this.installConfig;
+    }
+    
+    public void setInstallConfig(AppInstallConfig installConfig) {
+        this.installConfig = installConfig;
+    }
+
+    public AppConfig getConfig() {
+        return this.config;
+    }
+    
+    public void setConfig(AppConfig config) {
+        this.config = config;
     }
 
     public String getPackageName() {

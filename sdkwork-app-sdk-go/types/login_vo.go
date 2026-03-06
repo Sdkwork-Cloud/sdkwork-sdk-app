@@ -4,7 +4,7 @@ package types
 type LoginVO struct {
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
-	AccessToken string `json:"accessToken"`
+	AuthToken string `json:"authToken"`
 	RefreshToken string `json:"refreshToken"`
 	TokenType string `json:"tokenType"`
 	ExpiresIn int `json:"expiresIn"`

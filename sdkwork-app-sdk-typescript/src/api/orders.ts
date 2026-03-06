@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { OrderCancelForm, OrderCreateForm, OrderPayForm, PlusApiResultOrderDetailVO, PlusApiResultOrderStatisticsVO, PlusApiResultOrderStatusVO, PlusApiResultOrderVO, PlusApiResultPageOrderVO, PlusApiResultPaymentParamsVO, PlusApiResultVoid, RefundApplyForm } from '../types';
+import type { OrderCancelForm, OrderCreateForm, OrderPayForm, PlusApiResultOrderDetailVO, PlusApiResultOrderPaymentSuccessVO, PlusApiResultOrderStatisticsVO, PlusApiResultOrderStatusVO, PlusApiResultOrderVO, PlusApiResultPageOrderVO, PlusApiResultPaymentParamsVO, PlusApiResultVoid, RefundApplyForm } from '../types';
 
 
 export class OrdersApi {
@@ -54,6 +54,11 @@ export class OrdersApi {
 /** 获取订单状态 */
   async getOrderStatus(orderId: string | number): Promise<PlusApiResultOrderStatusVO> {
     return this.client.get<PlusApiResultOrderStatusVO>(appApiPath(`/orders/${orderId}/status`));
+  }
+
+/** 查询订单是否支付成功 */
+  async getOrderPaymentSuccess(orderId: string | number): Promise<PlusApiResultOrderPaymentSuccessVO> {
+    return this.client.get<PlusApiResultOrderPaymentSuccessVO>(appApiPath(`/orders/${orderId}/payment-success`));
   }
 
 /** 获取订单统计 */

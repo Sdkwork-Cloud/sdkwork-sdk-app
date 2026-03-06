@@ -8,7 +8,7 @@ Add to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  app_sdk: ^1.0.1
+  app_sdk: ^1.0.0
 ```
 
 ## Quick Start
@@ -25,7 +25,7 @@ final client = SdkworkAppClient(
 client.setApiKey('your-api-key');
 
 // Use the SDK
-final result = await client.tenant.getTenantTypes();
+final result = await client.user.getUserSettings();
 print(result);
 ```
 
@@ -66,23 +66,25 @@ client.setHeader('X-Custom-Header', 'value');
 ## API Modules
 
 - `client.workspaces` - workspaces API
-- `client.voiceSpeakers` - voice_speakers API
+- `client.voiceSpeaker` - voice_speaker API
 - `client.video` - video API
-- `client.settings` - settings API
-- `client.profile` - profile API
-- `client.password` - password API
-- `client.address` - address API
+- `client.user` - user API
+- `client.tool` - tool API
 - `client.tenant` - tenant API
 - `client.social` - social API
+- `client.skill` - skill API
 - `client.shops` - shops API
 - `client.share` - share API
+- `client.settings` - settings API
 - `client.ai` - ai API
 - `client.projects` - projects API
+- `client.products` - products API
 - `client.partner` - partner API
 - `client.notification` - notification API
-- `client.app` - app API
+- `client.notes` - notes API
 - `client.news` - news API
 - `client.music` - music API
+- `client.knowledgeDocuments` - knowledge_documents API
 - `client.invoice` - invoice API
 - `client.image` - image API
 - `client.style` - style API
@@ -90,7 +92,7 @@ client.setHeader('X-Custom-Header', 'value');
 - `client.feedback` - feedback API
 - `client.favorite` - favorite API
 - `client.drive` - drive API
-- `client.appDocuments` - app_documents API
+- `client.documents` - documents API
 - `client.dashboard` - dashboard API
 - `client.collection` - collection API
 - `client.chat` - chat API
@@ -98,56 +100,36 @@ client.setHeader('X-Custom-Header', 'value');
 - `client.category` - category API
 - `client.cart` - cart API
 - `client.assets` - assets API
+- `client.app` - app API
 - `client.announcement` - announcement API
+- `client.agent` - agent API
 - `client.advert` - advert API
+- `client.wallet` - wallet API
 - `client.vote` - vote API
 - `client.vip` - vip API
-- `client.deactivate` - deactivate API
-- `client.bind` - bind API
-- `client.avatar` - avatar API
 - `client.upload` - upload API
 - `client.search` - search API
+- `client.rtc` - rtc API
 - `client.payments` - payments API
 - `client.organization` - organization API
-- `client.disable` - disable API
-- `client.activate` - activate API
-- `client.position` - position API
-- `client.department` - department API
 - `client.orders` - orders API
-- `client.models` - models API
+- `client.model` - model API
 - `client.history` - history API
-- `client.voiceSpeaker` - voice_speaker API
 - `client.soundEffect` - sound_effect API
+- `client.generation` - generation API
 - `client.audio` - audio API
 - `client.feed` - feed API
 - `client.currency` - currency API
 - `client.coupons` - coupons API
 - `client.comments` - comments API
-- `client.sms` - sms API
-- `client.register` - register API
-- `client.refresh` - refresh API
-- `client.qr` - qr API
-- `client.phone` - phone API
-- `client.oauth` - oauth API
-- `client.logout` - logout API
-- `client.login` - login API
+- `client.auth` - auth API
 - `client.audit` - audit API
 - `client.analytics` - analytics API
+- `client.agentMemory` - agent_memory API
 - `client.activity` - activity API
 - `client.account` - account API
 - `client.ab` - ab API
 - `client.sku` - sku API
-- `client.products` - products API
-- `client.positions` - positions API
-- `client.members` - members API
-- `client.departments` - departments API
-- `client.children` - children API
-- `client.statistics` - statistics API
-- `client.member` - member API
-- `client.list` - list API
-- `client.code` - code API
-- `client.auth` - auth API
-- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -159,11 +141,11 @@ final result = await client.workspaces.getWorkspaceDetail();
 print(result);
 ```
 
-### voice_speakers
+### voice_speaker
 
 ```dart
 // 获取发音人详情
-final result = await client.voiceSpeakers.getSpeakerDetail();
+final result = await client.voiceSpeaker.getSpeakerDetail();
 print(result);
 ```
 
@@ -175,35 +157,19 @@ final result = await client.video.getVideo();
 print(result);
 ```
 
-### settings
+### user
 
 ```dart
 // 获取用户设置
-final result = await client.settings.getUser();
+final result = await client.user.getUserSettings();
 print(result);
 ```
 
-### profile
+### tool
 
 ```dart
-// 获取用户信息
-final result = await client.profile.getUser();
-print(result);
-```
-
-### password
-
-```dart
-// 修改密码
-final result = await client.password.change();
-print(result);
-```
-
-### address
-
-```dart
-// 获取地址详情
-final result = await client.address.getAddressDetail();
+// Update tool credentials
+final result = await client.tool.updateCredentials();
 print(result);
 ```
 
@@ -223,6 +189,14 @@ final result = await client.social.markMessagesAsRead();
 print(result);
 ```
 
+### skill
+
+```dart
+// Get skill detail
+final result = await client.skill.detail();
+print(result);
+```
+
 ### shops
 
 ```dart
@@ -236,6 +210,14 @@ print(result);
 ```dart
 // 更新分享设置
 final result = await client.share.updateShareSettings();
+print(result);
+```
+
+### settings
+
+```dart
+// 获取模块设置
+final result = await client.settings.getModule();
 print(result);
 ```
 
@@ -255,6 +237,14 @@ final result = await client.projects.getProjectDetail();
 print(result);
 ```
 
+### products
+
+```dart
+// 更新商品属性
+final result = await client.products.updateProductAttribute();
+print(result);
+```
+
 ### partner
 
 ```dart
@@ -266,16 +256,16 @@ print(result);
 ### notification
 
 ```dart
-// 标记已读
-final result = await client.notification.markAsRead();
+// Mark notification as unread
+final result = await client.notification.markAsUnread();
 print(result);
 ```
 
-### app
+### notes
 
 ```dart
 // 获取笔记详情
-final result = await client.app.getNoteDetail();
+final result = await client.notes.getNoteDetail();
 print(result);
 ```
 
@@ -292,6 +282,14 @@ print(result);
 ```dart
 // 获取音乐详情
 final result = await client.music.getMusic();
+print(result);
+```
+
+### knowledge_documents
+
+```dart
+// Restore knowledge document
+final result = await client.knowledgeDocuments.restoreKnowledgeDocument();
 print(result);
 ```
 
@@ -346,16 +344,16 @@ print(result);
 ### drive
 
 ```dart
-// Rename drive item
-final result = await client.drive.renameItem();
+// Restore drive item
+final result = await client.drive.restoreItem();
 print(result);
 ```
 
-### app_documents
+### documents
 
 ```dart
 // Get document detail
-final result = await client.appDocuments.getDocumentDetail();
+final result = await client.documents.getDocumentDetail();
 print(result);
 ```
 
@@ -415,6 +413,14 @@ final result = await client.assets.renameAsset();
 print(result);
 ```
 
+### app
+
+```dart
+// 获取应用详情
+final result = await client.app.getApp();
+print(result);
+```
+
 ### announcement
 
 ```dart
@@ -423,11 +429,27 @@ final result = await client.announcement.markAsRead();
 print(result);
 ```
 
+### agent
+
+```dart
+// Get agent
+final result = await client.agent.get();
+print(result);
+```
+
 ### advert
 
 ```dart
 // 广告设置
 final result = await client.advert.getAdvertSettings();
+print(result);
+```
+
+### wallet
+
+```dart
+// 钱包提现
+final result = await client.wallet.withdraw();
 print(result);
 ```
 
@@ -447,30 +469,6 @@ final result = await client.vip.purchase();
 print(result);
 ```
 
-### deactivate
-
-```dart
-// 注销账号
-final result = await client.deactivate.account();
-print(result);
-```
-
-### bind
-
-```dart
-// 绑定第三方账号
-final result = await client.bind.thirdPartyAccount();
-print(result);
-```
-
-### avatar
-
-```dart
-// 上传头像
-final result = await client.avatar.upload();
-print(result);
-```
-
 ### upload
 
 ```dart
@@ -484,6 +482,14 @@ print(result);
 ```dart
 // 搜索历史
 final result = await client.search.getSearchHistory();
+print(result);
+```
+
+### rtc
+
+```dart
+// Create RTC room
+final result = await client.rtc.createRoom();
 print(result);
 ```
 
@@ -503,38 +509,6 @@ final result = await client.organization.createOrganization();
 print(result);
 ```
 
-### disable
-
-```dart
-// 禁用组织
-final result = await client.disable.organization();
-print(result);
-```
-
-### activate
-
-```dart
-// 激活组织
-final result = await client.activate.organization();
-print(result);
-```
-
-### position
-
-```dart
-// 创建岗位
-final result = await client.position.createPosition();
-print(result);
-```
-
-### department
-
-```dart
-// 创建部门
-final result = await client.department.createDepartment();
-print(result);
-```
-
 ### orders
 
 ```dart
@@ -543,11 +517,11 @@ final result = await client.orders.listOrders();
 print(result);
 ```
 
-### models
+### model
 
 ```dart
-// 批量获取模型价格
-final result = await client.models.getModelPrices();
+// Batch get model prices
+final result = await client.model.getModelPrices();
 print(result);
 ```
 
@@ -559,19 +533,19 @@ final result = await client.history.listBrowse();
 print(result);
 ```
 
-### voice_speaker
-
-```dart
-// 创建语音生成任务
-final result = await client.voiceSpeaker.createGeneration();
-print(result);
-```
-
 ### sound_effect
 
 ```dart
 // 创建音效生成任务
 final result = await client.soundEffect.createGeneration();
+print(result);
+```
+
+### generation
+
+```dart
+// Enhance generation prompt
+final result = await client.generation.enhanceGenerationPrompt();
 print(result);
 ```
 
@@ -586,8 +560,8 @@ print(result);
 ### feed
 
 ```dart
-// 取消点赞Feed
-final result = await client.feed.unlike();
+// Create feed
+final result = await client.feed.create();
 print(result);
 ```
 
@@ -615,67 +589,11 @@ final result = await client.comments.createComment();
 print(result);
 ```
 
-### sms
+### auth
 
 ```dart
 // 验证验证码
-final result = await client.sms.verifySmsCode();
-print(result);
-```
-
-### register
-
-```dart
-// 用户注册
-final result = await client.register.register();
-print(result);
-```
-
-### refresh
-
-```dart
-// 刷新令牌
-final result = await client.refresh.token();
-print(result);
-```
-
-### qr
-
-```dart
-// 生成登录二维码
-final result = await client.qr.generateQrCode();
-print(result);
-```
-
-### phone
-
-```dart
-// 手机号验证码登录
-final result = await client.phone.login();
-print(result);
-```
-
-### oauth
-
-```dart
-// OAuth授权URL
-final result = await client.oauth.getOauthUrl();
-print(result);
-```
-
-### logout
-
-```dart
-// 用户登出
-final result = await client.logout.logout();
-print(result);
-```
-
-### login
-
-```dart
-// 用户登录
-final result = await client.login.login();
+final result = await client.auth.verifySmsCode();
 print(result);
 ```
 
@@ -692,6 +610,14 @@ print(result);
 ```dart
 // 上报页面访问
 final result = await client.analytics.trackPageView();
+print(result);
+```
+
+### agent_memory
+
+```dart
+// List memories
+final result = await client.agentMemory.list();
 print(result);
 ```
 
@@ -727,99 +653,11 @@ final result = await client.sku.getSkuDetail();
 print(result);
 ```
 
-### products
-
-```dart
-// 获取商品列表
-final result = await client.products.getProducts();
-print(result);
-```
-
-### positions
-
-```dart
-// 获取组织的岗位列表
-final result = await client.positions.getPositionsByOrg();
-print(result);
-```
-
-### members
-
-```dart
-// 获取组织成员
-final result = await client.members.getMembersByOrg();
-print(result);
-```
-
-### departments
-
-```dart
-// 获取组织的部门列表
-final result = await client.departments.getDepartmentsByOrg();
-print(result);
-```
-
-### children
-
-```dart
-// 获取子组织
-final result = await client.children.getChildOrganizations();
-print(result);
-```
-
-### statistics
-
-```dart
-// 获取组织统计
-final result = await client.statistics.getOrganization();
-print(result);
-```
-
-### member
-
-```dart
-// 获取成员详情
-final result = await client.member.getMember();
-print(result);
-```
-
-### list
-
-```dart
-// 获取组织列表
-final result = await client.list.getOrganization();
-print(result);
-```
-
-### code
-
-```dart
-// 根据编码获取组织
-final result = await client.code.getOrganizationBy();
-print(result);
-```
-
-### auth
-
-```dart
-// Request password reset challenge
-final result = await client.auth.requestPasswordResetChallenge();
-print(result);
-```
-
-### generation
-
-```dart
-// Enhance generation prompt
-final result = await client.generation.enhanceGenerationPrompt();
-print(result);
-```
-
 ## Error Handling
 
 ```dart
 try {
-  final result = await client.tenant.getTenantTypes();
+  final result = await client.user.getUserSettings();
 } catch (e) {
   print('Error: $e');
 }

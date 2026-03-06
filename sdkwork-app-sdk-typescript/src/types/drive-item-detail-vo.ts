@@ -33,6 +33,8 @@ export interface DriveItemDetailVO {
   objectKey?: string;
   /** Status */
   status?: string;
+  /** Whether favorited */
+  favorited?: boolean;
   /** Primary resource */
   resource?: FileMediaResource;
   /** Cover image */

@@ -3,15 +3,15 @@ import type { ProjectVO } from './project-vo';
 import type { SortObject } from './sort-object';
 
 export interface PageProjectVO {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: ProjectVO[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

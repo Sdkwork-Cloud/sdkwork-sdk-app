@@ -6,6 +6,8 @@ public class RegisterForm {
     private String confirmPassword;
     private String email;
     private String phone;
+    private String type;
+    private String verificationCode;
 
     public String getUsername() {
         return this.username;
@@ -45,5 +47,21 @@ public class RegisterForm {
     
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getVerificationCode() {
+        return this.verificationCode;
+    }
+    
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 }

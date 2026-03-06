@@ -11,5 +11,7 @@ namespace App.Models
         public string? ConfirmPassword { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
+        public string? Type { get; set; }
+        public string? VerificationCode { get; set; }
     }
 }

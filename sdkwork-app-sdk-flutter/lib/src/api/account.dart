@@ -60,6 +60,12 @@ class AccountApi {
     return response is PlusApiResultPageHistoryVO ? response : null;
   }
 
+  /// 获取积分兑换现金比例
+  Future<PlusApiResultBigDecimal?> getPointsToCashRate() async {
+    final response = await _client.get(ApiPaths.appPath('/account/points/exchange-rate'));
+    return response is PlusApiResultBigDecimal ? response : null;
+  }
+
   /// 获取现金账户信息
   Future<PlusApiResultCashAccountInfoVO?> getCash() async {
     final response = await _client.get(ApiPaths.appPath('/account/cash'));

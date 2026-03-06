@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import CashRechargeForm, CashTransferForm, CashWithdrawForm, PlusApiResultCashAccountInfoVO, PlusApiResultCashRechargeVO, PlusApiResultCashTransferVO, PlusApiResultCashWithdrawVO, PlusApiResultPageHistoryVO, PlusApiResultPointsAccountInfoVO, PlusApiResultPointsExchangeVO, PlusApiResultPointsTransferVO, PointsExchangeForm, PointsTransferForm
+from ..models import CashRechargeForm, CashTransferForm, CashWithdrawForm, PlusApiResultBigDecimal, PlusApiResultCashAccountInfoVO, PlusApiResultCashRechargeVO, PlusApiResultCashTransferVO, PlusApiResultCashWithdrawVO, PlusApiResultPageHistoryVO, PlusApiResultPointsAccountInfoVO, PlusApiResultPointsExchangeVO, PlusApiResultPointsTransferVO, PointsExchangeForm, PointsTransferForm
 
 class AccountApi:
     """account API client."""
@@ -43,6 +43,10 @@ class AccountApi:
     def get_history(self, params: Optional[Dict[str, Any]] = None) -> PlusApiResultPageHistoryVO:
         """获取交易历史"""
         return self._client.get(f"/app/v3/api/account/points/history", params=params)
+
+    def get_points_to_cash_rate(self) -> PlusApiResultBigDecimal:
+        """获取积分兑换现金比例"""
+        return self._client.get(f"/app/v3/api/account/points/exchange-rate")
 
     def get_cash(self) -> PlusApiResultCashAccountInfoVO:
         """获取现金账户信息"""

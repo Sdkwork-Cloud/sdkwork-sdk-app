@@ -24,11 +24,51 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 处理好友申请
+        /// </summary>
+        public async Task<PlusApiResultFriendRequestVO?> ProcessFriendRequestAsync(string requestId, FriendRequestProcessForm body)
+        {
+            return await _client.PutAsync<PlusApiResultFriendRequestVO>(ApiPaths.AppPath($"/social/friend-requests/{requestId}/process"), body);
+        }
+
+        /// <summary>
+        /// 更新联系人分组
+        /// </summary>
+        public async Task<PlusApiResultContactGroupVO?> UpdateContactGroupAsync(string groupId, ContactGroupUpdateForm body)
+        {
+            return await _client.PutAsync<PlusApiResultContactGroupVO>(ApiPaths.AppPath($"/social/contact-groups/{groupId}"), body);
+        }
+
+        /// <summary>
+        /// 删除联系人分组
+        /// </summary>
+        public async Task<PlusApiResultVoid?> DeleteContactGroupAsync(string groupId)
+        {
+            return await _client.DeleteAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/social/contact-groups/{groupId}"));
+        }
+
+        /// <summary>
         /// 发送私信
         /// </summary>
         public async Task<PlusApiResultPrivateMessageVO?> SendMessageAsync(SendMessageForm body)
         {
             return await _client.PostAsync<PlusApiResultPrivateMessageVO>(ApiPaths.AppPath("/social/messages"), body);
+        }
+
+        /// <summary>
+        /// 获取好友申请列表
+        /// </summary>
+        public async Task<PlusApiResultListFriendRequestVO?> ListFriendRequestsAsync()
+        {
+            return await _client.GetAsync<PlusApiResultListFriendRequestVO>(ApiPaths.AppPath("/social/friend-requests"));
+        }
+
+        /// <summary>
+        /// 发送好友申请
+        /// </summary>
+        public async Task<PlusApiResultFriendRequestVO?> SendFriendRequestAsync(FriendRequestCreateForm body)
+        {
+            return await _client.PostAsync<PlusApiResultFriendRequestVO>(ApiPaths.AppPath("/social/friend-requests"), body);
         }
 
         /// <summary>
@@ -56,6 +96,22 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 获取联系人分组
+        /// </summary>
+        public async Task<PlusApiResultListContactGroupVO?> ListContactGroupsAsync()
+        {
+            return await _client.GetAsync<PlusApiResultListContactGroupVO>(ApiPaths.AppPath("/social/contact-groups"));
+        }
+
+        /// <summary>
+        /// 创建联系人分组
+        /// </summary>
+        public async Task<PlusApiResultContactGroupVO?> CreateContactGroupAsync(ContactGroupCreateForm body)
+        {
+            return await _client.PostAsync<PlusApiResultContactGroupVO>(ApiPaths.AppPath("/social/contact-groups"), body);
+        }
+
+        /// <summary>
         /// 拉黑用户
         /// </summary>
         public async Task<PlusApiResultVoid?> BlockUserAsync(string userId)
@@ -69,6 +125,14 @@ namespace App.Api
         public async Task<PlusApiResultVoid?> UnblockUserAsync(string userId)
         {
             return await _client.DeleteAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/social/block/{userId}"));
+        }
+
+        /// <summary>
+        /// 更新好友备注
+        /// </summary>
+        public async Task<PlusApiResultVoid?> UpdateFriendRemarkAsync(string contactId, FriendRemarkUpdateForm body)
+        {
+            return await _client.PatchAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/social/contacts/{contactId}/remark"), body);
         }
 
         /// <summary>
@@ -125,6 +189,38 @@ namespace App.Api
         public async Task<PlusApiResultPagePrivateMessageVO?> GetConversationMessagesAsync(string userId, Dictionary<string, object>? query = null)
         {
             return await _client.GetAsync<PlusApiResultPagePrivateMessageVO>(ApiPaths.AppPath($"/social/conversations/{userId}/messages"), query);
+        }
+
+        /// <summary>
+        /// 获取联系人列表
+        /// </summary>
+        public async Task<PlusApiResultListContactFriendVO?> ListContactsAsync(Dictionary<string, object>? query = null)
+        {
+            return await _client.GetAsync<PlusApiResultListContactFriendVO>(ApiPaths.AppPath("/social/contacts"), query);
+        }
+
+        /// <summary>
+        /// 获取联系人详情
+        /// </summary>
+        public async Task<PlusApiResultContactFriendVO?> GetContactDetailAsync(string contactId)
+        {
+            return await _client.GetAsync<PlusApiResultContactFriendVO>(ApiPaths.AppPath($"/social/contacts/{contactId}"));
+        }
+
+        /// <summary>
+        /// 删除联系人
+        /// </summary>
+        public async Task<PlusApiResultVoid?> DeleteContactAsync(string contactId)
+        {
+            return await _client.DeleteAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/social/contacts/{contactId}"));
+        }
+
+        /// <summary>
+        /// 获取联系人统计
+        /// </summary>
+        public async Task<PlusApiResultContactStatsVO?> GetContactStatsAsync()
+        {
+            return await _client.GetAsync<PlusApiResultContactStatsVO>(ApiPaths.AppPath("/social/contacts/stats"));
         }
 
         /// <summary>

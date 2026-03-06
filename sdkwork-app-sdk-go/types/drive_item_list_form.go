@@ -6,6 +6,9 @@ type DriveItemListForm struct {
 	AssetType string `json:"assetType"`
 	FolderId string `json:"folderId"`
 	DiskId string `json:"diskId"`
+	IncludeArchived bool `json:"includeArchived"`
+	IncludeDeleted bool `json:"includeDeleted"`
+	FavoriteOnly bool `json:"favoriteOnly"`
 	SortField string `json:"sortField"`
 	SortDirection string `json:"sortDirection"`
 	PageNum int `json:"pageNum"`

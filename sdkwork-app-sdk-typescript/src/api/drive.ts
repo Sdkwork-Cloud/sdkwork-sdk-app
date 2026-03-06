@@ -11,6 +11,11 @@ export class DriveApi {
     this.client = client; 
   }
 
+/** Restore drive item */
+  async restoreItem(itemId: string | number): Promise<PlusApiResultDriveItemVO> {
+    return this.client.put<PlusApiResultDriveItemVO>(appApiPath(`/drive/items/${itemId}/restore`));
+  }
+
 /** Rename drive item */
   async renameItem(itemId: string | number, body: DriveRenameForm): Promise<PlusApiResultDriveItemVO> {
     return this.client.put<PlusApiResultDriveItemVO>(appApiPath(`/drive/items/${itemId}/rename`), body);
@@ -29,6 +34,21 @@ export class DriveApi {
 /** Update drive file content */
   async updateItemContent(itemId: string | number, body: DriveContentUpdateForm): Promise<PlusApiResultDriveContentVO> {
     return this.client.put<PlusApiResultDriveContentVO>(appApiPath(`/drive/items/${itemId}/content`), body);
+  }
+
+/** Archive drive item */
+  async archiveItem(itemId: string | number): Promise<PlusApiResultDriveItemVO> {
+    return this.client.put<PlusApiResultDriveItemVO>(appApiPath(`/drive/items/${itemId}/archive`));
+  }
+
+/** Favorite drive item */
+  async favoriteItem(itemId: string | number): Promise<PlusApiResultDriveItemVO> {
+    return this.client.post<PlusApiResultDriveItemVO>(appApiPath(`/drive/items/${itemId}/favorite`));
+  }
+
+/** Unfavorite drive item */
+  async unfavoriteItem(itemId: string | number): Promise<PlusApiResultDriveItemVO> {
+    return this.client.delete<PlusApiResultDriveItemVO>(appApiPath(`/drive/items/${itemId}/favorite`));
   }
 
 /** Copy drive item */

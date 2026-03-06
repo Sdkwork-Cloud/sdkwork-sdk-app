@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import PaymentCallbackRequest, PaymentCallbackResponse, PaymentCreateForm, PlusApiResultListPaymentMethodVO, PlusApiResultListPaymentStatusVO, PlusApiResultPagePaymentStatusVO, PlusApiResultPaymentStatisticsVO, PlusApiResultPaymentStatusVO, PlusApiResultPaymentVO, PlusApiResultVoid
+from ..models import PaymentCallbackRequest, PaymentCallbackResponse, PaymentCreateForm, PaymentReconcileForm, PlusApiResultListPaymentMethodVO, PlusApiResultListPaymentStatusVO, PlusApiResultPagePaymentStatusVO, PlusApiResultPaymentStatisticsVO, PlusApiResultPaymentStatusVO, PlusApiResultPaymentVO, PlusApiResultVoid
 
 class PaymentsApi:
     """payments API client."""
@@ -15,6 +15,10 @@ class PaymentsApi:
     def close_payment(self, paymentId: str) -> PlusApiResultVoid:
         """关闭支付"""
         return self._client.post(f"/app/v3/api/payments/{paymentId}/close")
+
+    def reconcile_payment(self, body: PaymentReconcileForm) -> PlusApiResultPaymentStatusVO:
+        """补单/对账"""
+        return self._client.post(f"/app/v3/api/payments/reconcile", json=body)
 
     def payment_callback(self, provider: str, body: PaymentCallbackRequest) -> PaymentCallbackResponse:
         """通用支付回调"""

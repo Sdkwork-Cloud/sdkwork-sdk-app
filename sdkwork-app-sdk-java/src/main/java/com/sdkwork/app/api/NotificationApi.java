@@ -12,102 +12,127 @@ public class NotificationApi {
         this.client = client;
     }
 
-    /** 标记已读 */
+    /** Mark notification as unread */
+    public PlusApiResultNotificationVO markAsUnread(String notificationId) throws Exception {
+        return (PlusApiResultNotificationVO) client.put(ApiPaths.appPath("/notification/" + notificationId + "/unread"), null);
+    }
+
+    /** Mark notification as read */
     public PlusApiResultNotificationVO markAsRead(String notificationId) throws Exception {
         return (PlusApiResultNotificationVO) client.put(ApiPaths.appPath("/notification/" + notificationId + "/read"), null);
     }
 
-    /** 获取推送设置 */
+    /** Get notification settings */
     public PlusApiResultNotificationSettingsVO getNotificationSettings() throws Exception {
         return (PlusApiResultNotificationSettingsVO) client.get(ApiPaths.appPath("/notification/settings"));
     }
 
-    /** 更新推送设置 */
+    /** Update notification settings */
     public PlusApiResultNotificationSettingsVO updateNotificationSettings(NotificationSettingsUpdateForm body) throws Exception {
         return (PlusApiResultNotificationSettingsVO) client.put(ApiPaths.appPath("/notification/settings"), body);
     }
 
-    /** 更新类型推送设置 */
+    /** Update type settings */
     public PlusApiResultVoid updateTypeSettings(String type, NotificationTypeSettingsForm body) throws Exception {
         return (PlusApiResultVoid) client.put(ApiPaths.appPath("/notification/settings/" + type + ""), body);
     }
 
-    /** 全部标记已读 */
+    /** Mark all notifications as read */
     public PlusApiResultVoid markAllAsRead(Map<String, Object> params) throws Exception {
         return (PlusApiResultVoid) client.put(ApiPaths.appPath("/notification/read/all"), null, params);
     }
 
-    /** 批量标记已读 */
+    /** Update device status */
+    public PlusApiResultDeviceVO updateDeviceStatus(String deviceId, DeviceStatusUpdateForm body) throws Exception {
+        return (PlusApiResultDeviceVO) client.put(ApiPaths.appPath("/notification/devices/" + deviceId + "/status"), body);
+    }
+
+    /** Batch mark notifications as read */
     public PlusApiResultVoid batchMarkAsRead(NotificationBatchReadForm body) throws Exception {
         return (PlusApiResultVoid) client.put(ApiPaths.appPath("/notification/batch/read"), body);
     }
 
-    /** 发送测试消息 */
+    /** Send test notification */
     public PlusApiResultVoid sendTest(TestNotificationForm body) throws Exception {
         return (PlusApiResultVoid) client.post(ApiPaths.appPath("/notification/test"), body);
     }
 
-    /** 订阅列表 */
+    /** List subscriptions */
     public PlusApiResultListString listSubscriptions() throws Exception {
         return (PlusApiResultListString) client.get(ApiPaths.appPath("/notification/subscriptions"));
     }
 
-    /** 订阅主题 */
+    /** Subscribe topic */
     public PlusApiResultVoid subscribeTopic(TopicSubscribeForm body) throws Exception {
         return (PlusApiResultVoid) client.post(ApiPaths.appPath("/notification/subscriptions"), body);
     }
 
-    /** 获取设备列表 */
+    /** List devices */
     public PlusApiResultListDeviceVO listDevices() throws Exception {
         return (PlusApiResultListDeviceVO) client.get(ApiPaths.appPath("/notification/devices"));
     }
 
-    /** 注册推送设备 */
-    public PlusApiResultVoid registerDevice(DeviceRegisterForm body) throws Exception {
-        return (PlusApiResultVoid) client.post(ApiPaths.appPath("/notification/devices"), body);
+    /** Register device */
+    public PlusApiResultDeviceVO registerDevice(DeviceRegisterForm body) throws Exception {
+        return (PlusApiResultDeviceVO) client.post(ApiPaths.appPath("/notification/devices"), body);
     }
 
-    /** 获取消息列表 */
+    /** List device messages */
+    public PlusApiResultListDeviceMessageVO listDeviceMessages(String deviceId, Map<String, Object> params) throws Exception {
+        return (PlusApiResultListDeviceMessageVO) client.get(ApiPaths.appPath("/notification/devices/" + deviceId + "/messages"), params);
+    }
+
+    /** Send device message */
+    public PlusApiResultDeviceMessageVO sendDeviceMessage(String deviceId, DeviceMessageSendForm body) throws Exception {
+        return (PlusApiResultDeviceMessageVO) client.post(ApiPaths.appPath("/notification/devices/" + deviceId + "/messages"), body);
+    }
+
+    /** Control device */
+    public PlusApiResultBoolean controlDevice(String deviceId, DeviceControlForm body) throws Exception {
+        return (PlusApiResultBoolean) client.post(ApiPaths.appPath("/notification/devices/" + deviceId + "/control"), body);
+    }
+
+    /** List notifications */
     public PlusApiResultPageNotificationVO listNotifications(Map<String, Object> params) throws Exception {
         return (PlusApiResultPageNotificationVO) client.get(ApiPaths.appPath("/notification"), params);
     }
 
-    /** 获取消息详情 */
+    /** Get notification detail */
     public PlusApiResultNotificationDetailVO getNotificationDetail(String notificationId) throws Exception {
         return (PlusApiResultNotificationDetailVO) client.get(ApiPaths.appPath("/notification/" + notificationId + ""));
     }
 
-    /** 删除消息 */
+    /** Delete notification */
     public PlusApiResultVoid deleteNotification(String notificationId) throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/notification/" + notificationId + ""));
     }
 
-    /** 未读消息统计 */
+    /** Get unread notification count */
     public PlusApiResultMapStringInteger getUnreadCount() throws Exception {
         return (PlusApiResultMapStringInteger) client.get(ApiPaths.appPath("/notification/unread/count"));
     }
 
-    /** 消息类型 */
+    /** List notification types */
     public PlusApiResultListNotificationTypeVO listNotificationTypes() throws Exception {
         return (PlusApiResultListNotificationTypeVO) client.get(ApiPaths.appPath("/notification/types"));
     }
 
-    /** 取消订阅 */
+    /** Unsubscribe topic */
     public PlusApiResultVoid unsubscribeTopic(String topic) throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/notification/subscriptions/" + topic + ""));
     }
 
-    /** 注销推送设备 */
+    /** Unregister device */
     public PlusApiResultVoid unregisterDevice(String deviceToken) throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/notification/devices/" + deviceToken + ""));
     }
 
-    /** 清空消息 */
+    /** Clear notifications */
     public PlusApiResultVoid clearAllNotifications(Map<String, Object> params) throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/notification/clear"), params);
     }
 
-    /** 批量删除消息 */
+    /** Batch delete notifications */
     public PlusApiResultVoid batchDeleteNotifications() throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/notification/batch"));
     }

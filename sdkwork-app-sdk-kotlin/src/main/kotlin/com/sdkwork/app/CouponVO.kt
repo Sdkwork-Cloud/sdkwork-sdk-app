@@ -9,6 +9,7 @@ data class CouponVO(
     val typeName: String? = null,
     val description: String? = null,
     val amount: Int? = null,
+    val pointCost: Int? = null,
     val discount: Double? = null,
     val minConsume: Int? = null,
     val startTime: String? = null,
@@ -20,8 +21,9 @@ data class CouponVO(
     val status: String? = null,
     val statusName: String? = null,
     val stackable: Boolean? = null,
-    val scopeType: Int? = null,
+    val scopeType: String? = null,
     val scopeValue: String? = null,
     val remainingCount: Int? = null,
-    val canReceive: Boolean? = null
+    val canReceive: Boolean? = null,
+    val pointsExchange: Boolean? = null
 )

@@ -14,6 +14,7 @@ namespace App.Models
         public string? TypeName { get; set; }
         public string? Description { get; set; }
         public int? Amount { get; set; }
+        public int? PointCost { get; set; }
         public double? Discount { get; set; }
         public int? MinConsume { get; set; }
         public string? StartTime { get; set; }
@@ -25,9 +26,10 @@ namespace App.Models
         public string? Status { get; set; }
         public string? StatusName { get; set; }
         public bool? Stackable { get; set; }
-        public int? ScopeType { get; set; }
+        public string? ScopeType { get; set; }
         public string? ScopeValue { get; set; }
         public int? RemainingCount { get; set; }
         public bool? CanReceive { get; set; }
+        public bool? PointsExchange { get; set; }
     }
 }

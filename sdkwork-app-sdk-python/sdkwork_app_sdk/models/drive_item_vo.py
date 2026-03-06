@@ -19,5 +19,6 @@ class DriveItemVO:
     path: str = None
     object_key: str = None
     status: str = None
+    favorited: bool = None
     resource: FileMediaResource = None
     cover_image: ImageMediaResource = None

@@ -16,6 +16,11 @@ class UserCouponVO:
     discount: float = None
     min_consume: int = None
     acquire_at: str = None
+    acquire_request_no: str = None
+    acquire_type: str = None
+    point_cost: int = None
+    points_refunded: bool = None
+    points_refund_at: str = None
     use_at: str = None
     expire_at: str = None
     status: str = None

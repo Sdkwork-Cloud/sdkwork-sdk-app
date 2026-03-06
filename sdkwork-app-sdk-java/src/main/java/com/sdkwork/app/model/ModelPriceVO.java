@@ -4,7 +4,17 @@ public class ModelPriceVO {
     private String createdAt;
     private String updatedAt;
     private String model;
+    private Integer modelId;
+    private String modelKey;
+    private String channel;
+    private String productCode;
+    private String featureCode;
+    private String billingType;
+    private String priceItemType;
+    private String tierName;
+    private Integer rulePriority;
     private String unit;
+    private Double unitSize;
     private String currency;
     private Double price;
     private Double inputPrice;
@@ -13,6 +23,13 @@ public class ModelPriceVO {
     private Double batchOutputPrice;
     private Double cachedInputPrice;
     private Double batchCachedInputPrice;
+    private Double minUsage;
+    private Double maxUsage;
+    private String effectiveFrom;
+    private String effectiveTo;
+    private Boolean defaultRule;
+    private String status;
+    private Map<String, Object> metadata;
 
     public String getCreatedAt() {
         return this.createdAt;
@@ -38,12 +55,92 @@ public class ModelPriceVO {
         this.model = model;
     }
 
+    public Integer getModelId() {
+        return this.modelId;
+    }
+    
+    public void setModelId(Integer modelId) {
+        this.modelId = modelId;
+    }
+
+    public String getModelKey() {
+        return this.modelKey;
+    }
+    
+    public void setModelKey(String modelKey) {
+        this.modelKey = modelKey;
+    }
+
+    public String getChannel() {
+        return this.channel;
+    }
+    
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public String getProductCode() {
+        return this.productCode;
+    }
+    
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getFeatureCode() {
+        return this.featureCode;
+    }
+    
+    public void setFeatureCode(String featureCode) {
+        this.featureCode = featureCode;
+    }
+
+    public String getBillingType() {
+        return this.billingType;
+    }
+    
+    public void setBillingType(String billingType) {
+        this.billingType = billingType;
+    }
+
+    public String getPriceItemType() {
+        return this.priceItemType;
+    }
+    
+    public void setPriceItemType(String priceItemType) {
+        this.priceItemType = priceItemType;
+    }
+
+    public String getTierName() {
+        return this.tierName;
+    }
+    
+    public void setTierName(String tierName) {
+        this.tierName = tierName;
+    }
+
+    public Integer getRulePriority() {
+        return this.rulePriority;
+    }
+    
+    public void setRulePriority(Integer rulePriority) {
+        this.rulePriority = rulePriority;
+    }
+
     public String getUnit() {
         return this.unit;
     }
     
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public Double getUnitSize() {
+        return this.unitSize;
+    }
+    
+    public void setUnitSize(Double unitSize) {
+        this.unitSize = unitSize;
     }
 
     public String getCurrency() {
@@ -108,5 +205,61 @@ public class ModelPriceVO {
     
     public void setBatchCachedInputPrice(Double batchCachedInputPrice) {
         this.batchCachedInputPrice = batchCachedInputPrice;
+    }
+
+    public Double getMinUsage() {
+        return this.minUsage;
+    }
+    
+    public void setMinUsage(Double minUsage) {
+        this.minUsage = minUsage;
+    }
+
+    public Double getMaxUsage() {
+        return this.maxUsage;
+    }
+    
+    public void setMaxUsage(Double maxUsage) {
+        this.maxUsage = maxUsage;
+    }
+
+    public String getEffectiveFrom() {
+        return this.effectiveFrom;
+    }
+    
+    public void setEffectiveFrom(String effectiveFrom) {
+        this.effectiveFrom = effectiveFrom;
+    }
+
+    public String getEffectiveTo() {
+        return this.effectiveTo;
+    }
+    
+    public void setEffectiveTo(String effectiveTo) {
+        this.effectiveTo = effectiveTo;
+    }
+
+    public Boolean getDefaultRule() {
+        return this.defaultRule;
+    }
+    
+    public void setDefaultRule(Boolean defaultRule) {
+        this.defaultRule = defaultRule;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Map<String, Object> getMetadata() {
+        return this.metadata;
+    }
+    
+    public void setMetadata(Map<String, Object> metadata) {
+        this.metadata = metadata;
     }
 }

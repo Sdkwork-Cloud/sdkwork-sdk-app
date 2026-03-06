@@ -10,5 +10,6 @@ namespace App.Models
         public string? Description { get; set; }
         public string? AppType { get; set; }
         public int? ProjectId { get; set; }
+        public AppInstallSkill? InstallSkill { get; set; }
     }
 }

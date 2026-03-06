@@ -11,5 +11,6 @@ namespace App.Models
         public int? SuccessPayments { get; set; }
         public int? FailedPayments { get; set; }
         public int? ClosedPayments { get; set; }
+        public int? TimeoutPayments { get; set; }
     }
 }

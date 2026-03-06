@@ -13,6 +13,7 @@ public class AppVO {
     private String appType;
     private String status;
     private Integer projectId;
+    private AppInstallSkill installSkill;
 
     public String getCreatedAt() {
         return this.createdAt;
@@ -108,5 +109,13 @@ public class AppVO {
     
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public AppInstallSkill getInstallSkill() {
+        return this.installSkill;
+    }
+    
+    public void setInstallSkill(AppInstallSkill installSkill) {
+        this.installSkill = installSkill;
     }
 }

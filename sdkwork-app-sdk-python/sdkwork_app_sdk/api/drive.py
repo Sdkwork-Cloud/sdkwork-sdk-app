@@ -8,6 +8,10 @@ class DriveApi:
     def __init__(self, client: HttpClient):
         self._client = client
 
+    def restore_item(self, itemId: str) -> PlusApiResultDriveItemVO:
+        """Restore drive item"""
+        return self._client.put(f"/app/v3/api/drive/items/{itemId}/restore")
+
     def rename_item(self, itemId: str, body: DriveRenameForm) -> PlusApiResultDriveItemVO:
         """Rename drive item"""
         return self._client.put(f"/app/v3/api/drive/items/{itemId}/rename", json=body)
@@ -23,6 +27,18 @@ class DriveApi:
     def update_item_content(self, itemId: str, body: DriveContentUpdateForm) -> PlusApiResultDriveContentVO:
         """Update drive file content"""
         return self._client.put(f"/app/v3/api/drive/items/{itemId}/content", json=body)
+
+    def archive_item(self, itemId: str) -> PlusApiResultDriveItemVO:
+        """Archive drive item"""
+        return self._client.put(f"/app/v3/api/drive/items/{itemId}/archive")
+
+    def favorite_item(self, itemId: str) -> PlusApiResultDriveItemVO:
+        """Favorite drive item"""
+        return self._client.post(f"/app/v3/api/drive/items/{itemId}/favorite")
+
+    def unfavorite_item(self, itemId: str) -> PlusApiResultDriveItemVO:
+        """Unfavorite drive item"""
+        return self._client.delete(f"/app/v3/api/drive/items/{itemId}/favorite")
 
     def copy_item(self, itemId: str, body: DriveCopyForm) -> PlusApiResultDriveItemVO:
         """Copy drive item"""

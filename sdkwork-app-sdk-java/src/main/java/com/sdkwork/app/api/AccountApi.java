@@ -57,6 +57,11 @@ public class AccountApi {
         return (PlusApiResultPageHistoryVO) client.get(ApiPaths.appPath("/account/points/history"), params);
     }
 
+    /** 获取积分兑换现金比例 */
+    public PlusApiResultBigDecimal getPointsToCashRate() throws Exception {
+        return (PlusApiResultBigDecimal) client.get(ApiPaths.appPath("/account/points/exchange-rate"));
+    }
+
     /** 获取现金账户信息 */
     public PlusApiResultCashAccountInfoVO getCash() throws Exception {
         return (PlusApiResultCashAccountInfoVO) client.get(ApiPaths.appPath("/account/cash"));

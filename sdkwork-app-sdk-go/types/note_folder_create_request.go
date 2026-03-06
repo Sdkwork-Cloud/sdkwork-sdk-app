@@ -4,4 +4,5 @@ package types
 type NoteFolderCreateRequest struct {
 	Name string `json:"name"`
 	ParentId string `json:"parentId"`
+	DiskId string `json:"diskId"`
 }

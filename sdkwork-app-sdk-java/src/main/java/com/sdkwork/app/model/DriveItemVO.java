@@ -16,6 +16,7 @@ public class DriveItemVO {
     private String path;
     private String objectKey;
     private String status;
+    private Boolean favorited;
     private FileMediaResource resource;
     private ImageMediaResource coverImage;
 
@@ -137,6 +138,14 @@ public class DriveItemVO {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getFavorited() {
+        return this.favorited;
+    }
+    
+    public void setFavorited(Boolean favorited) {
+        this.favorited = favorited;
     }
 
     public FileMediaResource getResource() {

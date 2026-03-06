@@ -6,6 +6,8 @@ export interface NoteCreateRequest {
   content?: string;
   /** 文件夹ID */
   folderId?: string;
+  /** 磁盘ID，为空时跟随父目录或默认主盘 */
+  diskId?: string;
   /** 标签列表 */
   tags?: string[];
 }

@@ -88,6 +88,14 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 查询订单是否支付成功
+        /// </summary>
+        public async Task<PlusApiResultOrderPaymentSuccessVO?> GetOrderPaymentSuccessAsync(string orderId)
+        {
+            return await _client.GetAsync<PlusApiResultOrderPaymentSuccessVO>(ApiPaths.AppPath($"/orders/{orderId}/payment-success"));
+        }
+
+        /// <summary>
         /// 获取订单统计
         /// </summary>
         public async Task<PlusApiResultOrderStatisticsVO?> GetOrderStatisticsAsync()

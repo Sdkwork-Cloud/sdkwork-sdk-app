@@ -3,11 +3,13 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class ModelInfoDetailVO:
-    """模型详情响应"""
+    """Model detail response"""
     created_at: str = None
     updated_at: str = None
     model_id: str = None
+    model_key: str = None
     model: str = None
+    vendor_model: str = None
     name: str = None
     description: str = None
     channel: str = None
@@ -23,6 +25,8 @@ class ModelInfoDetailVO:
     limit_info: ModelLimitInfo = None
     price_info: ModelPrice = None
     metadata: ModelMetadata = None
+    product_support_info: Dict[str, Any] = None
+    price_rules: List[ModelPriceVO] = None
     default_temperature: float = None
     default_top_p: float = None
     default_frequency_penalty: float = None

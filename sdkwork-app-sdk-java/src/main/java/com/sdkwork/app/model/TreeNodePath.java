@@ -4,10 +4,10 @@ public class TreeNodePath {
     private List<PathNode> nodes;
     private Integer level;
     private Integer depth;
-    private String pathName;
-    private PathNode rootNode;
-    private PathNode parentNode;
     private List<Integer> pathIds;
+    private String pathName;
+    private PathNode parentNode;
+    private PathNode rootNode;
     private PathNode currentNode;
 
     public List<PathNode> getNodes() {
@@ -34,20 +34,20 @@ public class TreeNodePath {
         this.depth = depth;
     }
 
+    public List<Integer> getPathIds() {
+        return this.pathIds;
+    }
+    
+    public void setPathIds(List<Integer> pathIds) {
+        this.pathIds = pathIds;
+    }
+
     public String getPathName() {
         return this.pathName;
     }
     
     public void setPathName(String pathName) {
         this.pathName = pathName;
-    }
-
-    public PathNode getRootNode() {
-        return this.rootNode;
-    }
-    
-    public void setRootNode(PathNode rootNode) {
-        this.rootNode = rootNode;
     }
 
     public PathNode getParentNode() {
@@ -58,12 +58,12 @@ public class TreeNodePath {
         this.parentNode = parentNode;
     }
 
-    public List<Integer> getPathIds() {
-        return this.pathIds;
+    public PathNode getRootNode() {
+        return this.rootNode;
     }
     
-    public void setPathIds(List<Integer> pathIds) {
-        this.pathIds = pathIds;
+    public void setRootNode(PathNode rootNode) {
+        this.rootNode = rootNode;
     }
 
     public PathNode getCurrentNode() {

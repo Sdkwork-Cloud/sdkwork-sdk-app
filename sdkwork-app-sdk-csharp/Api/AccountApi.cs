@@ -88,6 +88,14 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 获取积分兑换现金比例
+        /// </summary>
+        public async Task<PlusApiResultBigDecimal?> GetPointsToCashRateAsync()
+        {
+            return await _client.GetAsync<PlusApiResultBigDecimal>(ApiPaths.AppPath("/account/points/exchange-rate"));
+        }
+
+        /// <summary>
         /// 获取现金账户信息
         /// </summary>
         public async Task<PlusApiResultCashAccountInfoVO?> GetCashAsync()

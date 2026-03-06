@@ -1,11 +1,13 @@
 package types
 
-// 模型详情响应
+// Model detail response
 type ModelInfoDetailVO struct {
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
 	ModelId string `json:"modelId"`
+	ModelKey string `json:"modelKey"`
 	Model string `json:"model"`
+	VendorModel string `json:"vendorModel"`
 	Name string `json:"name"`
 	Description string `json:"description"`
 	Channel string `json:"channel"`
@@ -21,6 +23,8 @@ type ModelInfoDetailVO struct {
 	LimitInfo ModelLimitInfo `json:"limitInfo"`
 	PriceInfo ModelPrice `json:"priceInfo"`
 	Metadata ModelMetadata `json:"metadata"`
+	ProductSupportInfo map[string]interface{} `json:"productSupportInfo"`
+	PriceRules []ModelPriceVO `json:"priceRules"`
 	DefaultTemperature float64 `json:"defaultTemperature"`
 	DefaultTopP float64 `json:"defaultTopP"`
 	DefaultFrequencyPenalty float64 `json:"defaultFrequencyPenalty"`

@@ -6,6 +6,7 @@ public class PaymentStatisticsVO {
     private Integer successPayments;
     private Integer failedPayments;
     private Integer closedPayments;
+    private Integer timeoutPayments;
 
     public Integer getTotalPayments() {
         return this.totalPayments;
@@ -45,5 +46,13 @@ public class PaymentStatisticsVO {
     
     public void setClosedPayments(Integer closedPayments) {
         this.closedPayments = closedPayments;
+    }
+
+    public Integer getTimeoutPayments() {
+        return this.timeoutPayments;
+    }
+    
+    public void setTimeoutPayments(Integer timeoutPayments) {
+        this.timeoutPayments = timeoutPayments;
     }
 }

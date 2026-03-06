@@ -11,6 +11,7 @@ public class OrderCreateForm {
     private String remark;
     private String sourceChannel;
     private Integer rechargePoints;
+    private Boolean orderPayloadValid;
 
     public String getOrderType() {
         return this.orderType;
@@ -90,5 +91,13 @@ public class OrderCreateForm {
     
     public void setRechargePoints(Integer rechargePoints) {
         this.rechargePoints = rechargePoints;
+    }
+
+    public Boolean getOrderPayloadValid() {
+        return this.orderPayloadValid;
+    }
+    
+    public void setOrderPayloadValid(Boolean orderPayloadValid) {
+        this.orderPayloadValid = orderPayloadValid;
     }
 }

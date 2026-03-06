@@ -16,6 +16,14 @@ namespace App.Api
         }
 
         /// <summary>
+        /// Restore drive item
+        /// </summary>
+        public async Task<PlusApiResultDriveItemVO?> RestoreItemAsync(string itemId)
+        {
+            return await _client.PutAsync<PlusApiResultDriveItemVO>(ApiPaths.AppPath($"/drive/items/{itemId}/restore"), null);
+        }
+
+        /// <summary>
         /// Rename drive item
         /// </summary>
         public async Task<PlusApiResultDriveItemVO?> RenameItemAsync(string itemId, DriveRenameForm body)
@@ -45,6 +53,30 @@ namespace App.Api
         public async Task<PlusApiResultDriveContentVO?> UpdateItemContentAsync(string itemId, DriveContentUpdateForm body)
         {
             return await _client.PutAsync<PlusApiResultDriveContentVO>(ApiPaths.AppPath($"/drive/items/{itemId}/content"), body);
+        }
+
+        /// <summary>
+        /// Archive drive item
+        /// </summary>
+        public async Task<PlusApiResultDriveItemVO?> ArchiveItemAsync(string itemId)
+        {
+            return await _client.PutAsync<PlusApiResultDriveItemVO>(ApiPaths.AppPath($"/drive/items/{itemId}/archive"), null);
+        }
+
+        /// <summary>
+        /// Favorite drive item
+        /// </summary>
+        public async Task<PlusApiResultDriveItemVO?> FavoriteItemAsync(string itemId)
+        {
+            return await _client.PostAsync<PlusApiResultDriveItemVO>(ApiPaths.AppPath($"/drive/items/{itemId}/favorite"), null);
+        }
+
+        /// <summary>
+        /// Unfavorite drive item
+        /// </summary>
+        public async Task<PlusApiResultDriveItemVO?> UnfavoriteItemAsync(string itemId)
+        {
+            return await _client.DeleteAsync<PlusApiResultDriveItemVO>(ApiPaths.AppPath($"/drive/items/{itemId}/favorite"));
         }
 
         /// <summary>

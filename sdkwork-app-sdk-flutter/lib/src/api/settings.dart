@@ -6,18 +6,6 @@ class SettingsApi {
   
   SettingsApi(this._client);
 
-  /// 获取用户设置
-  Future<PlusApiResultUserSettingsVO?> getUser() async {
-    final response = await _client.get(ApiPaths.appPath('/user/settings'));
-    return response is PlusApiResultUserSettingsVO ? response : null;
-  }
-
-  /// 更新用户设置
-  Future<PlusApiResultUserSettingsVO?> updateUser(UserSettingsUpdateForm body) async {
-    final response = await _client.put(ApiPaths.appPath('/user/settings'), body: body, contentType: 'application/json');
-    return response is PlusApiResultUserSettingsVO ? response : null;
-  }
-
   /// 获取模块设置
   Future<PlusApiResultMapStringObject?> getModule(String module) async {
     final response = await _client.get(ApiPaths.appPath('/settings/${module}'));

@@ -5,6 +5,7 @@ public class AppCreateForm {
     private String description;
     private String appType;
     private Integer projectId;
+    private AppInstallSkill installSkill;
 
     public String getName() {
         return this.name;
@@ -36,5 +37,13 @@ public class AppCreateForm {
     
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public AppInstallSkill getInstallSkill() {
+        return this.installSkill;
+    }
+    
+    public void setInstallSkill(AppInstallSkill installSkill) {
+        this.installSkill = installSkill;
     }
 }

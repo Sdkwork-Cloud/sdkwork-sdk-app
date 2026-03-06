@@ -14,26 +14,6 @@ func NewSettingsApi(client *sdkhttp.Client) *SettingsApi {
     return &SettingsApi{client: client}
 }
 
-// 获取用户设置
-func (a *SettingsApi) GetUser() (sdktypes.PlusApiResultUserSettingsVO, error) {
-    raw, err := a.client.Get(AppApiPath("/user/settings"), nil, nil)
-    if err != nil {
-        var zero sdktypes.PlusApiResultUserSettingsVO
-        return zero, err
-    }
-    return decodeResult[sdktypes.PlusApiResultUserSettingsVO](raw)
-}
-
-// 更新用户设置
-func (a *SettingsApi) UpdateUser(body sdktypes.UserSettingsUpdateForm) (sdktypes.PlusApiResultUserSettingsVO, error) {
-    raw, err := a.client.Put(AppApiPath("/user/settings"), body, nil, nil, "")
-    if err != nil {
-        var zero sdktypes.PlusApiResultUserSettingsVO
-        return zero, err
-    }
-    return decodeResult[sdktypes.PlusApiResultUserSettingsVO](raw)
-}
-
 // 获取模块设置
 func (a *SettingsApi) GetModule(module string) (sdktypes.PlusApiResultMapStringObject, error) {
     raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/settings/%s", module)), nil, nil)

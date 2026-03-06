@@ -12,23 +12,6 @@ yarn add @sdkwork/app-sdk
 pnpm add @sdkwork/app-sdk
 ```
 
-## sdk-common Dependency Source
-
-`@sdkwork/sdk-common` uses npm by default. You can switch between npm and git source:
-
-```bash
-# switch to npm package (default)
-npm run deps:common:npm
-npm install
-
-# switch to git repository
-npm run deps:common:git
-npm install
-
-# check current source
-npm run deps:common:show
-```
-
 ## Quick Start
 
 ```typescript
@@ -88,23 +71,25 @@ const client = new SdkworkAppClient({
 ## API Modules
 
 - `client.workspaces` - workspaces API
-- `client.voiceSpeakers` - voice_speakers API
+- `client.voiceSpeaker` - voice_speaker API
 - `client.video` - video API
-- `client.settings` - settings API
-- `client.profile` - profile API
-- `client.password` - password API
-- `client.address` - address API
+- `client.user` - user API
+- `client.tool` - tool API
 - `client.tenant` - tenant API
 - `client.social` - social API
+- `client.skill` - skill API
 - `client.shops` - shops API
 - `client.share` - share API
+- `client.settings` - settings API
 - `client.ai` - ai API
 - `client.projects` - projects API
+- `client.products` - products API
 - `client.partner` - partner API
 - `client.notification` - notification API
-- `client.app` - app API
+- `client.notes` - notes API
 - `client.news` - news API
 - `client.music` - music API
+- `client.knowledgeDocuments` - knowledge_documents API
 - `client.invoice` - invoice API
 - `client.image` - image API
 - `client.style` - style API
@@ -112,7 +97,7 @@ const client = new SdkworkAppClient({
 - `client.feedback` - feedback API
 - `client.favorite` - favorite API
 - `client.drive` - drive API
-- `client.appDocuments` - app_documents API
+- `client.documents` - documents API
 - `client.dashboard` - dashboard API
 - `client.collection` - collection API
 - `client.chat` - chat API
@@ -120,56 +105,36 @@ const client = new SdkworkAppClient({
 - `client.category` - category API
 - `client.cart` - cart API
 - `client.assets` - assets API
+- `client.app` - app API
 - `client.announcement` - announcement API
+- `client.agent` - agent API
 - `client.advert` - advert API
+- `client.wallet` - wallet API
 - `client.vote` - vote API
 - `client.vip` - vip API
-- `client.deactivate` - deactivate API
-- `client.bind` - bind API
-- `client.avatar` - avatar API
 - `client.upload` - upload API
 - `client.search` - search API
+- `client.rtc` - rtc API
 - `client.payments` - payments API
 - `client.organization` - organization API
-- `client.disable` - disable API
-- `client.activate` - activate API
-- `client.position` - position API
-- `client.department` - department API
 - `client.orders` - orders API
-- `client.models` - models API
+- `client.model` - model API
 - `client.history` - history API
-- `client.voiceSpeaker` - voice_speaker API
 - `client.soundEffect` - sound_effect API
+- `client.generation` - generation API
 - `client.audio` - audio API
 - `client.feed` - feed API
 - `client.currency` - currency API
 - `client.coupons` - coupons API
 - `client.comments` - comments API
-- `client.sms` - sms API
-- `client.register` - register API
-- `client.refresh` - refresh API
-- `client.qr` - qr API
-- `client.phone` - phone API
-- `client.oauth` - oauth API
-- `client.logout` - logout API
-- `client.login` - login API
+- `client.auth` - auth API
 - `client.audit` - audit API
 - `client.analytics` - analytics API
+- `client.agentMemory` - agent_memory API
 - `client.activity` - activity API
 - `client.account` - account API
 - `client.ab` - ab API
 - `client.sku` - sku API
-- `client.products` - products API
-- `client.positions` - positions API
-- `client.members` - members API
-- `client.departments` - departments API
-- `client.children` - children API
-- `client.statistics` - statistics API
-- `client.member` - member API
-- `client.list` - list API
-- `client.code` - code API
-- `client.auth` - auth API
-- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -180,11 +145,11 @@ const client = new SdkworkAppClient({
 const result = await client.workspaces.listWorkspaces();
 ```
 
-### voice_speakers
+### voice_speaker
 
 ```typescript
 // 获取发音人统计
-const result = await client.voiceSpeakers.getStatistics();
+const result = await client.voiceSpeaker.getStatistics();
 ```
 
 ### video
@@ -194,33 +159,18 @@ const result = await client.voiceSpeakers.getStatistics();
 const result = await client.video.getVideoStatistics();
 ```
 
-### settings
+### user
 
 ```typescript
 // 获取用户设置
-const result = await client.settings.getUser();
+const result = await client.user.getUserSettings();
 ```
 
-### profile
+### tool
 
 ```typescript
-// 获取用户信息
-const result = await client.profile.getUser();
-```
-
-### password
-
-```typescript
-// 修改密码
-const body = {} as any;
-const result = await client.password.change(body);
-```
-
-### address
-
-```typescript
-// 获取地址列表
-const result = await client.address.listAddresses();
+// List my tools
+const result = await client.tool.listMine();
 ```
 
 ### tenant
@@ -233,8 +183,15 @@ const result = await client.tenant.getTenantTypes();
 ### social
 
 ```typescript
-// 获取关注统计
-const result = await client.social.getFollowStats();
+// 获取好友申请列表
+const result = await client.social.listFriendRequests();
+```
+
+### skill
+
+```typescript
+// List skill packages
+const result = await client.skill.listPackages();
 ```
 
 ### shops
@@ -249,6 +206,13 @@ const result = await client.shops.getStatistics();
 ```typescript
 // 获取分享平台配置
 const result = await client.share.getSharePlatforms();
+```
+
+### settings
+
+```typescript
+// 获取界面设置
+const result = await client.settings.getUi();
 ```
 
 ### ai
@@ -267,6 +231,13 @@ const params = {} as Record<string, any>;
 const result = await client.projects.listRecent(params);
 ```
 
+### products
+
+```typescript
+// 获取商品分类树
+const result = await client.products.getProductCategoryTree();
+```
+
 ### partner
 
 ```typescript
@@ -277,15 +248,15 @@ const result = await client.partner.getPartnerStatistics();
 ### notification
 
 ```typescript
-// 获取推送设置
+// Get notification settings
 const result = await client.notification.getNotificationSettings();
 ```
 
-### app
+### notes
 
 ```typescript
-// 获取文件夹列表
-const result = await client.app.listFolders();
+// 获取文件夹树
+const result = await client.notes.listFolders();
 ```
 
 ### news
@@ -301,6 +272,14 @@ const result = await client.news.getMy(params);
 ```typescript
 // 获取音乐统计
 const result = await client.music.getMusicStatistics();
+```
+
+### knowledge_documents
+
+```typescript
+// Batch delete knowledge documents
+const knowledgeBaseId = 1;
+const result = await client.knowledgeDocuments.batchDelete(knowledgeBaseId);
 ```
 
 ### invoice
@@ -353,12 +332,11 @@ const params = {} as Record<string, any>;
 const result = await client.drive.listItems(params);
 ```
 
-### app_documents
+### documents
 
 ```typescript
-// List documents
-const params = {} as Record<string, any>;
-const result = await client.appDocuments.listDocuments(params);
+// Batch delete documents
+const result = await client.documents.batchDelete();
 ```
 
 ### dashboard
@@ -413,6 +391,13 @@ const result = await client.cart.getCartItems();
 const result = await client.assets.listFolders();
 ```
 
+### app
+
+```typescript
+// 获取应用统计
+const result = await client.app.getAppStatistics();
+```
+
 ### announcement
 
 ```typescript
@@ -420,11 +405,26 @@ const result = await client.assets.listFolders();
 const result = await client.announcement.getUnreadAnnouncements();
 ```
 
+### agent
+
+```typescript
+// List agents
+const params = {} as Record<string, any>;
+const result = await client.agent.list(params);
+```
+
 ### advert
 
 ```typescript
 // 广告设置
 const result = await client.advert.getAdvertSettings();
+```
+
+### wallet
+
+```typescript
+// 钱包总览
+const result = await client.wallet.getOverview();
 ```
 
 ### vote
@@ -442,30 +442,6 @@ const result = await client.vote.getMyVotes(params);
 const result = await client.vip.getVipStatus();
 ```
 
-### deactivate
-
-```typescript
-// 注销账号
-const body = {} as any;
-const result = await client.deactivate.account(body);
-```
-
-### bind
-
-```typescript
-// 解绑第三方账号
-const platform = 'platform';
-const result = await client.bind.unbindThirdPartyAccount(platform);
-```
-
-### avatar
-
-```typescript
-// 上传头像
-const body = {} as any;
-const result = await client.avatar.upload(body);
-```
-
 ### upload
 
 ```typescript
@@ -480,6 +456,14 @@ const result = await client.upload.getStorageUsage();
 const result = await client.search.getSearchStatistics();
 ```
 
+### rtc
+
+```typescript
+// List RTC records
+const params = {} as Record<string, any>;
+const result = await client.rtc.listRecords(params);
+```
+
 ### payments
 
 ```typescript
@@ -490,41 +474,8 @@ const result = await client.payments.getPaymentStatistics();
 ### organization
 
 ```typescript
-// 创建组织
-const body = {} as any;
-const result = await client.organization.createOrganization(body);
-```
-
-### disable
-
-```typescript
-// 禁用组织
-const orgId = 1;
-const result = await client.disable.organization(orgId);
-```
-
-### activate
-
-```typescript
-// 激活组织
-const orgId = 1;
-const result = await client.activate.organization(orgId);
-```
-
-### position
-
-```typescript
-// 创建岗位
-const body = {} as any;
-const result = await client.position.createPosition(body);
-```
-
-### department
-
-```typescript
-// 创建部门
-const body = {} as any;
-const result = await client.department.createDepartment(body);
+// 获取组织统计
+const result = await client.organization.getOrganizationStatistics();
 ```
 
 ### orders
@@ -534,11 +485,11 @@ const result = await client.department.createDepartment(body);
 const result = await client.orders.getOrderStatistics();
 ```
 
-### models
+### model
 
 ```typescript
-// 获取模型类型列表
-const result = await client.models.getModelTypes();
+// Get model types
+const result = await client.model.getModelTypes();
 ```
 
 ### history
@@ -548,20 +499,20 @@ const result = await client.models.getModelTypes();
 const result = await client.history.getHistoryStatistics();
 ```
 
-### voice_speaker
-
-```typescript
-// 获取任务列表
-const params = {} as Record<string, any>;
-const result = await client.voiceSpeaker.listTasks(params);
-```
-
 ### sound_effect
 
 ```typescript
 // 获取任务列表
 const params = {} as Record<string, any>;
 const result = await client.soundEffect.listTasks(params);
+```
+
+### generation
+
+```typescript
+// Enhance generation prompt
+const body = {} as any;
+const result = await client.generation.enhanceGenerationPrompt(body);
 ```
 
 ### audio
@@ -575,7 +526,7 @@ const result = await client.audio.getVoiceList(params);
 ### feed
 
 ```typescript
-// 获取置顶Feed
+// Get top feeds
 const params = {} as Record<string, any>;
 const result = await client.feed.getTopFeeds(params);
 ```
@@ -602,66 +553,11 @@ const params = {} as Record<string, any>;
 const result = await client.comments.getMy(params);
 ```
 
-### sms
-
-```typescript
-// 验证验证码
-const body = {} as any;
-const result = await client.sms.verifySmsCode(body);
-```
-
-### register
-
-```typescript
-// 用户注册
-const body = {} as any;
-const result = await client.register.register(body);
-```
-
-### refresh
-
-```typescript
-// 刷新令牌
-const body = {} as any;
-const result = await client.refresh.token(body);
-```
-
-### qr
+### auth
 
 ```typescript
 // 生成登录二维码
-const result = await client.qr.generateQrCode();
-```
-
-### phone
-
-```typescript
-// 手机号验证码登录
-const body = {} as any;
-const result = await client.phone.login(body);
-```
-
-### oauth
-
-```typescript
-// OAuth授权URL
-const body = {} as any;
-const result = await client.oauth.getOauthUrl(body);
-```
-
-### logout
-
-```typescript
-// 用户登出
-const result = await client.logout.logout();
-```
-
-### login
-
-```typescript
-// 用户登录
-const body = {} as any;
-const result = await client.login.login(body);
+const result = await client.auth.generateQrCode();
 ```
 
 ### audit
@@ -676,6 +572,14 @@ const result = await client.audit.listSensitiveWord();
 ```typescript
 // 使用统计
 const result = await client.analytics.getUserUsageStats();
+```
+
+### agent_memory
+
+```typescript
+// List knowledge
+const agentId = 1;
+const result = await client.agentMemory.listKnowledge(agentId);
 ```
 
 ### activity
@@ -705,94 +609,6 @@ const result = await client.ab.listFeatureFlags();
 // 检查SKU编码是否存在
 const params = {} as Record<string, any>;
 const result = await client.sku.checkSkuCodeExists(params);
-```
-
-### products
-
-```typescript
-// 获取最新商品
-const params = {} as Record<string, any>;
-const result = await client.products.getLatest(params);
-```
-
-### positions
-
-```typescript
-// 获取组织的岗位列表
-const orgId = 1;
-const result = await client.positions.getPositionsByOrg(orgId);
-```
-
-### members
-
-```typescript
-// 获取组织成员
-const orgId = 1;
-const params = {} as Record<string, any>;
-const result = await client.members.getMembersByOrg(orgId, params);
-```
-
-### departments
-
-```typescript
-// 获取组织的部门列表
-const orgId = 1;
-const result = await client.departments.getDepartmentsByOrg(orgId);
-```
-
-### children
-
-```typescript
-// 获取子组织
-const orgId = 1;
-const result = await client.children.getChildOrganizations(orgId);
-```
-
-### statistics
-
-```typescript
-// 获取组织统计
-const result = await client.statistics.getOrganization();
-```
-
-### member
-
-```typescript
-// 获取成员详情
-const memberId = 1;
-const result = await client.member.getMember(memberId);
-```
-
-### list
-
-```typescript
-// 获取组织列表
-const params = {} as Record<string, any>;
-const result = await client.list.getOrganization(params);
-```
-
-### code
-
-```typescript
-// 根据编码获取组织
-const code = 'code';
-const result = await client.code.getOrganizationBy(code);
-```
-
-### auth
-
-```typescript
-// Request password reset challenge
-const body = {} as any;
-const result = await client.auth.requestPasswordResetChallenge(body);
-```
-
-### generation
-
-```typescript
-// Enhance generation prompt
-const body = {} as any;
-const result = await client.generation.enhanceGenerationPrompt(body);
 ```
 
 ## Error Handling

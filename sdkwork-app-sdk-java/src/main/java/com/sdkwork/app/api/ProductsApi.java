@@ -12,6 +12,46 @@ public class ProductsApi {
         this.client = client;
     }
 
+    /** 更新商品属性 */
+    public PlusApiResultProductAttributeVO updateProductAttribute(String productId, String attributeId, ProductAttributeUpdateRequest body) throws Exception {
+        return (PlusApiResultProductAttributeVO) client.put(ApiPaths.appPath("/products/" + productId + "/attributes/" + attributeId + ""), body);
+    }
+
+    /** 删除商品属性 */
+    public PlusApiResultVoid deleteProductAttribute(String productId, String attributeId) throws Exception {
+        return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/products/" + productId + "/attributes/" + attributeId + ""));
+    }
+
+    /** 更新商品分类 */
+    public PlusApiResultProductCategoryVO updateProductCategory(String categoryId, ProductCategoryUpdateRequest body) throws Exception {
+        return (PlusApiResultProductCategoryVO) client.put(ApiPaths.appPath("/products/categories/" + categoryId + ""), body);
+    }
+
+    /** 删除商品分类 */
+    public PlusApiResultVoid deleteProductCategory(String categoryId) throws Exception {
+        return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/products/categories/" + categoryId + ""));
+    }
+
+    /** 获取商品属性 */
+    public PlusApiResultListProductAttributeVO listProductAttributes(String productId) throws Exception {
+        return (PlusApiResultListProductAttributeVO) client.get(ApiPaths.appPath("/products/" + productId + "/attributes"));
+    }
+
+    /** 创建商品属性 */
+    public PlusApiResultProductAttributeVO createProductAttribute(String productId, ProductAttributeCreateRequest body) throws Exception {
+        return (PlusApiResultProductAttributeVO) client.post(ApiPaths.appPath("/products/" + productId + "/attributes"), body);
+    }
+
+    /** 获取商品分类列表 */
+    public PlusApiResultListProductCategoryVO listProductCategories(Map<String, Object> params) throws Exception {
+        return (PlusApiResultListProductCategoryVO) client.get(ApiPaths.appPath("/products/categories"), params);
+    }
+
+    /** 创建商品分类 */
+    public PlusApiResultProductCategoryVO createProductCategory(ProductCategoryCreateRequest body) throws Exception {
+        return (PlusApiResultProductCategoryVO) client.post(ApiPaths.appPath("/products/categories"), body);
+    }
+
     /** 获取商品列表 */
     public PlusApiResultPageProductVO getProducts(Map<String, Object> params) throws Exception {
         return (PlusApiResultPageProductVO) client.get(ApiPaths.appPath("/products"), params);
@@ -30,6 +70,11 @@ public class ProductsApi {
     /** 获取商品统计 */
     public PlusApiResultProductStatisticsVO getProductStatistics(String productId) throws Exception {
         return (PlusApiResultProductStatisticsVO) client.get(ApiPaths.appPath("/products/" + productId + "/statistics"));
+    }
+
+    /** 获取SPU详情 */
+    public PlusApiResultProductDetailVO getSpuDetail(String productId) throws Exception {
+        return (PlusApiResultProductDetailVO) client.get(ApiPaths.appPath("/products/" + productId + "/spu"));
     }
 
     /** 获取商品SKU列表 */
@@ -65,5 +110,15 @@ public class ProductsApi {
     /** 按分类获取商品 */
     public PlusApiResultPageProductVO getProductsByCategory(String categoryId, Map<String, Object> params) throws Exception {
         return (PlusApiResultPageProductVO) client.get(ApiPaths.appPath("/products/category/" + categoryId + ""), params);
+    }
+
+    /** 获取分类属性 */
+    public PlusApiResultListProductAttributeVO listCategoryAttributes(String categoryId) throws Exception {
+        return (PlusApiResultListProductAttributeVO) client.get(ApiPaths.appPath("/products/categories/" + categoryId + "/attributes"));
+    }
+
+    /** 获取商品分类树 */
+    public PlusApiResultListProductCategoryVO getProductCategoryTree() throws Exception {
+        return (PlusApiResultListProductCategoryVO) client.get(ApiPaths.appPath("/products/categories/tree"));
     }
 }

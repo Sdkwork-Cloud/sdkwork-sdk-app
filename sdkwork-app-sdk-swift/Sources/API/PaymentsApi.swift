@@ -19,6 +19,12 @@ public class PaymentsApi {
         return response as? PlusApiResultVoid
     }
 
+    /// 补单/对账
+    public func reconcilePayment(body: PaymentReconcileForm) async throws -> PlusApiResultPaymentStatusVO? {
+        let response = try await client.post(ApiPaths.appPath("/payments/reconcile"), body: body)
+        return response as? PlusApiResultPaymentStatusVO
+    }
+
     /// 通用支付回调
     public func paymentCallback(provider: String, body: PaymentCallbackRequest) async throws -> PaymentCallbackResponse? {
         let response = try await client.post(ApiPaths.appPath("/payments/callback/\(provider)"), body: body)

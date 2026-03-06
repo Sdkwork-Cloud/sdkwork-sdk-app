@@ -104,6 +104,16 @@ func (a *OrdersApi) GetOrderStatus(orderId string) (sdktypes.PlusApiResultOrderS
     return decodeResult[sdktypes.PlusApiResultOrderStatusVO](raw)
 }
 
+// 查询订单是否支付成功
+func (a *OrdersApi) GetOrderPaymentSuccess(orderId string) (sdktypes.PlusApiResultOrderPaymentSuccessVO, error) {
+    raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/orders/%s/payment-success", orderId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultOrderPaymentSuccessVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultOrderPaymentSuccessVO](raw)
+}
+
 // 获取订单统计
 func (a *OrdersApi) GetOrderStatistics() (sdktypes.PlusApiResultOrderStatisticsVO, error) {
     raw, err := a.client.Get(AppApiPath("/orders/statistics"), nil, nil)

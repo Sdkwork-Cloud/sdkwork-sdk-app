@@ -8,5 +8,6 @@ namespace App.Models
     {
         public string? Name { get; set; }
         public string? ParentId { get; set; }
+        public string? DiskId { get; set; }
     }
 }

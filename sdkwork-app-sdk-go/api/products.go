@@ -14,6 +14,86 @@ func NewProductsApi(client *sdkhttp.Client) *ProductsApi {
     return &ProductsApi{client: client}
 }
 
+// 更新商品属性
+func (a *ProductsApi) UpdateProductAttribute(productId string, attributeId string, body sdktypes.ProductAttributeUpdateRequest) (sdktypes.PlusApiResultProductAttributeVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/products/%s/attributes/%s", productId, attributeId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultProductAttributeVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultProductAttributeVO](raw)
+}
+
+// 删除商品属性
+func (a *ProductsApi) DeleteProductAttribute(productId string, attributeId string) (sdktypes.PlusApiResultVoid, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/products/%s/attributes/%s", productId, attributeId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultVoid
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultVoid](raw)
+}
+
+// 更新商品分类
+func (a *ProductsApi) UpdateProductCategory(categoryId string, body sdktypes.ProductCategoryUpdateRequest) (sdktypes.PlusApiResultProductCategoryVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/products/categories/%s", categoryId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultProductCategoryVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultProductCategoryVO](raw)
+}
+
+// 删除商品分类
+func (a *ProductsApi) DeleteProductCategory(categoryId string) (sdktypes.PlusApiResultVoid, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/products/categories/%s", categoryId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultVoid
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultVoid](raw)
+}
+
+// 获取商品属性
+func (a *ProductsApi) ListProductAttributes(productId string) (sdktypes.PlusApiResultListProductAttributeVO, error) {
+    raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/products/%s/attributes", productId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListProductAttributeVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListProductAttributeVO](raw)
+}
+
+// 创建商品属性
+func (a *ProductsApi) CreateProductAttribute(productId string, body sdktypes.ProductAttributeCreateRequest) (sdktypes.PlusApiResultProductAttributeVO, error) {
+    raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/products/%s/attributes", productId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultProductAttributeVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultProductAttributeVO](raw)
+}
+
+// 获取商品分类列表
+func (a *ProductsApi) ListProductCategories(query map[string]interface{}) (sdktypes.PlusApiResultListProductCategoryVO, error) {
+    raw, err := a.client.Get(AppApiPath("/products/categories"), query, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListProductCategoryVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListProductCategoryVO](raw)
+}
+
+// 创建商品分类
+func (a *ProductsApi) CreateProductCategory(body sdktypes.ProductCategoryCreateRequest) (sdktypes.PlusApiResultProductCategoryVO, error) {
+    raw, err := a.client.Post(AppApiPath("/products/categories"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultProductCategoryVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultProductCategoryVO](raw)
+}
+
 // 获取商品列表
 func (a *ProductsApi) GetProducts(query map[string]interface{}) (sdktypes.PlusApiResultPageProductVO, error) {
     raw, err := a.client.Get(AppApiPath("/products"), query, nil)
@@ -52,6 +132,16 @@ func (a *ProductsApi) GetProductStatistics(productId string) (sdktypes.PlusApiRe
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultProductStatisticsVO](raw)
+}
+
+// 获取SPU详情
+func (a *ProductsApi) GetSpuDetail(productId string) (sdktypes.PlusApiResultProductDetailVO, error) {
+    raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/products/%s/spu", productId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultProductDetailVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultProductDetailVO](raw)
 }
 
 // 获取商品SKU列表
@@ -122,4 +212,24 @@ func (a *ProductsApi) GetProductsByCategory(categoryId string, query map[string]
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultPageProductVO](raw)
+}
+
+// 获取分类属性
+func (a *ProductsApi) ListCategoryAttributes(categoryId string) (sdktypes.PlusApiResultListProductAttributeVO, error) {
+    raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/products/categories/%s/attributes", categoryId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListProductAttributeVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListProductAttributeVO](raw)
+}
+
+// 获取商品分类树
+func (a *ProductsApi) GetProductCategoryTree() (sdktypes.PlusApiResultListProductCategoryVO, error) {
+    raw, err := a.client.Get(AppApiPath("/products/categories/tree"), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListProductCategoryVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListProductCategoryVO](raw)
 }

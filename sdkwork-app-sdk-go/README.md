@@ -25,7 +25,7 @@ func main() {
     client.SetApiKey("your-api-key")
     
     // Use the SDK
-    result, err := client.Tenant.GetTenantTypes()
+    result, err := client.User.GetUserSettings()
     if err != nil {
         panic(err)
     }
@@ -73,23 +73,25 @@ client.SetHeader("X-Custom-Header", "value")
 ## API Modules
 
 - `client.Workspaces` - workspaces API
-- `client.VoiceSpeakers` - voice_speakers API
+- `client.VoiceSpeaker` - voice_speaker API
 - `client.Video` - video API
-- `client.Settings` - settings API
-- `client.Profile` - profile API
-- `client.Password` - password API
-- `client.Address` - address API
+- `client.User` - user API
+- `client.Tool` - tool API
 - `client.Tenant` - tenant API
 - `client.Social` - social API
+- `client.Skill` - skill API
 - `client.Shops` - shops API
 - `client.Share` - share API
+- `client.Settings` - settings API
 - `client.Ai` - ai API
 - `client.Projects` - projects API
+- `client.Products` - products API
 - `client.Partner` - partner API
 - `client.Notification` - notification API
-- `client.App` - app API
+- `client.Notes` - notes API
 - `client.News` - news API
 - `client.Music` - music API
+- `client.KnowledgeDocuments` - knowledge_documents API
 - `client.Invoice` - invoice API
 - `client.Image` - image API
 - `client.Style` - style API
@@ -97,7 +99,7 @@ client.SetHeader("X-Custom-Header", "value")
 - `client.Feedback` - feedback API
 - `client.Favorite` - favorite API
 - `client.Drive` - drive API
-- `client.AppDocuments` - app_documents API
+- `client.Documents` - documents API
 - `client.Dashboard` - dashboard API
 - `client.Collection` - collection API
 - `client.Chat` - chat API
@@ -105,56 +107,36 @@ client.SetHeader("X-Custom-Header", "value")
 - `client.Category` - category API
 - `client.Cart` - cart API
 - `client.Assets` - assets API
+- `client.App` - app API
 - `client.Announcement` - announcement API
+- `client.Agent` - agent API
 - `client.Advert` - advert API
+- `client.Wallet` - wallet API
 - `client.Vote` - vote API
 - `client.Vip` - vip API
-- `client.Deactivate` - deactivate API
-- `client.Bind` - bind API
-- `client.Avatar` - avatar API
 - `client.Upload` - upload API
 - `client.Search` - search API
+- `client.Rtc` - rtc API
 - `client.Payments` - payments API
 - `client.Organization` - organization API
-- `client.Disable` - disable API
-- `client.Activate` - activate API
-- `client.Position` - position API
-- `client.Department` - department API
 - `client.Orders` - orders API
-- `client.Models` - models API
+- `client.Model` - model API
 - `client.History` - history API
-- `client.VoiceSpeaker` - voice_speaker API
 - `client.SoundEffect` - sound_effect API
+- `client.Generation` - generation API
 - `client.Audio` - audio API
 - `client.Feed` - feed API
 - `client.Currency` - currency API
 - `client.Coupons` - coupons API
 - `client.Comments` - comments API
-- `client.Sms` - sms API
-- `client.Register` - register API
-- `client.Refresh` - refresh API
-- `client.Qr` - qr API
-- `client.Phone` - phone API
-- `client.Oauth` - oauth API
-- `client.Logout` - logout API
-- `client.Login` - login API
+- `client.Auth` - auth API
 - `client.Audit` - audit API
 - `client.Analytics` - analytics API
+- `client.AgentMemory` - agent_memory API
 - `client.Activity` - activity API
 - `client.Account` - account API
 - `client.Ab` - ab API
 - `client.Sku` - sku API
-- `client.Products` - products API
-- `client.Positions` - positions API
-- `client.Members` - members API
-- `client.Departments` - departments API
-- `client.Children` - children API
-- `client.Statistics` - statistics API
-- `client.Member` - member API
-- `client.List` - list API
-- `client.Code` - code API
-- `client.Auth` - auth API
-- `client.Generation` - generation API
 
 ## Usage Examples
 
@@ -169,11 +151,11 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### voice_speakers
+### voice_speaker
 
 ```go
 // 获取发音人详情
-result, err := client.VoiceSpeakers.GetSpeakerDetail()
+result, err := client.VoiceSpeaker.GetSpeakerDetail()
 if err != nil {
     panic(err)
 }
@@ -191,44 +173,22 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### settings
+### user
 
 ```go
 // 获取用户设置
-result, err := client.Settings.GetUser()
+result, err := client.User.GetUserSettings()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### profile
+### tool
 
 ```go
-// 获取用户信息
-result, err := client.Profile.GetUser()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### password
-
-```go
-// 修改密码
-result, err := client.Password.Change()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### address
-
-```go
-// 获取地址详情
-result, err := client.Address.GetAddressDetail()
+// Update tool credentials
+result, err := client.Tool.UpdateCredentials()
 if err != nil {
     panic(err)
 }
@@ -257,6 +217,17 @@ if err != nil {
 fmt.Println(result)
 ```
 
+### skill
+
+```go
+// Get skill detail
+result, err := client.Skill.Detail()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 ### shops
 
 ```go
@@ -273,6 +244,17 @@ fmt.Println(result)
 ```go
 // 更新分享设置
 result, err := client.Share.UpdateShareSettings()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### settings
+
+```go
+// 获取模块设置
+result, err := client.Settings.GetModule()
 if err != nil {
     panic(err)
 }
@@ -301,6 +283,17 @@ if err != nil {
 fmt.Println(result)
 ```
 
+### products
+
+```go
+// 更新商品属性
+result, err := client.Products.UpdateProductAttribute()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 ### partner
 
 ```go
@@ -315,19 +308,19 @@ fmt.Println(result)
 ### notification
 
 ```go
-// 标记已读
-result, err := client.Notification.MarkAsRead()
+// Mark notification as unread
+result, err := client.Notification.MarkAsUnread()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### app
+### notes
 
 ```go
 // 获取笔记详情
-result, err := client.App.GetNoteDetail()
+result, err := client.Notes.GetNoteDetail()
 if err != nil {
     panic(err)
 }
@@ -350,6 +343,17 @@ fmt.Println(result)
 ```go
 // 获取音乐详情
 result, err := client.Music.GetMusic()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### knowledge_documents
+
+```go
+// Restore knowledge document
+result, err := client.KnowledgeDocuments.RestoreKnowledgeDocument()
 if err != nil {
     panic(err)
 }
@@ -425,19 +429,19 @@ fmt.Println(result)
 ### drive
 
 ```go
-// Rename drive item
-result, err := client.Drive.RenameItem()
+// Restore drive item
+result, err := client.Drive.RestoreItem()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### app_documents
+### documents
 
 ```go
 // Get document detail
-result, err := client.AppDocuments.GetDocumentDetail()
+result, err := client.Documents.GetDocumentDetail()
 if err != nil {
     panic(err)
 }
@@ -521,6 +525,17 @@ if err != nil {
 fmt.Println(result)
 ```
 
+### app
+
+```go
+// 获取应用详情
+result, err := client.App.GetApp()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 ### announcement
 
 ```go
@@ -532,11 +547,33 @@ if err != nil {
 fmt.Println(result)
 ```
 
+### agent
+
+```go
+// Get agent
+result, err := client.Agent.Get()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
 ### advert
 
 ```go
 // 广告设置
 result, err := client.Advert.GetAdvertSettings()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### wallet
+
+```go
+// 钱包提现
+result, err := client.Wallet.Withdraw()
 if err != nil {
     panic(err)
 }
@@ -565,39 +602,6 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### deactivate
-
-```go
-// 注销账号
-result, err := client.Deactivate.Account()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### bind
-
-```go
-// 绑定第三方账号
-result, err := client.Bind.ThirdPartyAccount()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### avatar
-
-```go
-// 上传头像
-result, err := client.Avatar.Upload()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
 ### upload
 
 ```go
@@ -614,6 +618,17 @@ fmt.Println(result)
 ```go
 // 搜索历史
 result, err := client.Search.GetSearchHistory()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### rtc
+
+```go
+// Create RTC room
+result, err := client.Rtc.CreateRoom()
 if err != nil {
     panic(err)
 }
@@ -642,50 +657,6 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### disable
-
-```go
-// 禁用组织
-result, err := client.Disable.Organization()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### activate
-
-```go
-// 激活组织
-result, err := client.Activate.Organization()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### position
-
-```go
-// 创建岗位
-result, err := client.Position.CreatePosition()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### department
-
-```go
-// 创建部门
-result, err := client.Department.CreateDepartment()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
 ### orders
 
 ```go
@@ -697,11 +668,11 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### models
+### model
 
 ```go
-// 批量获取模型价格
-result, err := client.Models.GetModelPrices()
+// Batch get model prices
+result, err := client.Model.GetModelPrices()
 if err != nil {
     panic(err)
 }
@@ -719,22 +690,22 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### voice_speaker
+### sound_effect
 
 ```go
-// 创建语音生成任务
-result, err := client.VoiceSpeaker.CreateGeneration()
+// 创建音效生成任务
+result, err := client.SoundEffect.CreateGeneration()
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
 
-### sound_effect
+### generation
 
 ```go
-// 创建音效生成任务
-result, err := client.SoundEffect.CreateGeneration()
+// Enhance generation prompt
+result, err := client.Generation.EnhanceGenerationPrompt()
 if err != nil {
     panic(err)
 }
@@ -755,8 +726,8 @@ fmt.Println(result)
 ### feed
 
 ```go
-// 取消点赞Feed
-result, err := client.Feed.Unlike()
+// Create feed
+result, err := client.Feed.Create()
 if err != nil {
     panic(err)
 }
@@ -796,88 +767,11 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### sms
+### auth
 
 ```go
 // 验证验证码
-result, err := client.Sms.VerifySmsCode()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### register
-
-```go
-// 用户注册
-result, err := client.Register.Register()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### refresh
-
-```go
-// 刷新令牌
-result, err := client.Refresh.Token()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### qr
-
-```go
-// 生成登录二维码
-result, err := client.Qr.GenerateQrCode()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### phone
-
-```go
-// 手机号验证码登录
-result, err := client.Phone.Login()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### oauth
-
-```go
-// OAuth授权URL
-result, err := client.Oauth.GetOauthUrl()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### logout
-
-```go
-// 用户登出
-result, err := client.Logout.Logout()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### login
-
-```go
-// 用户登录
-result, err := client.Login.Login()
+result, err := client.Auth.VerifySmsCode()
 if err != nil {
     panic(err)
 }
@@ -900,6 +794,17 @@ fmt.Println(result)
 ```go
 // 上报页面访问
 result, err := client.Analytics.TrackPageView()
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### agent_memory
+
+```go
+// List memories
+result, err := client.AgentMemory.List()
 if err != nil {
     panic(err)
 }
@@ -950,131 +855,10 @@ if err != nil {
 fmt.Println(result)
 ```
 
-### products
-
-```go
-// 获取商品列表
-result, err := client.Products.GetProducts()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### positions
-
-```go
-// 获取组织的岗位列表
-result, err := client.Positions.GetPositionsByOrg()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### members
-
-```go
-// 获取组织成员
-result, err := client.Members.GetMembersByOrg()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### departments
-
-```go
-// 获取组织的部门列表
-result, err := client.Departments.GetDepartmentsByOrg()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### children
-
-```go
-// 获取子组织
-result, err := client.Children.GetChildOrganizations()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### statistics
-
-```go
-// 获取组织统计
-result, err := client.Statistics.GetOrganization()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### member
-
-```go
-// 获取成员详情
-result, err := client.Member.GetMember()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### list
-
-```go
-// 获取组织列表
-result, err := client.List.GetOrganization()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### code
-
-```go
-// 根据编码获取组织
-result, err := client.Code.GetOrganizationBy()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### auth
-
-```go
-// Request password reset challenge
-result, err := client.Auth.RequestPasswordResetChallenge()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
-### generation
-
-```go
-// Enhance generation prompt
-result, err := client.Generation.EnhanceGenerationPrompt()
-if err != nil {
-    panic(err)
-}
-fmt.Println(result)
-```
-
 ## Error Handling
 
 ```go
-result, err := client.Tenant.GetTenantTypes()
+result, err := client.User.GetUserSettings()
 if err != nil {
     // Handle error
     fmt.Println("Error:", err)

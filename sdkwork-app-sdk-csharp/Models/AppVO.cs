@@ -18,5 +18,6 @@ namespace App.Models
         public string? AppType { get; set; }
         public string? Status { get; set; }
         public int? ProjectId { get; set; }
+        public AppInstallSkill? InstallSkill { get; set; }
     }
 }

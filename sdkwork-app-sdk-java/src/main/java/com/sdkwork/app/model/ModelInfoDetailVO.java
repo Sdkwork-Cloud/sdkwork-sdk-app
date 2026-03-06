@@ -4,7 +4,9 @@ public class ModelInfoDetailVO {
     private String createdAt;
     private String updatedAt;
     private String modelId;
+    private String modelKey;
     private String model;
+    private String vendorModel;
     private String name;
     private String description;
     private String channel;
@@ -20,6 +22,8 @@ public class ModelInfoDetailVO {
     private ModelLimitInfo limitInfo;
     private ModelPrice priceInfo;
     private ModelMetadata metadata;
+    private Map<String, Object> productSupportInfo;
+    private List<ModelPriceVO> priceRules;
     private Double defaultTemperature;
     private Double defaultTopP;
     private Double defaultFrequencyPenalty;
@@ -53,12 +57,28 @@ public class ModelInfoDetailVO {
         this.modelId = modelId;
     }
 
+    public String getModelKey() {
+        return this.modelKey;
+    }
+    
+    public void setModelKey(String modelKey) {
+        this.modelKey = modelKey;
+    }
+
     public String getModel() {
         return this.model;
     }
     
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getVendorModel() {
+        return this.vendorModel;
+    }
+    
+    public void setVendorModel(String vendorModel) {
+        this.vendorModel = vendorModel;
     }
 
     public String getName() {
@@ -179,6 +199,22 @@ public class ModelInfoDetailVO {
     
     public void setMetadata(ModelMetadata metadata) {
         this.metadata = metadata;
+    }
+
+    public Map<String, Object> getProductSupportInfo() {
+        return this.productSupportInfo;
+    }
+    
+    public void setProductSupportInfo(Map<String, Object> productSupportInfo) {
+        this.productSupportInfo = productSupportInfo;
+    }
+
+    public List<ModelPriceVO> getPriceRules() {
+        return this.priceRules;
+    }
+    
+    public void setPriceRules(List<ModelPriceVO> priceRules) {
+        this.priceRules = priceRules;
     }
 
     public Double getDefaultTemperature() {

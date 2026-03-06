@@ -3,7 +3,7 @@ package com.sdkwork.app.model;
 public class LoginVO {
     private String createdAt;
     private String updatedAt;
-    private String accessToken;
+    private String authToken;
     private String refreshToken;
     private String tokenType;
     private Integer expiresIn;
@@ -25,12 +25,12 @@ public class LoginVO {
         this.updatedAt = updatedAt;
     }
 
-    public String getAccessToken() {
-        return this.accessToken;
+    public String getAuthToken() {
+        return this.authToken;
     }
     
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
     public String getRefreshToken() {

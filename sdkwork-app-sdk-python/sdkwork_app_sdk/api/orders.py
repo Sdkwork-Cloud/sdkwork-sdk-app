@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import OrderCancelForm, OrderCreateForm, OrderPayForm, PlusApiResultOrderDetailVO, PlusApiResultOrderStatisticsVO, PlusApiResultOrderStatusVO, PlusApiResultOrderVO, PlusApiResultPageOrderVO, PlusApiResultPaymentParamsVO, PlusApiResultVoid, RefundApplyForm
+from ..models import OrderCancelForm, OrderCreateForm, OrderPayForm, PlusApiResultOrderDetailVO, PlusApiResultOrderPaymentSuccessVO, PlusApiResultOrderStatisticsVO, PlusApiResultOrderStatusVO, PlusApiResultOrderVO, PlusApiResultPageOrderVO, PlusApiResultPaymentParamsVO, PlusApiResultVoid, RefundApplyForm
 
 class OrdersApi:
     """orders API client."""
@@ -43,6 +43,10 @@ class OrdersApi:
     def get_order_status(self, orderId: str) -> PlusApiResultOrderStatusVO:
         """获取订单状态"""
         return self._client.get(f"/app/v3/api/orders/{orderId}/status")
+
+    def get_order_payment_success(self, orderId: str) -> PlusApiResultOrderPaymentSuccessVO:
+        """查询订单是否支付成功"""
+        return self._client.get(f"/app/v3/api/orders/{orderId}/payment-success")
 
     def get_order_statistics(self) -> PlusApiResultOrderStatisticsVO:
         """获取订单统计"""

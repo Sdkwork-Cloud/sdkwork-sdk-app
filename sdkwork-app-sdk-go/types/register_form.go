@@ -7,4 +7,6 @@ type RegisterForm struct {
 	ConfirmPassword string `json:"confirmPassword"`
 	Email string `json:"email"`
 	Phone string `json:"phone"`
+	Type string `json:"type"`
+	VerificationCode string `json:"verificationCode"`
 }

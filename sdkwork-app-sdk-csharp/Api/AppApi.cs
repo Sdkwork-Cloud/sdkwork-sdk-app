@@ -16,54 +16,6 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取笔记详情
-        /// </summary>
-        public async Task<PlusApiResultNoteVO?> GetNoteDetailAsync(string noteId)
-        {
-            return await _client.GetAsync<PlusApiResultNoteVO>(ApiPaths.AppPath($"/notes/{noteId}"));
-        }
-
-        /// <summary>
-        /// 更新笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> UpdateNoteAsync(string noteId, NoteUpdateRequest body)
-        {
-            return await _client.PutAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/{noteId}"), body);
-        }
-
-        /// <summary>
-        /// 删除笔记
-        /// </summary>
-        public async Task<PlusApiResultVoid?> DeleteNoteAsync(string noteId)
-        {
-            return await _client.DeleteAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/notes/{noteId}"));
-        }
-
-        /// <summary>
-        /// 移动笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> MoveNoteAsync(string noteId, NoteMoveRequest body)
-        {
-            return await _client.PutAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/{noteId}/move"), body);
-        }
-
-        /// <summary>
-        /// 更新文件夹
-        /// </summary>
-        public async Task<PlusApiResultNoteFolderVO?> UpdateFolderAsync(string folderId, NoteFolderUpdateRequest body)
-        {
-            return await _client.PutAsync<PlusApiResultNoteFolderVO>(ApiPaths.AppPath($"/notes/folders/{folderId}"), body);
-        }
-
-        /// <summary>
-        /// 删除文件夹
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> DeleteFolderAsync(string folderId)
-        {
-            return await _client.DeleteAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/folders/{folderId}"));
-        }
-
-        /// <summary>
         /// 获取应用详情
         /// </summary>
         public async Task<PlusApiResultAppDetailVO?> GetAppAsync(string appId)
@@ -85,62 +37,6 @@ namespace App.Api
         public async Task<PlusApiResultVoid?> DeleteAppAsync(string appId)
         {
             return await _client.DeleteAsync<PlusApiResultVoid>(ApiPaths.AppPath($"/app/manage/{appId}"));
-        }
-
-        /// <summary>
-        /// 获取笔记列表
-        /// </summary>
-        public async Task<PlusApiResultPageNoteVO?> ListNotesAsync(Dictionary<string, object>? query = null)
-        {
-            return await _client.GetAsync<PlusApiResultPageNoteVO>(ApiPaths.AppPath("/notes"), query);
-        }
-
-        /// <summary>
-        /// 创建笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> CreateNoteAsync(NoteCreateRequest body)
-        {
-            return await _client.PostAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath("/notes"), body);
-        }
-
-        /// <summary>
-        /// 收藏笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> FavoriteNoteAsync(string noteId)
-        {
-            return await _client.PostAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/{noteId}/favorite"), null);
-        }
-
-        /// <summary>
-        /// 取消收藏笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> UnfavoriteNoteAsync(string noteId)
-        {
-            return await _client.DeleteAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/{noteId}/favorite"));
-        }
-
-        /// <summary>
-        /// 复制笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> CopyNoteAsync(string noteId, NoteCopyRequest body)
-        {
-            return await _client.PostAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath($"/notes/{noteId}/copy"), body);
-        }
-
-        /// <summary>
-        /// 获取文件夹列表
-        /// </summary>
-        public async Task<PlusApiResultListNoteFolderVO?> ListFoldersAsync()
-        {
-            return await _client.GetAsync<PlusApiResultListNoteFolderVO>(ApiPaths.AppPath("/notes/folders"));
-        }
-
-        /// <summary>
-        /// 创建文件夹
-        /// </summary>
-        public async Task<PlusApiResultNoteFolderVO?> CreateFolderAsync(NoteFolderCreateRequest body)
-        {
-            return await _client.PostAsync<PlusApiResultNoteFolderVO>(ApiPaths.AppPath("/notes/folders"), body);
         }
 
         /// <summary>
@@ -168,11 +64,11 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取笔记统计
+        /// 检查发布就绪状态
         /// </summary>
-        public async Task<PlusApiResultNoteStatisticsVO?> GetNoteStatisticsAsync()
+        public async Task<PlusApiResultAppPublishReadinessVO?> CheckPublishReadinessAsync(string appId)
         {
-            return await _client.GetAsync<PlusApiResultNoteStatisticsVO>(ApiPaths.AppPath("/notes/statistics"));
+            return await _client.GetAsync<PlusApiResultAppPublishReadinessVO>(ApiPaths.AppPath($"/app/manage/{appId}/publish/readiness"));
         }
 
         /// <summary>
@@ -213,14 +109,6 @@ namespace App.Api
         public async Task<PlusApiResultAccountSummaryVO?> GetAccountSummaryAsync()
         {
             return await _client.GetAsync<PlusApiResultAccountSummaryVO>(ApiPaths.AppPath("/account/summary"));
-        }
-
-        /// <summary>
-        /// 批量删除笔记
-        /// </summary>
-        public async Task<PlusApiResultNoteOperationVO?> BatchDeleteNotesAsync()
-        {
-            return await _client.DeleteAsync<PlusApiResultNoteOperationVO>(ApiPaths.AppPath("/notes/batch"));
         }
     }
 }

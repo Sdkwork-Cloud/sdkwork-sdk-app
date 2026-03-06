@@ -1,3 +1,4 @@
+import type { AppInstallSkill } from './app-install-skill';
 import type { ImageMediaResource } from './image-media-resource';
 
 /** 应用响应 */
@@ -26,4 +27,6 @@ export interface AppVO {
   status?: string;
   /** 项目ID */
   projectId?: number;
+  /** 安装技能 */
+  installSkill?: AppInstallSkill;
 }

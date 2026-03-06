@@ -22,6 +22,8 @@ export interface DocumentVO {
   tags?: string[];
   /** Status */
   status?: string;
+  /** Whether favorited */
+  favorited?: boolean;
   /** Summary */
   summary?: string;
   /** Word count */

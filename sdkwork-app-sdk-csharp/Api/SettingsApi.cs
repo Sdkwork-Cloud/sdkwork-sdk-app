@@ -16,22 +16,6 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取用户设置
-        /// </summary>
-        public async Task<PlusApiResultUserSettingsVO?> GetUserAsync()
-        {
-            return await _client.GetAsync<PlusApiResultUserSettingsVO>(ApiPaths.AppPath("/user/settings"));
-        }
-
-        /// <summary>
-        /// 更新用户设置
-        /// </summary>
-        public async Task<PlusApiResultUserSettingsVO?> UpdateUserAsync(UserSettingsUpdateForm body)
-        {
-            return await _client.PutAsync<PlusApiResultUserSettingsVO>(ApiPaths.AppPath("/user/settings"), body);
-        }
-
-        /// <summary>
         /// 获取模块设置
         /// </summary>
         public async Task<PlusApiResultMapStringObject?> GetModuleAsync(string module)

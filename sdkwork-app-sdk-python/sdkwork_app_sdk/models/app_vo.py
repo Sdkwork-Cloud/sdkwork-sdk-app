@@ -16,3 +16,4 @@ class AppVO:
     app_type: str = None
     status: str = None
     project_id: int = None
+    install_skill: AppInstallSkill = None

@@ -12,6 +12,7 @@ data class DocumentVO(
     val description: String? = null,
     val tags: List<String>? = null,
     val status: String? = null,
+    val favorited: Boolean? = null,
     val summary: String? = null,
     val wordCount: Int? = null,
     val charCount: Int? = null

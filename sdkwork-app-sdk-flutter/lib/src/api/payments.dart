@@ -18,6 +18,12 @@ class PaymentsApi {
     return response is PlusApiResultVoid ? response : null;
   }
 
+  /// 补单/对账
+  Future<PlusApiResultPaymentStatusVO?> reconcilePayment(PaymentReconcileForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/payments/reconcile'), body: body, contentType: 'application/json');
+    return response is PlusApiResultPaymentStatusVO ? response : null;
+  }
+
   /// 通用支付回调
   Future<PaymentCallbackResponse?> paymentCallback(String provider, PaymentCallbackRequest body) async {
     final response = await _client.post(ApiPaths.appPath('/payments/callback/${provider}'), body: body, contentType: 'application/json');

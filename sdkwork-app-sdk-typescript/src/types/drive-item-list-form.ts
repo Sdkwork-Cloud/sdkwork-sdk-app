@@ -8,6 +8,12 @@ export interface DriveItemListForm {
   folderId?: string;
   /** Disk id for filtering */
   diskId?: string;
+  /** Whether include archived items */
+  includeArchived?: boolean;
+  /** Whether include deleted items */
+  includeDeleted?: boolean;
+  /** Whether only return favorited items */
+  favoriteOnly?: boolean;
   /** Sort field, allowed: createdAt, updatedAt, name, size, uploadTime */
   sortField?: string;
   /** Sort direction, ASC or DESC */

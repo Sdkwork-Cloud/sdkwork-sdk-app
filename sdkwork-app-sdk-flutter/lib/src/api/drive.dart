@@ -6,6 +6,12 @@ class DriveApi {
   
   DriveApi(this._client);
 
+  /// Restore drive item
+  Future<PlusApiResultDriveItemVO?> restoreItem(String itemId) async {
+    final response = await _client.put(ApiPaths.appPath('/drive/items/${itemId}/restore'));
+    return response is PlusApiResultDriveItemVO ? response : null;
+  }
+
   /// Rename drive item
   Future<PlusApiResultDriveItemVO?> renameItem(String itemId, DriveRenameForm body) async {
     final response = await _client.put(ApiPaths.appPath('/drive/items/${itemId}/rename'), body: body, contentType: 'application/json');
@@ -28,6 +34,24 @@ class DriveApi {
   Future<PlusApiResultDriveContentVO?> updateItemContent(String itemId, DriveContentUpdateForm body) async {
     final response = await _client.put(ApiPaths.appPath('/drive/items/${itemId}/content'), body: body, contentType: 'application/json');
     return response is PlusApiResultDriveContentVO ? response : null;
+  }
+
+  /// Archive drive item
+  Future<PlusApiResultDriveItemVO?> archiveItem(String itemId) async {
+    final response = await _client.put(ApiPaths.appPath('/drive/items/${itemId}/archive'));
+    return response is PlusApiResultDriveItemVO ? response : null;
+  }
+
+  /// Favorite drive item
+  Future<PlusApiResultDriveItemVO?> favoriteItem(String itemId) async {
+    final response = await _client.post(ApiPaths.appPath('/drive/items/${itemId}/favorite'));
+    return response is PlusApiResultDriveItemVO ? response : null;
+  }
+
+  /// Unfavorite drive item
+  Future<PlusApiResultDriveItemVO?> unfavoriteItem(String itemId) async {
+    final response = await _client.delete(ApiPaths.appPath('/drive/items/${itemId}/favorite'));
+    return response is PlusApiResultDriveItemVO ? response : null;
   }
 
   /// Copy drive item

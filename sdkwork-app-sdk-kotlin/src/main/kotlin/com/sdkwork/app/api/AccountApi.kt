@@ -50,6 +50,11 @@ class AccountApi(private val client: HttpClient) {
         return client.get(ApiPaths.appPath("/account/points/history"), params) as? PlusApiResultPageHistoryVO
     }
 
+    /** 获取积分兑换现金比例 */
+    suspend fun getPointsToCashRate(): PlusApiResultBigDecimal? {
+        return client.get(ApiPaths.appPath("/account/points/exchange-rate")) as? PlusApiResultBigDecimal
+    }
+
     /** 获取现金账户信息 */
     suspend fun getCash(): PlusApiResultCashAccountInfoVO? {
         return client.get(ApiPaths.appPath("/account/cash")) as? PlusApiResultCashAccountInfoVO

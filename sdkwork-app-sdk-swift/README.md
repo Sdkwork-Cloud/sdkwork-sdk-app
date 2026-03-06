@@ -8,7 +8,7 @@ Add to `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sdkwork/app-sdk-swift", from: "1.0.1")
+    .package(url: "https://github.com/sdkwork/app-sdk-swift", from: "1.0.0")
 ]
 ```
 
@@ -23,7 +23,7 @@ let client = SdkworkAppClient(config: config)
 client.setApiKey("your-api-key")
 
 // Use the SDK
-let result = try await client.tenant.getTenantTypes()
+let result = try await client.user.getUserSettings()
 print(result)
 ```
 
@@ -67,23 +67,25 @@ client.setHeader("X-Custom-Header", value: "value")
 ## API Modules
 
 - `client.workspaces` - workspaces API
-- `client.voiceSpeakers` - voice_speakers API
+- `client.voiceSpeaker` - voice_speaker API
 - `client.video` - video API
-- `client.settings` - settings API
-- `client.profile` - profile API
-- `client.password` - password API
-- `client.address` - address API
+- `client.user` - user API
+- `client.tool` - tool API
 - `client.tenant` - tenant API
 - `client.social` - social API
+- `client.skill` - skill API
 - `client.shops` - shops API
 - `client.share` - share API
+- `client.settings` - settings API
 - `client.ai` - ai API
 - `client.projects` - projects API
+- `client.products` - products API
 - `client.partner` - partner API
 - `client.notification` - notification API
-- `client.app` - app API
+- `client.notes` - notes API
 - `client.news` - news API
 - `client.music` - music API
+- `client.knowledgeDocuments` - knowledge_documents API
 - `client.invoice` - invoice API
 - `client.image` - image API
 - `client.style` - style API
@@ -91,7 +93,7 @@ client.setHeader("X-Custom-Header", value: "value")
 - `client.feedback` - feedback API
 - `client.favorite` - favorite API
 - `client.drive` - drive API
-- `client.appDocuments` - app_documents API
+- `client.documents` - documents API
 - `client.dashboard` - dashboard API
 - `client.collection` - collection API
 - `client.chat` - chat API
@@ -99,56 +101,36 @@ client.setHeader("X-Custom-Header", value: "value")
 - `client.category` - category API
 - `client.cart` - cart API
 - `client.assets` - assets API
+- `client.app` - app API
 - `client.announcement` - announcement API
+- `client.agent` - agent API
 - `client.advert` - advert API
+- `client.wallet` - wallet API
 - `client.vote` - vote API
 - `client.vip` - vip API
-- `client.deactivate` - deactivate API
-- `client.bind` - bind API
-- `client.avatar` - avatar API
 - `client.upload` - upload API
 - `client.search` - search API
+- `client.rtc` - rtc API
 - `client.payments` - payments API
 - `client.organization` - organization API
-- `client.disable` - disable API
-- `client.activate` - activate API
-- `client.position` - position API
-- `client.department` - department API
 - `client.orders` - orders API
-- `client.models` - models API
+- `client.model` - model API
 - `client.history` - history API
-- `client.voiceSpeaker` - voice_speaker API
 - `client.soundEffect` - sound_effect API
+- `client.generation` - generation API
 - `client.audio` - audio API
 - `client.feed` - feed API
 - `client.currency` - currency API
 - `client.coupons` - coupons API
 - `client.comments` - comments API
-- `client.sms` - sms API
-- `client.register` - register API
-- `client.refresh` - refresh API
-- `client.qr` - qr API
-- `client.phone` - phone API
-- `client.oauth` - oauth API
-- `client.logout` - logout API
-- `client.login` - login API
+- `client.auth` - auth API
 - `client.audit` - audit API
 - `client.analytics` - analytics API
+- `client.agentMemory` - agent_memory API
 - `client.activity` - activity API
 - `client.account` - account API
 - `client.ab` - ab API
 - `client.sku` - sku API
-- `client.products` - products API
-- `client.positions` - positions API
-- `client.members` - members API
-- `client.departments` - departments API
-- `client.children` - children API
-- `client.statistics` - statistics API
-- `client.member` - member API
-- `client.list` - list API
-- `client.code` - code API
-- `client.auth` - auth API
-- `client.generation` - generation API
 
 ## Usage Examples
 
@@ -160,11 +142,11 @@ let result = try await client.workspaces.getWorkspaceDetail()
 print(result)
 ```
 
-### voice_speakers
+### voice_speaker
 
 ```swift
 // 获取发音人详情
-let result = try await client.voiceSpeakers.getSpeakerDetail()
+let result = try await client.voiceSpeaker.getSpeakerDetail()
 print(result)
 ```
 
@@ -176,35 +158,19 @@ let result = try await client.video.getVideo()
 print(result)
 ```
 
-### settings
+### user
 
 ```swift
 // 获取用户设置
-let result = try await client.settings.getUser()
+let result = try await client.user.getUserSettings()
 print(result)
 ```
 
-### profile
+### tool
 
 ```swift
-// 获取用户信息
-let result = try await client.profile.getUser()
-print(result)
-```
-
-### password
-
-```swift
-// 修改密码
-let result = try await client.password.change()
-print(result)
-```
-
-### address
-
-```swift
-// 获取地址详情
-let result = try await client.address.getAddressDetail()
+// Update tool credentials
+let result = try await client.tool.updateCredentials()
 print(result)
 ```
 
@@ -224,6 +190,14 @@ let result = try await client.social.markMessagesAsRead()
 print(result)
 ```
 
+### skill
+
+```swift
+// Get skill detail
+let result = try await client.skill.detail()
+print(result)
+```
+
 ### shops
 
 ```swift
@@ -237,6 +211,14 @@ print(result)
 ```swift
 // 更新分享设置
 let result = try await client.share.updateShareSettings()
+print(result)
+```
+
+### settings
+
+```swift
+// 获取模块设置
+let result = try await client.settings.getModule()
 print(result)
 ```
 
@@ -256,6 +238,14 @@ let result = try await client.projects.getProjectDetail()
 print(result)
 ```
 
+### products
+
+```swift
+// 更新商品属性
+let result = try await client.products.updateProductAttribute()
+print(result)
+```
+
 ### partner
 
 ```swift
@@ -267,16 +257,16 @@ print(result)
 ### notification
 
 ```swift
-// 标记已读
-let result = try await client.notification.markAsRead()
+// Mark notification as unread
+let result = try await client.notification.markAsUnread()
 print(result)
 ```
 
-### app
+### notes
 
 ```swift
 // 获取笔记详情
-let result = try await client.app.getNoteDetail()
+let result = try await client.notes.getNoteDetail()
 print(result)
 ```
 
@@ -293,6 +283,14 @@ print(result)
 ```swift
 // 获取音乐详情
 let result = try await client.music.getMusic()
+print(result)
+```
+
+### knowledge_documents
+
+```swift
+// Restore knowledge document
+let result = try await client.knowledgeDocuments.restoreKnowledgeDocument()
 print(result)
 ```
 
@@ -347,16 +345,16 @@ print(result)
 ### drive
 
 ```swift
-// Rename drive item
-let result = try await client.drive.renameItem()
+// Restore drive item
+let result = try await client.drive.restoreItem()
 print(result)
 ```
 
-### app_documents
+### documents
 
 ```swift
 // Get document detail
-let result = try await client.appDocuments.getDocumentDetail()
+let result = try await client.documents.getDocumentDetail()
 print(result)
 ```
 
@@ -416,6 +414,14 @@ let result = try await client.assets.renameAsset()
 print(result)
 ```
 
+### app
+
+```swift
+// 获取应用详情
+let result = try await client.app.getApp()
+print(result)
+```
+
 ### announcement
 
 ```swift
@@ -424,11 +430,27 @@ let result = try await client.announcement.markAsRead()
 print(result)
 ```
 
+### agent
+
+```swift
+// Get agent
+let result = try await client.agent.get()
+print(result)
+```
+
 ### advert
 
 ```swift
 // 广告设置
 let result = try await client.advert.getAdvertSettings()
+print(result)
+```
+
+### wallet
+
+```swift
+// 钱包提现
+let result = try await client.wallet.withdraw()
 print(result)
 ```
 
@@ -448,30 +470,6 @@ let result = try await client.vip.purchase()
 print(result)
 ```
 
-### deactivate
-
-```swift
-// 注销账号
-let result = try await client.deactivate.account()
-print(result)
-```
-
-### bind
-
-```swift
-// 绑定第三方账号
-let result = try await client.bind.thirdPartyAccount()
-print(result)
-```
-
-### avatar
-
-```swift
-// 上传头像
-let result = try await client.avatar.upload()
-print(result)
-```
-
 ### upload
 
 ```swift
@@ -485,6 +483,14 @@ print(result)
 ```swift
 // 搜索历史
 let result = try await client.search.getSearchHistory()
+print(result)
+```
+
+### rtc
+
+```swift
+// Create RTC room
+let result = try await client.rtc.createRoom()
 print(result)
 ```
 
@@ -504,38 +510,6 @@ let result = try await client.organization.createOrganization()
 print(result)
 ```
 
-### disable
-
-```swift
-// 禁用组织
-let result = try await client.disable.organization()
-print(result)
-```
-
-### activate
-
-```swift
-// 激活组织
-let result = try await client.activate.organization()
-print(result)
-```
-
-### position
-
-```swift
-// 创建岗位
-let result = try await client.position.createPosition()
-print(result)
-```
-
-### department
-
-```swift
-// 创建部门
-let result = try await client.department.createDepartment()
-print(result)
-```
-
 ### orders
 
 ```swift
@@ -544,11 +518,11 @@ let result = try await client.orders.listOrders()
 print(result)
 ```
 
-### models
+### model
 
 ```swift
-// 批量获取模型价格
-let result = try await client.models.getModelPrices()
+// Batch get model prices
+let result = try await client.model.getModelPrices()
 print(result)
 ```
 
@@ -560,19 +534,19 @@ let result = try await client.history.listBrowse()
 print(result)
 ```
 
-### voice_speaker
-
-```swift
-// 创建语音生成任务
-let result = try await client.voiceSpeaker.createGeneration()
-print(result)
-```
-
 ### sound_effect
 
 ```swift
 // 创建音效生成任务
 let result = try await client.soundEffect.createGeneration()
+print(result)
+```
+
+### generation
+
+```swift
+// Enhance generation prompt
+let result = try await client.generation.enhanceGenerationPrompt()
 print(result)
 ```
 
@@ -587,8 +561,8 @@ print(result)
 ### feed
 
 ```swift
-// 取消点赞Feed
-let result = try await client.feed.unlike()
+// Create feed
+let result = try await client.feed.create()
 print(result)
 ```
 
@@ -616,67 +590,11 @@ let result = try await client.comments.createComment()
 print(result)
 ```
 
-### sms
+### auth
 
 ```swift
 // 验证验证码
-let result = try await client.sms.verifySmsCode()
-print(result)
-```
-
-### register
-
-```swift
-// 用户注册
-let result = try await client.register.register()
-print(result)
-```
-
-### refresh
-
-```swift
-// 刷新令牌
-let result = try await client.refresh.token()
-print(result)
-```
-
-### qr
-
-```swift
-// 生成登录二维码
-let result = try await client.qr.generateQrCode()
-print(result)
-```
-
-### phone
-
-```swift
-// 手机号验证码登录
-let result = try await client.phone.login()
-print(result)
-```
-
-### oauth
-
-```swift
-// OAuth授权URL
-let result = try await client.oauth.getOauthUrl()
-print(result)
-```
-
-### logout
-
-```swift
-// 用户登出
-let result = try await client.logout.logout()
-print(result)
-```
-
-### login
-
-```swift
-// 用户登录
-let result = try await client.login.login()
+let result = try await client.auth.verifySmsCode()
 print(result)
 ```
 
@@ -693,6 +611,14 @@ print(result)
 ```swift
 // 上报页面访问
 let result = try await client.analytics.trackPageView()
+print(result)
+```
+
+### agent_memory
+
+```swift
+// List memories
+let result = try await client.agentMemory.list()
 print(result)
 ```
 
@@ -728,99 +654,11 @@ let result = try await client.sku.getSkuDetail()
 print(result)
 ```
 
-### products
-
-```swift
-// 获取商品列表
-let result = try await client.products.getProducts()
-print(result)
-```
-
-### positions
-
-```swift
-// 获取组织的岗位列表
-let result = try await client.positions.getPositionsByOrg()
-print(result)
-```
-
-### members
-
-```swift
-// 获取组织成员
-let result = try await client.members.getMembersByOrg()
-print(result)
-```
-
-### departments
-
-```swift
-// 获取组织的部门列表
-let result = try await client.departments.getDepartmentsByOrg()
-print(result)
-```
-
-### children
-
-```swift
-// 获取子组织
-let result = try await client.children.getChildOrganizations()
-print(result)
-```
-
-### statistics
-
-```swift
-// 获取组织统计
-let result = try await client.statistics.getOrganization()
-print(result)
-```
-
-### member
-
-```swift
-// 获取成员详情
-let result = try await client.member.getMember()
-print(result)
-```
-
-### list
-
-```swift
-// 获取组织列表
-let result = try await client.list.getOrganization()
-print(result)
-```
-
-### code
-
-```swift
-// 根据编码获取组织
-let result = try await client.code.getOrganizationBy()
-print(result)
-```
-
-### auth
-
-```swift
-// Request password reset challenge
-let result = try await client.auth.requestPasswordResetChallenge()
-print(result)
-```
-
-### generation
-
-```swift
-// Enhance generation prompt
-let result = try await client.generation.enhanceGenerationPrompt()
-print(result)
-```
-
 ## Error Handling
 
 ```swift
 do {
-    let result = try await client.tenant.getTenantTypes()
+    let result = try await client.user.getUserSettings()
 } catch {
     print("Error: \(error)")
 }

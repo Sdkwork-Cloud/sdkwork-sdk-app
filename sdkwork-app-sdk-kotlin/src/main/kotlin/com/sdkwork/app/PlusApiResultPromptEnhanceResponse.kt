@@ -1,9 +1,11 @@
 package com.sdkwork.app
 
 data class PlusApiResultPromptEnhanceResponse(
-    val code: Int? = null,
-    val msg: String? = null,
     val data: PromptEnhanceResponse? = null,
-    val timestamp: String? = null,
-    val traceId: String? = null
+    val code: String? = null,
+    val msg: String? = null,
+    val requestId: String? = null,
+    val ip: String? = null,
+    val hostname: String? = null,
+    val errorName: String? = null
 )

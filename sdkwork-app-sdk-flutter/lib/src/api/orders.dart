@@ -60,6 +60,12 @@ class OrdersApi {
     return response is PlusApiResultOrderStatusVO ? response : null;
   }
 
+  /// 查询订单是否支付成功
+  Future<PlusApiResultOrderPaymentSuccessVO?> getOrderPaymentSuccess(String orderId) async {
+    final response = await _client.get(ApiPaths.appPath('/orders/${orderId}/payment-success'));
+    return response is PlusApiResultOrderPaymentSuccessVO ? response : null;
+  }
+
   /// 获取订单统计
   Future<PlusApiResultOrderStatisticsVO?> getOrderStatistics() async {
     final response = await _client.get(ApiPaths.appPath('/orders/statistics'));

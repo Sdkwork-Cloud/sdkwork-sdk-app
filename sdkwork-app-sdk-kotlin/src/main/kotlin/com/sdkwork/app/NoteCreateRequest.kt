@@ -4,5 +4,6 @@ data class NoteCreateRequest(
     val title: String? = null,
     val content: String? = null,
     val folderId: String? = null,
+    val diskId: String? = null,
     val tags: List<String>? = null
 )

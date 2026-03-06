@@ -1,17 +1,27 @@
 package com.sdkwork.app.model;
 
 public class PlusApiResultPromptEnhanceResponse {
-    private Integer code;
-    private String msg;
     private PromptEnhanceResponse data;
-    private String timestamp;
-    private String traceId;
+    private String code;
+    private String msg;
+    private String requestId;
+    private String ip;
+    private String hostname;
+    private String errorName;
 
-    public Integer getCode() {
+    public PromptEnhanceResponse getData() {
+        return this.data;
+    }
+    
+    public void setData(PromptEnhanceResponse data) {
+        this.data = data;
+    }
+
+    public String getCode() {
         return this.code;
     }
     
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -23,27 +33,35 @@ public class PlusApiResultPromptEnhanceResponse {
         this.msg = msg;
     }
 
-    public PromptEnhanceResponse getData() {
-        return this.data;
+    public String getRequestId() {
+        return this.requestId;
     }
     
-    public void setData(PromptEnhanceResponse data) {
-        this.data = data;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
-    public String getTimestamp() {
-        return this.timestamp;
+    public String getIp() {
+        return this.ip;
     }
     
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public String getTraceId() {
-        return this.traceId;
+    public String getHostname() {
+        return this.hostname;
     }
     
-    public void setTraceId(String traceId) {
-        this.traceId = traceId;
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public String getErrorName() {
+        return this.errorName;
+    }
+    
+    public void setErrorName(String errorName) {
+        this.errorName = errorName;
     }
 }

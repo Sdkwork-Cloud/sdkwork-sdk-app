@@ -7,7 +7,7 @@ export interface VipPointsHistoryVO {
   /** 记录ID */
   id?: number;
   /** 变动类型 */
-  changeType?: string;
+  changeType?: 'DEFAULT' | 'RECHARGE' | 'CONSUME' | 'REWARD' | 'ADJUST' | 'EXPIRE';
   /** 变动数量 */
   changeAmount?: number;
   /** 变动前余额 */
@@ -15,7 +15,7 @@ export interface VipPointsHistoryVO {
   /** 变动后余额 */
   afterBalance?: number;
   /** 来源类型 */
-  sourceType?: string;
+  sourceType?: 'DEFAULT' | 'PURCHASE' | 'DAILY_REWARD' | 'COUPON_POINTS_EXCHANGE' | 'COUPON_POINTS_ROLLBACK' | 'SYSTEM' | 'OTHER';
   /** 备注 */
   remark?: string;
 }

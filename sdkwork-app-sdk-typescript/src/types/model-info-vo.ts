@@ -1,29 +1,33 @@
-/** 模型信息响应 */
+/** Model summary response */
 export interface ModelInfoVO {
-  /** 创建时间 */
+  /** Created at */
   createdAt?: string;
   /** 更新时间 */
   updatedAt?: string;
-  /** 模型ID */
+  /** Model id */
   modelId?: string;
-  /** 模型标识 */
+  /** Canonical model key */
+  modelKey?: string;
+  /** Model alias */
   model?: string;
-  /** 模型名称 */
+  /** Vendor model key */
+  vendorModel?: string;
+  /** Model name */
   name?: string;
-  /** 模型描述 */
+  /** Model description */
   description?: string;
-  /** 渠道 */
+  /** Channel */
   channel?: string;
-  /** 模型类型 */
+  /** Model type */
   modelType?: string;
-  /** 模型系列 */
+  /** Model family */
   family?: string;
-  /** 版本 */
+  /** Version */
   version?: string;
-  /** 是否开源 */
+  /** Whether open source */
   openSource?: boolean;
-  /** 状态 */
+  /** Status */
   status?: string;
-  /** 使用次数 */
+  /** Usage count */
   usageCount?: number;
 }

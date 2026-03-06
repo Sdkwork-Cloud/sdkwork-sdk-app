@@ -44,26 +44,6 @@ func (a *HistoryApi) ClearBrowse(query map[string]interface{}) (sdktypes.PlusApi
     return decodeResult[sdktypes.PlusApiResultVoid](raw)
 }
 
-// 获取登录历史
-func (a *HistoryApi) GetLogin(query map[string]interface{}) (sdktypes.PlusApiResultPageMapStringObject, error) {
-    raw, err := a.client.Get(AppApiPath("/user/history/login"), query, nil)
-    if err != nil {
-        var zero sdktypes.PlusApiResultPageMapStringObject
-        return zero, err
-    }
-    return decodeResult[sdktypes.PlusApiResultPageMapStringObject](raw)
-}
-
-// 获取生成历史
-func (a *HistoryApi) GetGeneration(query map[string]interface{}) (sdktypes.PlusApiResultPageMapStringObject, error) {
-    raw, err := a.client.Get(AppApiPath("/user/history/generations"), query, nil)
-    if err != nil {
-        var zero sdktypes.PlusApiResultPageMapStringObject
-        return zero, err
-    }
-    return decodeResult[sdktypes.PlusApiResultPageMapStringObject](raw)
-}
-
 // 历史统计
 func (a *HistoryApi) GetHistoryStatistics() (sdktypes.PlusApiResultHistoryStatisticsVO, error) {
     raw, err := a.client.Get(AppApiPath("/history/statistics"), nil, nil)

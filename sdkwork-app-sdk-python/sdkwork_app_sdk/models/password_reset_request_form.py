@@ -3,6 +3,7 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class PasswordResetRequestForm:
+    """重置密码挑战请求"""
     account: str
     channel: str
     device_id: str = None

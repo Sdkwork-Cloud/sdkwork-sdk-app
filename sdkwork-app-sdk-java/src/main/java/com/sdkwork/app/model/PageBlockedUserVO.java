@@ -1,25 +1,17 @@
 package com.sdkwork.app.model;
 
 public class PageBlockedUserVO {
-    private Integer totalPages;
     private Integer totalElements;
+    private Integer totalPages;
     private Integer size;
     private List<BlockedUserVO> content;
     private Integer number;
-    private SortObject sort;
     private Boolean first;
     private Boolean last;
     private Integer numberOfElements;
+    private SortObject sort;
     private PageableObject pageable;
     private Boolean empty;
-
-    public Integer getTotalPages() {
-        return this.totalPages;
-    }
-    
-    public void setTotalPages(Integer totalPages) {
-        this.totalPages = totalPages;
-    }
 
     public Integer getTotalElements() {
         return this.totalElements;
@@ -27,6 +19,14 @@ public class PageBlockedUserVO {
     
     public void setTotalElements(Integer totalElements) {
         this.totalElements = totalElements;
+    }
+
+    public Integer getTotalPages() {
+        return this.totalPages;
+    }
+    
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
     public Integer getSize() {
@@ -53,14 +53,6 @@ public class PageBlockedUserVO {
         this.number = number;
     }
 
-    public SortObject getSort() {
-        return this.sort;
-    }
-    
-    public void setSort(SortObject sort) {
-        this.sort = sort;
-    }
-
     public Boolean getFirst() {
         return this.first;
     }
@@ -83,6 +75,14 @@ public class PageBlockedUserVO {
     
     public void setNumberOfElements(Integer numberOfElements) {
         this.numberOfElements = numberOfElements;
+    }
+
+    public SortObject getSort() {
+        return this.sort;
+    }
+    
+    public void setSort(SortObject sort) {
+        this.sort = sort;
     }
 
     public PageableObject getPageable() {

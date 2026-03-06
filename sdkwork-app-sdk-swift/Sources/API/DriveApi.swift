@@ -7,6 +7,12 @@ public class DriveApi {
         self.client = client
     }
 
+    /// Restore drive item
+    public func restoreItem(itemId: String) async throws -> PlusApiResultDriveItemVO? {
+        let response = try await client.put(ApiPaths.appPath("/drive/items/\(itemId)/restore"), body: nil)
+        return response as? PlusApiResultDriveItemVO
+    }
+
     /// Rename drive item
     public func renameItem(itemId: String, body: DriveRenameForm) async throws -> PlusApiResultDriveItemVO? {
         let response = try await client.put(ApiPaths.appPath("/drive/items/\(itemId)/rename"), body: body)
@@ -29,6 +35,24 @@ public class DriveApi {
     public func updateItemContent(itemId: String, body: DriveContentUpdateForm) async throws -> PlusApiResultDriveContentVO? {
         let response = try await client.put(ApiPaths.appPath("/drive/items/\(itemId)/content"), body: body)
         return response as? PlusApiResultDriveContentVO
+    }
+
+    /// Archive drive item
+    public func archiveItem(itemId: String) async throws -> PlusApiResultDriveItemVO? {
+        let response = try await client.put(ApiPaths.appPath("/drive/items/\(itemId)/archive"), body: nil)
+        return response as? PlusApiResultDriveItemVO
+    }
+
+    /// Favorite drive item
+    public func favoriteItem(itemId: String) async throws -> PlusApiResultDriveItemVO? {
+        let response = try await client.post(ApiPaths.appPath("/drive/items/\(itemId)/favorite"), body: nil)
+        return response as? PlusApiResultDriveItemVO
+    }
+
+    /// Unfavorite drive item
+    public func unfavoriteItem(itemId: String) async throws -> PlusApiResultDriveItemVO? {
+        let response = try await client.delete(ApiPaths.appPath("/drive/items/\(itemId)/favorite"))
+        return response as? PlusApiResultDriveItemVO
     }
 
     /// Copy drive item

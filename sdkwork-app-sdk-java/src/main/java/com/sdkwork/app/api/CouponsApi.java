@@ -17,9 +17,24 @@ public class CouponsApi {
         return (PlusApiResultUserCouponVO) client.post(ApiPaths.appPath("/coupons/" + couponId + "/receive"), null);
     }
 
+    /** 积分兑换优惠券 */
+    public PlusApiResultUserCouponVO exchangeCouponByPoints(String couponId, CouponPointsExchangeForm body) throws Exception {
+        return (PlusApiResultUserCouponVO) client.post(ApiPaths.appPath("/coupons/" + couponId + "/exchange/points"), body);
+    }
+
+    /** 兑换优惠券 */
+    public PlusApiResultUserCouponVO redeemCoupon(CouponRedeemForm body) throws Exception {
+        return (PlusApiResultUserCouponVO) client.post(ApiPaths.appPath("/coupons/redeem"), body);
+    }
+
     /** 使用优惠券 */
     public PlusApiResultUserCouponVO useCoupon(String userCouponId, Map<String, Object> params) throws Exception {
         return (PlusApiResultUserCouponVO) client.post(ApiPaths.appPath("/coupons/my/" + userCouponId + "/use"), null, params);
+    }
+
+    /** 回滚积分兑换优惠券 */
+    public PlusApiResultUserCouponVO rollbackPointsExchangeCoupon(String userCouponId, CouponRollbackForm body) throws Exception {
+        return (PlusApiResultUserCouponVO) client.post(ApiPaths.appPath("/coupons/my/" + userCouponId + "/rollback"), body);
     }
 
     /** 取消使用优惠券 */

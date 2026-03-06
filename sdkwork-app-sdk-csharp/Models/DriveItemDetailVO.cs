@@ -21,6 +21,7 @@ namespace App.Models
         public string? Path { get; set; }
         public string? ObjectKey { get; set; }
         public string? Status { get; set; }
+        public bool? Favorited { get; set; }
         public FileMediaResource? Resource { get; set; }
         public ImageMediaResource? CoverImage { get; set; }
         public string? DiskId { get; set; }

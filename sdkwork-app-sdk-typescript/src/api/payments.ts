@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { PaymentCallbackRequest, PaymentCallbackResponse, PaymentCreateForm, PlusApiResultListPaymentMethodVO, PlusApiResultListPaymentStatusVO, PlusApiResultPagePaymentStatusVO, PlusApiResultPaymentStatisticsVO, PlusApiResultPaymentStatusVO, PlusApiResultPaymentVO, PlusApiResultVoid } from '../types';
+import type { PaymentCallbackRequest, PaymentCallbackResponse, PaymentCreateForm, PaymentReconcileForm, PlusApiResultListPaymentMethodVO, PlusApiResultListPaymentStatusVO, PlusApiResultPagePaymentStatusVO, PlusApiResultPaymentStatisticsVO, PlusApiResultPaymentStatusVO, PlusApiResultPaymentVO, PlusApiResultVoid } from '../types';
 
 
 export class PaymentsApi {
@@ -19,6 +19,11 @@ export class PaymentsApi {
 /** 关闭支付 */
   async closePayment(paymentId: string | number): Promise<PlusApiResultVoid> {
     return this.client.post<PlusApiResultVoid>(appApiPath(`/payments/${paymentId}/close`));
+  }
+
+/** 补单/对账 */
+  async reconcilePayment(body: PaymentReconcileForm): Promise<PlusApiResultPaymentStatusVO> {
+    return this.client.post<PlusApiResultPaymentStatusVO>(appApiPath(`/payments/reconcile`), body);
   }
 
 /** 通用支付回调 */

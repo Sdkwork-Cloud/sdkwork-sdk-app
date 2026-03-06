@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { BatchFollowCheckForm, PlusApiResultBlockCheckVO, PlusApiResultFollowCheckVO, PlusApiResultFollowStatsVO, PlusApiResultFollowVO, PlusApiResultListFollowCheckVO, PlusApiResultMessageUnreadCountVO, PlusApiResultPageBlockedUserVO, PlusApiResultPageConversationVO, PlusApiResultPageFollowUserVO, PlusApiResultPagePrivateMessageVO, PlusApiResultPrivateMessageVO, PlusApiResultVoid, SendMessageForm } from '../types';
+import type { BatchFollowCheckForm, ContactGroupCreateForm, ContactGroupUpdateForm, FriendRemarkUpdateForm, FriendRequestCreateForm, FriendRequestProcessForm, PlusApiResultBlockCheckVO, PlusApiResultContactFriendVO, PlusApiResultContactGroupVO, PlusApiResultContactStatsVO, PlusApiResultFollowCheckVO, PlusApiResultFollowStatsVO, PlusApiResultFollowVO, PlusApiResultFriendRequestVO, PlusApiResultListContactFriendVO, PlusApiResultListContactGroupVO, PlusApiResultListFollowCheckVO, PlusApiResultListFriendRequestVO, PlusApiResultMessageUnreadCountVO, PlusApiResultPageBlockedUserVO, PlusApiResultPageConversationVO, PlusApiResultPageFollowUserVO, PlusApiResultPagePrivateMessageVO, PlusApiResultPrivateMessageVO, PlusApiResultVoid, SendMessageForm } from '../types';
 
 
 export class SocialApi {
@@ -16,9 +16,34 @@ export class SocialApi {
     return this.client.put<PlusApiResultVoid>(appApiPath(`/social/messages/read`), undefined, params);
   }
 
+/** 处理好友申请 */
+  async processFriendRequest(requestId: string | number, body: FriendRequestProcessForm): Promise<PlusApiResultFriendRequestVO> {
+    return this.client.put<PlusApiResultFriendRequestVO>(appApiPath(`/social/friend-requests/${requestId}/process`), body);
+  }
+
+/** 更新联系人分组 */
+  async updateContactGroup(groupId: string | number, body: ContactGroupUpdateForm): Promise<PlusApiResultContactGroupVO> {
+    return this.client.put<PlusApiResultContactGroupVO>(appApiPath(`/social/contact-groups/${groupId}`), body);
+  }
+
+/** 删除联系人分组 */
+  async deleteContactGroup(groupId: string | number): Promise<PlusApiResultVoid> {
+    return this.client.delete<PlusApiResultVoid>(appApiPath(`/social/contact-groups/${groupId}`));
+  }
+
 /** 发送私信 */
   async sendMessage(body: SendMessageForm): Promise<PlusApiResultPrivateMessageVO> {
     return this.client.post<PlusApiResultPrivateMessageVO>(appApiPath(`/social/messages`), body);
+  }
+
+/** 获取好友申请列表 */
+  async listFriendRequests(): Promise<PlusApiResultListFriendRequestVO> {
+    return this.client.get<PlusApiResultListFriendRequestVO>(appApiPath(`/social/friend-requests`));
+  }
+
+/** 发送好友申请 */
+  async sendFriendRequest(body: FriendRequestCreateForm): Promise<PlusApiResultFriendRequestVO> {
+    return this.client.post<PlusApiResultFriendRequestVO>(appApiPath(`/social/friend-requests`), body);
   }
 
 /** 关注用户 */
@@ -36,6 +61,16 @@ export class SocialApi {
     return this.client.post<PlusApiResultListFollowCheckVO>(appApiPath(`/social/follow/check/batch`), body);
   }
 
+/** 获取联系人分组 */
+  async listContactGroups(): Promise<PlusApiResultListContactGroupVO> {
+    return this.client.get<PlusApiResultListContactGroupVO>(appApiPath(`/social/contact-groups`));
+  }
+
+/** 创建联系人分组 */
+  async createContactGroup(body: ContactGroupCreateForm): Promise<PlusApiResultContactGroupVO> {
+    return this.client.post<PlusApiResultContactGroupVO>(appApiPath(`/social/contact-groups`), body);
+  }
+
 /** 拉黑用户 */
   async blockUser(userId: string | number): Promise<PlusApiResultVoid> {
     return this.client.post<PlusApiResultVoid>(appApiPath(`/social/block/${userId}`));
@@ -44,6 +79,11 @@ export class SocialApi {
 /** 取消拉黑 */
   async unblockUser(userId: string | number): Promise<PlusApiResultVoid> {
     return this.client.delete<PlusApiResultVoid>(appApiPath(`/social/block/${userId}`));
+  }
+
+/** 更新好友备注 */
+  async updateFriendRemark(contactId: string | number, body: FriendRemarkUpdateForm): Promise<PlusApiResultVoid> {
+    return this.client.patch<PlusApiResultVoid>(appApiPath(`/social/contacts/${contactId}/remark`), body);
   }
 
 /** 获取关注统计 */
@@ -79,6 +119,26 @@ export class SocialApi {
 /** 获取会话消息 */
   async getConversationMessages(userId: string | number, params?: QueryParams): Promise<PlusApiResultPagePrivateMessageVO> {
     return this.client.get<PlusApiResultPagePrivateMessageVO>(appApiPath(`/social/conversations/${userId}/messages`), params);
+  }
+
+/** 获取联系人列表 */
+  async listContacts(params?: QueryParams): Promise<PlusApiResultListContactFriendVO> {
+    return this.client.get<PlusApiResultListContactFriendVO>(appApiPath(`/social/contacts`), params);
+  }
+
+/** 获取联系人详情 */
+  async getContactDetail(contactId: string | number): Promise<PlusApiResultContactFriendVO> {
+    return this.client.get<PlusApiResultContactFriendVO>(appApiPath(`/social/contacts/${contactId}`));
+  }
+
+/** 删除联系人 */
+  async deleteContact(contactId: string | number): Promise<PlusApiResultVoid> {
+    return this.client.delete<PlusApiResultVoid>(appApiPath(`/social/contacts/${contactId}`));
+  }
+
+/** 获取联系人统计 */
+  async getContactStats(): Promise<PlusApiResultContactStatsVO> {
+    return this.client.get<PlusApiResultContactStatsVO>(appApiPath(`/social/contacts/stats`));
   }
 
 /** 获取黑名单 */

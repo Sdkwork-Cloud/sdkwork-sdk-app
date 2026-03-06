@@ -3,5 +3,6 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class PromptEnhanceResponse:
-    prompt: str
+    """Prompt enhance response"""
+    prompt: str = None
     tokens_estimated: int = None

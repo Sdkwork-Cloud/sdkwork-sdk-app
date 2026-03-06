@@ -10,5 +10,6 @@ data class OrderCreateForm(
     val couponId: String? = null,
     val remark: String? = null,
     val sourceChannel: String? = null,
-    val rechargePoints: Int? = null
+    val rechargePoints: Int? = null,
+    val orderPayloadValid: Boolean? = null
 )

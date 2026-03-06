@@ -13,6 +13,7 @@ type DocumentDetailVO struct {
 	Description string `json:"description"`
 	Tags []string `json:"tags"`
 	Status string `json:"status"`
+	Favorited bool `json:"favorited"`
 	Summary string `json:"summary"`
 	WordCount int `json:"wordCount"`
 	CharCount int `json:"charCount"`

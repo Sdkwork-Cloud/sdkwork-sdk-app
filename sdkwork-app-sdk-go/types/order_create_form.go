@@ -12,4 +12,5 @@ type OrderCreateForm struct {
 	Remark string `json:"remark"`
 	SourceChannel string `json:"sourceChannel"`
 	RechargePoints int `json:"rechargePoints"`
+	OrderPayloadValid bool `json:"orderPayloadValid"`
 }

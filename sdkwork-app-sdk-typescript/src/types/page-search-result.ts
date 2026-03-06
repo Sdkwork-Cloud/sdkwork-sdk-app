@@ -3,15 +3,15 @@ import type { SearchResult } from './search-result';
 import type { SortObject } from './sort-object';
 
 export interface PageSearchResult {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: SearchResult[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

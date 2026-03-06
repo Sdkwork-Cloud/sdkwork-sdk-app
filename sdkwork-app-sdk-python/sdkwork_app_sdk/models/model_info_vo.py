@@ -3,11 +3,13 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class ModelInfoVO:
-    """模型信息响应"""
+    """Model summary response"""
     created_at: str = None
     updated_at: str = None
     model_id: str = None
+    model_key: str = None
     model: str = None
+    vendor_model: str = None
     name: str = None
     description: str = None
     channel: str = None

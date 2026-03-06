@@ -7,7 +7,7 @@ export interface LoginVO {
   /** 更新时间 */
   updatedAt?: string;
   /** 访问令牌(JWT格式) */
-  accessToken: string;
+  authToken: string;
   /** 刷新令牌 */
   refreshToken?: string;
   /** 令牌类型 */

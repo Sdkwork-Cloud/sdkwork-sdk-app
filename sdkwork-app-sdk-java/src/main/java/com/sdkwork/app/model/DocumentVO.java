@@ -12,6 +12,7 @@ public class DocumentVO {
     private String description;
     private List<String> tags;
     private String status;
+    private Boolean favorited;
     private String summary;
     private Integer wordCount;
     private Integer charCount;
@@ -102,6 +103,14 @@ public class DocumentVO {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getFavorited() {
+        return this.favorited;
+    }
+    
+    public void setFavorited(Boolean favorited) {
+        this.favorited = favorited;
     }
 
     public String getSummary() {

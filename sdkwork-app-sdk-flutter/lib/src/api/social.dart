@@ -12,10 +12,40 @@ class SocialApi {
     return response is PlusApiResultVoid ? response : null;
   }
 
+  /// 处理好友申请
+  Future<PlusApiResultFriendRequestVO?> processFriendRequest(String requestId, FriendRequestProcessForm body) async {
+    final response = await _client.put(ApiPaths.appPath('/social/friend-requests/${requestId}/process'), body: body, contentType: 'application/json');
+    return response is PlusApiResultFriendRequestVO ? response : null;
+  }
+
+  /// 更新联系人分组
+  Future<PlusApiResultContactGroupVO?> updateContactGroup(String groupId, ContactGroupUpdateForm body) async {
+    final response = await _client.put(ApiPaths.appPath('/social/contact-groups/${groupId}'), body: body, contentType: 'application/json');
+    return response is PlusApiResultContactGroupVO ? response : null;
+  }
+
+  /// 删除联系人分组
+  Future<PlusApiResultVoid?> deleteContactGroup(String groupId) async {
+    final response = await _client.delete(ApiPaths.appPath('/social/contact-groups/${groupId}'));
+    return response is PlusApiResultVoid ? response : null;
+  }
+
   /// 发送私信
   Future<PlusApiResultPrivateMessageVO?> sendMessage(SendMessageForm body) async {
     final response = await _client.post(ApiPaths.appPath('/social/messages'), body: body, contentType: 'application/json');
     return response is PlusApiResultPrivateMessageVO ? response : null;
+  }
+
+  /// 获取好友申请列表
+  Future<PlusApiResultListFriendRequestVO?> listFriendRequests() async {
+    final response = await _client.get(ApiPaths.appPath('/social/friend-requests'));
+    return response is PlusApiResultListFriendRequestVO ? response : null;
+  }
+
+  /// 发送好友申请
+  Future<PlusApiResultFriendRequestVO?> sendFriendRequest(FriendRequestCreateForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/social/friend-requests'), body: body, contentType: 'application/json');
+    return response is PlusApiResultFriendRequestVO ? response : null;
   }
 
   /// 关注用户
@@ -36,6 +66,18 @@ class SocialApi {
     return response is PlusApiResultListFollowCheckVO ? response : null;
   }
 
+  /// 获取联系人分组
+  Future<PlusApiResultListContactGroupVO?> listContactGroups() async {
+    final response = await _client.get(ApiPaths.appPath('/social/contact-groups'));
+    return response is PlusApiResultListContactGroupVO ? response : null;
+  }
+
+  /// 创建联系人分组
+  Future<PlusApiResultContactGroupVO?> createContactGroup(ContactGroupCreateForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/social/contact-groups'), body: body, contentType: 'application/json');
+    return response is PlusApiResultContactGroupVO ? response : null;
+  }
+
   /// 拉黑用户
   Future<PlusApiResultVoid?> blockUser(String userId) async {
     final response = await _client.post(ApiPaths.appPath('/social/block/${userId}'));
@@ -45,6 +87,12 @@ class SocialApi {
   /// 取消拉黑
   Future<PlusApiResultVoid?> unblockUser(String userId) async {
     final response = await _client.delete(ApiPaths.appPath('/social/block/${userId}'));
+    return response is PlusApiResultVoid ? response : null;
+  }
+
+  /// 更新好友备注
+  Future<PlusApiResultVoid?> updateFriendRemark(String contactId, FriendRemarkUpdateForm body) async {
+    final response = await _client.patch(ApiPaths.appPath('/social/contacts/${contactId}/remark'), body: body, contentType: 'application/json');
     return response is PlusApiResultVoid ? response : null;
   }
 
@@ -88,6 +136,30 @@ class SocialApi {
   Future<PlusApiResultPagePrivateMessageVO?> getConversationMessages(String userId, Map<String, dynamic>? params) async {
     final response = await _client.get(ApiPaths.appPath('/social/conversations/${userId}/messages'), params: params);
     return response is PlusApiResultPagePrivateMessageVO ? response : null;
+  }
+
+  /// 获取联系人列表
+  Future<PlusApiResultListContactFriendVO?> listContacts(Map<String, dynamic>? params) async {
+    final response = await _client.get(ApiPaths.appPath('/social/contacts'), params: params);
+    return response is PlusApiResultListContactFriendVO ? response : null;
+  }
+
+  /// 获取联系人详情
+  Future<PlusApiResultContactFriendVO?> getContactDetail(String contactId) async {
+    final response = await _client.get(ApiPaths.appPath('/social/contacts/${contactId}'));
+    return response is PlusApiResultContactFriendVO ? response : null;
+  }
+
+  /// 删除联系人
+  Future<PlusApiResultVoid?> deleteContact(String contactId) async {
+    final response = await _client.delete(ApiPaths.appPath('/social/contacts/${contactId}'));
+    return response is PlusApiResultVoid ? response : null;
+  }
+
+  /// 获取联系人统计
+  Future<PlusApiResultContactStatsVO?> getContactStats() async {
+    final response = await _client.get(ApiPaths.appPath('/social/contacts/stats'));
+    return response is PlusApiResultContactStatsVO ? response : null;
   }
 
   /// 获取黑名单

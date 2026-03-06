@@ -10,14 +10,14 @@ Add to your `pom.xml`:
 <dependency>
     <groupId>com.sdkwork</groupId>
     <artifactId>app-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 Or with Gradle:
 
 ```groovy
-implementation 'com.sdkwork:app-sdk:1.0.1'
+implementation 'com.sdkwork:app-sdk:1.0.0'
 ```
 
 ## Quick Start
@@ -33,7 +33,7 @@ public class Main {
         client.setApiKey("your-api-key");
         
         // Use the SDK
-        Object result = client.getTenant().getTenantTypes();
+        Object result = client.getUser().getUserSettings();
         System.out.println(result);
     }
 }
@@ -79,23 +79,25 @@ client.getHttpClient().setHeader("X-Custom-Header", "value");
 ## API Modules
 
 - `client.getWorkspaces()` - workspaces API
-- `client.getVoiceSpeakers()` - voice_speakers API
+- `client.getVoiceSpeaker()` - voice_speaker API
 - `client.getVideo()` - video API
-- `client.getSettings()` - settings API
-- `client.getProfile()` - profile API
-- `client.getPassword()` - password API
-- `client.getAddress()` - address API
+- `client.getUser()` - user API
+- `client.getTool()` - tool API
 - `client.getTenant()` - tenant API
 - `client.getSocial()` - social API
+- `client.getSkill()` - skill API
 - `client.getShops()` - shops API
 - `client.getShare()` - share API
+- `client.getSettings()` - settings API
 - `client.getAi()` - ai API
 - `client.getProjects()` - projects API
+- `client.getProducts()` - products API
 - `client.getPartner()` - partner API
 - `client.getNotification()` - notification API
-- `client.getApp()` - app API
+- `client.getNotes()` - notes API
 - `client.getNews()` - news API
 - `client.getMusic()` - music API
+- `client.getKnowledgeDocuments()` - knowledge_documents API
 - `client.getInvoice()` - invoice API
 - `client.getImage()` - image API
 - `client.getStyle()` - style API
@@ -103,7 +105,7 @@ client.getHttpClient().setHeader("X-Custom-Header", "value");
 - `client.getFeedback()` - feedback API
 - `client.getFavorite()` - favorite API
 - `client.getDrive()` - drive API
-- `client.getAppDocuments()` - app_documents API
+- `client.getDocuments()` - documents API
 - `client.getDashboard()` - dashboard API
 - `client.getCollection()` - collection API
 - `client.getChat()` - chat API
@@ -111,56 +113,36 @@ client.getHttpClient().setHeader("X-Custom-Header", "value");
 - `client.getCategory()` - category API
 - `client.getCart()` - cart API
 - `client.getAssets()` - assets API
+- `client.getApp()` - app API
 - `client.getAnnouncement()` - announcement API
+- `client.getAgent()` - agent API
 - `client.getAdvert()` - advert API
+- `client.getWallet()` - wallet API
 - `client.getVote()` - vote API
 - `client.getVip()` - vip API
-- `client.getDeactivate()` - deactivate API
-- `client.getBind()` - bind API
-- `client.getAvatar()` - avatar API
 - `client.getUpload()` - upload API
 - `client.getSearch()` - search API
+- `client.getRtc()` - rtc API
 - `client.getPayments()` - payments API
 - `client.getOrganization()` - organization API
-- `client.getDisable()` - disable API
-- `client.getActivate()` - activate API
-- `client.getPosition()` - position API
-- `client.getDepartment()` - department API
 - `client.getOrders()` - orders API
-- `client.getModels()` - models API
+- `client.getModel()` - model API
 - `client.getHistory()` - history API
-- `client.getVoiceSpeaker()` - voice_speaker API
 - `client.getSoundEffect()` - sound_effect API
+- `client.getGeneration()` - generation API
 - `client.getAudio()` - audio API
 - `client.getFeed()` - feed API
 - `client.getCurrency()` - currency API
 - `client.getCoupons()` - coupons API
 - `client.getComments()` - comments API
-- `client.getSms()` - sms API
-- `client.getRegister()` - register API
-- `client.getRefresh()` - refresh API
-- `client.getQr()` - qr API
-- `client.getPhone()` - phone API
-- `client.getOauth()` - oauth API
-- `client.getLogout()` - logout API
-- `client.getLogin()` - login API
+- `client.getAuth()` - auth API
 - `client.getAudit()` - audit API
 - `client.getAnalytics()` - analytics API
+- `client.getAgentMemory()` - agent_memory API
 - `client.getActivity()` - activity API
 - `client.getAccount()` - account API
 - `client.getAb()` - ab API
 - `client.getSku()` - sku API
-- `client.getProducts()` - products API
-- `client.getPositions()` - positions API
-- `client.getMembers()` - members API
-- `client.getDepartments()` - departments API
-- `client.getChildren()` - children API
-- `client.getStatistics()` - statistics API
-- `client.getMember()` - member API
-- `client.getList()` - list API
-- `client.getCode()` - code API
-- `client.getAuth()` - auth API
-- `client.getGeneration()` - generation API
 
 ## Usage Examples
 
@@ -172,11 +154,11 @@ Object result = client.getWorkspaces().getWorkspaceDetail();
 System.out.println(result);
 ```
 
-### voice_speakers
+### voice_speaker
 
 ```java
 // 获取发音人详情
-Object result = client.getVoiceSpeakers().getSpeakerDetail();
+Object result = client.getVoiceSpeaker().getSpeakerDetail();
 System.out.println(result);
 ```
 
@@ -188,35 +170,19 @@ Object result = client.getVideo().getVideo();
 System.out.println(result);
 ```
 
-### settings
+### user
 
 ```java
 // 获取用户设置
-Object result = client.getSettings().getUser();
+Object result = client.getUser().getUserSettings();
 System.out.println(result);
 ```
 
-### profile
+### tool
 
 ```java
-// 获取用户信息
-Object result = client.getProfile().getUser();
-System.out.println(result);
-```
-
-### password
-
-```java
-// 修改密码
-Object result = client.getPassword().change();
-System.out.println(result);
-```
-
-### address
-
-```java
-// 获取地址详情
-Object result = client.getAddress().getAddressDetail();
+// Update tool credentials
+Object result = client.getTool().updateCredentials();
 System.out.println(result);
 ```
 
@@ -236,6 +202,14 @@ Object result = client.getSocial().markMessagesAsRead();
 System.out.println(result);
 ```
 
+### skill
+
+```java
+// Get skill detail
+Object result = client.getSkill().detail();
+System.out.println(result);
+```
+
 ### shops
 
 ```java
@@ -249,6 +223,14 @@ System.out.println(result);
 ```java
 // 更新分享设置
 Object result = client.getShare().updateShareSettings();
+System.out.println(result);
+```
+
+### settings
+
+```java
+// 获取模块设置
+Object result = client.getSettings().getModule();
 System.out.println(result);
 ```
 
@@ -268,6 +250,14 @@ Object result = client.getProjects().getProjectDetail();
 System.out.println(result);
 ```
 
+### products
+
+```java
+// 更新商品属性
+Object result = client.getProducts().updateProductAttribute();
+System.out.println(result);
+```
+
 ### partner
 
 ```java
@@ -279,16 +269,16 @@ System.out.println(result);
 ### notification
 
 ```java
-// 标记已读
-Object result = client.getNotification().markAsRead();
+// Mark notification as unread
+Object result = client.getNotification().markAsUnread();
 System.out.println(result);
 ```
 
-### app
+### notes
 
 ```java
 // 获取笔记详情
-Object result = client.getApp().getNoteDetail();
+Object result = client.getNotes().getNoteDetail();
 System.out.println(result);
 ```
 
@@ -305,6 +295,14 @@ System.out.println(result);
 ```java
 // 获取音乐详情
 Object result = client.getMusic().getMusic();
+System.out.println(result);
+```
+
+### knowledge_documents
+
+```java
+// Restore knowledge document
+Object result = client.getKnowledgeDocuments().restoreKnowledgeDocument();
 System.out.println(result);
 ```
 
@@ -359,16 +357,16 @@ System.out.println(result);
 ### drive
 
 ```java
-// Rename drive item
-Object result = client.getDrive().renameItem();
+// Restore drive item
+Object result = client.getDrive().restoreItem();
 System.out.println(result);
 ```
 
-### app_documents
+### documents
 
 ```java
 // Get document detail
-Object result = client.getAppDocuments().getDocumentDetail();
+Object result = client.getDocuments().getDocumentDetail();
 System.out.println(result);
 ```
 
@@ -428,6 +426,14 @@ Object result = client.getAssets().renameAsset();
 System.out.println(result);
 ```
 
+### app
+
+```java
+// 获取应用详情
+Object result = client.getApp().getApp();
+System.out.println(result);
+```
+
 ### announcement
 
 ```java
@@ -436,11 +442,27 @@ Object result = client.getAnnouncement().markAsRead();
 System.out.println(result);
 ```
 
+### agent
+
+```java
+// Get agent
+Object result = client.getAgent().get();
+System.out.println(result);
+```
+
 ### advert
 
 ```java
 // 广告设置
 Object result = client.getAdvert().getAdvertSettings();
+System.out.println(result);
+```
+
+### wallet
+
+```java
+// 钱包提现
+Object result = client.getWallet().withdraw();
 System.out.println(result);
 ```
 
@@ -460,30 +482,6 @@ Object result = client.getVip().purchase();
 System.out.println(result);
 ```
 
-### deactivate
-
-```java
-// 注销账号
-Object result = client.getDeactivate().account();
-System.out.println(result);
-```
-
-### bind
-
-```java
-// 绑定第三方账号
-Object result = client.getBind().thirdPartyAccount();
-System.out.println(result);
-```
-
-### avatar
-
-```java
-// 上传头像
-Object result = client.getAvatar().upload();
-System.out.println(result);
-```
-
 ### upload
 
 ```java
@@ -497,6 +495,14 @@ System.out.println(result);
 ```java
 // 搜索历史
 Object result = client.getSearch().getSearchHistory();
+System.out.println(result);
+```
+
+### rtc
+
+```java
+// Create RTC room
+Object result = client.getRtc().createRoom();
 System.out.println(result);
 ```
 
@@ -516,38 +522,6 @@ Object result = client.getOrganization().createOrganization();
 System.out.println(result);
 ```
 
-### disable
-
-```java
-// 禁用组织
-Object result = client.getDisable().organization();
-System.out.println(result);
-```
-
-### activate
-
-```java
-// 激活组织
-Object result = client.getActivate().organization();
-System.out.println(result);
-```
-
-### position
-
-```java
-// 创建岗位
-Object result = client.getPosition().createPosition();
-System.out.println(result);
-```
-
-### department
-
-```java
-// 创建部门
-Object result = client.getDepartment().createDepartment();
-System.out.println(result);
-```
-
 ### orders
 
 ```java
@@ -556,11 +530,11 @@ Object result = client.getOrders().listOrders();
 System.out.println(result);
 ```
 
-### models
+### model
 
 ```java
-// 批量获取模型价格
-Object result = client.getModels().getModelPrices();
+// Batch get model prices
+Object result = client.getModel().getModelPrices();
 System.out.println(result);
 ```
 
@@ -572,19 +546,19 @@ Object result = client.getHistory().listBrowse();
 System.out.println(result);
 ```
 
-### voice_speaker
-
-```java
-// 创建语音生成任务
-Object result = client.getVoiceSpeaker().createGeneration();
-System.out.println(result);
-```
-
 ### sound_effect
 
 ```java
 // 创建音效生成任务
 Object result = client.getSoundEffect().createGeneration();
+System.out.println(result);
+```
+
+### generation
+
+```java
+// Enhance generation prompt
+Object result = client.getGeneration().enhanceGenerationPrompt();
 System.out.println(result);
 ```
 
@@ -599,8 +573,8 @@ System.out.println(result);
 ### feed
 
 ```java
-// 取消点赞Feed
-Object result = client.getFeed().unlike();
+// Create feed
+Object result = client.getFeed().create();
 System.out.println(result);
 ```
 
@@ -628,67 +602,11 @@ Object result = client.getComments().createComment();
 System.out.println(result);
 ```
 
-### sms
+### auth
 
 ```java
 // 验证验证码
-Object result = client.getSms().verifySmsCode();
-System.out.println(result);
-```
-
-### register
-
-```java
-// 用户注册
-Object result = client.getRegister().register();
-System.out.println(result);
-```
-
-### refresh
-
-```java
-// 刷新令牌
-Object result = client.getRefresh().token();
-System.out.println(result);
-```
-
-### qr
-
-```java
-// 生成登录二维码
-Object result = client.getQr().generateQrCode();
-System.out.println(result);
-```
-
-### phone
-
-```java
-// 手机号验证码登录
-Object result = client.getPhone().login();
-System.out.println(result);
-```
-
-### oauth
-
-```java
-// OAuth授权URL
-Object result = client.getOauth().getOauthUrl();
-System.out.println(result);
-```
-
-### logout
-
-```java
-// 用户登出
-Object result = client.getLogout().logout();
-System.out.println(result);
-```
-
-### login
-
-```java
-// 用户登录
-Object result = client.getLogin().login();
+Object result = client.getAuth().verifySmsCode();
 System.out.println(result);
 ```
 
@@ -705,6 +623,14 @@ System.out.println(result);
 ```java
 // 上报页面访问
 Object result = client.getAnalytics().trackPageView();
+System.out.println(result);
+```
+
+### agent_memory
+
+```java
+// List memories
+Object result = client.getAgentMemory().list();
 System.out.println(result);
 ```
 
@@ -740,99 +666,11 @@ Object result = client.getSku().getSkuDetail();
 System.out.println(result);
 ```
 
-### products
-
-```java
-// 获取商品列表
-Object result = client.getProducts().getProducts();
-System.out.println(result);
-```
-
-### positions
-
-```java
-// 获取组织的岗位列表
-Object result = client.getPositions().getPositionsByOrg();
-System.out.println(result);
-```
-
-### members
-
-```java
-// 获取组织成员
-Object result = client.getMembers().getMembersByOrg();
-System.out.println(result);
-```
-
-### departments
-
-```java
-// 获取组织的部门列表
-Object result = client.getDepartments().getDepartmentsByOrg();
-System.out.println(result);
-```
-
-### children
-
-```java
-// 获取子组织
-Object result = client.getChildren().getChildOrganizations();
-System.out.println(result);
-```
-
-### statistics
-
-```java
-// 获取组织统计
-Object result = client.getStatistics().getOrganization();
-System.out.println(result);
-```
-
-### member
-
-```java
-// 获取成员详情
-Object result = client.getMember().getMember();
-System.out.println(result);
-```
-
-### list
-
-```java
-// 获取组织列表
-Object result = client.getList().getOrganization();
-System.out.println(result);
-```
-
-### code
-
-```java
-// 根据编码获取组织
-Object result = client.getCode().getOrganizationBy();
-System.out.println(result);
-```
-
-### auth
-
-```java
-// Request password reset challenge
-Object result = client.getAuth().requestPasswordResetChallenge();
-System.out.println(result);
-```
-
-### generation
-
-```java
-// Enhance generation prompt
-Object result = client.getGeneration().enhanceGenerationPrompt();
-System.out.println(result);
-```
-
 ## Error Handling
 
 ```java
 try {
-    Object result = client.getTenant().getTenantTypes();
+    Object result = client.getUser().getUserSettings();
 } catch (Exception e) {
     System.err.println("Error: " + e.getMessage());
 }

@@ -9,6 +9,7 @@ public class CouponVO {
     private String typeName;
     private String description;
     private Integer amount;
+    private Integer pointCost;
     private Double discount;
     private Integer minConsume;
     private String startTime;
@@ -20,10 +21,11 @@ public class CouponVO {
     private String status;
     private String statusName;
     private Boolean stackable;
-    private Integer scopeType;
+    private String scopeType;
     private String scopeValue;
     private Integer remainingCount;
     private Boolean canReceive;
+    private Boolean pointsExchange;
 
     public String getCreatedAt() {
         return this.createdAt;
@@ -87,6 +89,14 @@ public class CouponVO {
     
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getPointCost() {
+        return this.pointCost;
+    }
+    
+    public void setPointCost(Integer pointCost) {
+        this.pointCost = pointCost;
     }
 
     public Double getDiscount() {
@@ -177,11 +187,11 @@ public class CouponVO {
         this.stackable = stackable;
     }
 
-    public Integer getScopeType() {
+    public String getScopeType() {
         return this.scopeType;
     }
     
-    public void setScopeType(Integer scopeType) {
+    public void setScopeType(String scopeType) {
         this.scopeType = scopeType;
     }
 
@@ -207,5 +217,13 @@ public class CouponVO {
     
     public void setCanReceive(Boolean canReceive) {
         this.canReceive = canReceive;
+    }
+
+    public Boolean getPointsExchange() {
+        return this.pointsExchange;
+    }
+    
+    public void setPointsExchange(Boolean pointsExchange) {
+        this.pointsExchange = pointsExchange;
     }
 }

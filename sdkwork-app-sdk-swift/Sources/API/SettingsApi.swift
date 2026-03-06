@@ -7,18 +7,6 @@ public class SettingsApi {
         self.client = client
     }
 
-    /// 获取用户设置
-    public func getUser() async throws -> PlusApiResultUserSettingsVO? {
-        let response = try await client.get(ApiPaths.appPath("/user/settings"))
-        return response as? PlusApiResultUserSettingsVO
-    }
-
-    /// 更新用户设置
-    public func updateUser(body: UserSettingsUpdateForm) async throws -> PlusApiResultUserSettingsVO? {
-        let response = try await client.put(ApiPaths.appPath("/user/settings"), body: body)
-        return response as? PlusApiResultUserSettingsVO
-    }
-
     /// 获取模块设置
     public func getModule(module: String) async throws -> PlusApiResultMapStringObject? {
         let response = try await client.get(ApiPaths.appPath("/settings/\(module)"))

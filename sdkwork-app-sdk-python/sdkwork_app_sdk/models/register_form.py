@@ -9,3 +9,5 @@ class RegisterForm:
     confirm_password: str
     email: str = None
     phone: str = None
+    type: str = None
+    verification_code: str = None

@@ -24,18 +24,6 @@ class HistoryApi {
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 获取登录历史
-  Future<PlusApiResultPageMapStringObject?> getLogin(Map<String, dynamic>? params) async {
-    final response = await _client.get(ApiPaths.appPath('/user/history/login'), params: params);
-    return response is PlusApiResultPageMapStringObject ? response : null;
-  }
-
-  /// 获取生成历史
-  Future<PlusApiResultPageMapStringObject?> getGeneration(Map<String, dynamic>? params) async {
-    final response = await _client.get(ApiPaths.appPath('/user/history/generations'), params: params);
-    return response is PlusApiResultPageMapStringObject ? response : null;
-  }
-
   /// 历史统计
   Future<PlusApiResultHistoryStatisticsVO?> getHistoryStatistics() async {
     final response = await _client.get(ApiPaths.appPath('/history/statistics'));

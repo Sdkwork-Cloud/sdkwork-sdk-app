@@ -103,6 +103,16 @@ func (a *AccountApi) GetHistory(query map[string]interface{}) (sdktypes.PlusApiR
     return decodeResult[sdktypes.PlusApiResultPageHistoryVO](raw)
 }
 
+// 获取积分兑换现金比例
+func (a *AccountApi) GetPointsToCashRate() (sdktypes.PlusApiResultBigDecimal, error) {
+    raw, err := a.client.Get(AppApiPath("/account/points/exchange-rate"), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultBigDecimal
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultBigDecimal](raw)
+}
+
 // 获取现金账户信息
 func (a *AccountApi) GetCash() (sdktypes.PlusApiResultCashAccountInfoVO, error) {
     raw, err := a.client.Get(AppApiPath("/account/cash"), nil, nil)

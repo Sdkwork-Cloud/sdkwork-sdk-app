@@ -1,10 +1,12 @@
 package types
 
-
+// API调用结果
 type PlusApiResultPromptEnhanceResponse struct {
-	Code int `json:"code"`
-	Msg string `json:"msg"`
 	Data PromptEnhanceResponse `json:"data"`
-	Timestamp string `json:"timestamp"`
-	TraceId string `json:"traceId"`
+	Code string `json:"code"`
+	Msg string `json:"msg"`
+	RequestId string `json:"requestId"`
+	Ip string `json:"ip"`
+	Hostname string `json:"hostname"`
+	ErrorName string `json:"errorName"`
 }

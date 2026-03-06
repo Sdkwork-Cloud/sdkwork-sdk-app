@@ -3,15 +3,15 @@ import type { PageableObject } from './pageable-object';
 import type { SortObject } from './sort-object';
 
 export interface PageHistoryVO {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: HistoryVO[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

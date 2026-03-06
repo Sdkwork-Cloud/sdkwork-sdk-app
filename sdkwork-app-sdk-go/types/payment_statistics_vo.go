@@ -7,4 +7,5 @@ type PaymentStatisticsVO struct {
 	SuccessPayments int `json:"successPayments"`
 	FailedPayments int `json:"failedPayments"`
 	ClosedPayments int `json:"closedPayments"`
+	TimeoutPayments int `json:"timeoutPayments"`
 }

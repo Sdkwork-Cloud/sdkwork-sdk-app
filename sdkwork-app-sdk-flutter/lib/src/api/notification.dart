@@ -6,121 +6,151 @@ class NotificationApi {
   
   NotificationApi(this._client);
 
-  /// 标记已读
+  /// Mark notification as unread
+  Future<PlusApiResultNotificationVO?> markAsUnread(String notificationId) async {
+    final response = await _client.put(ApiPaths.appPath('/notification/${notificationId}/unread'));
+    return response is PlusApiResultNotificationVO ? response : null;
+  }
+
+  /// Mark notification as read
   Future<PlusApiResultNotificationVO?> markAsRead(String notificationId) async {
     final response = await _client.put(ApiPaths.appPath('/notification/${notificationId}/read'));
     return response is PlusApiResultNotificationVO ? response : null;
   }
 
-  /// 获取推送设置
+  /// Get notification settings
   Future<PlusApiResultNotificationSettingsVO?> getNotificationSettings() async {
     final response = await _client.get(ApiPaths.appPath('/notification/settings'));
     return response is PlusApiResultNotificationSettingsVO ? response : null;
   }
 
-  /// 更新推送设置
+  /// Update notification settings
   Future<PlusApiResultNotificationSettingsVO?> updateNotificationSettings(NotificationSettingsUpdateForm body) async {
     final response = await _client.put(ApiPaths.appPath('/notification/settings'), body: body, contentType: 'application/json');
     return response is PlusApiResultNotificationSettingsVO ? response : null;
   }
 
-  /// 更新类型推送设置
+  /// Update type settings
   Future<PlusApiResultVoid?> updateTypeSettings(String type, NotificationTypeSettingsForm body) async {
     final response = await _client.put(ApiPaths.appPath('/notification/settings/${type}'), body: body, contentType: 'application/json');
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 全部标记已读
+  /// Mark all notifications as read
   Future<PlusApiResultVoid?> markAllAsRead(Map<String, dynamic>? params) async {
     final response = await _client.put(ApiPaths.appPath('/notification/read/all'), params: params);
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 批量标记已读
+  /// Update device status
+  Future<PlusApiResultDeviceVO?> updateDeviceStatus(String deviceId, DeviceStatusUpdateForm body) async {
+    final response = await _client.put(ApiPaths.appPath('/notification/devices/${deviceId}/status'), body: body, contentType: 'application/json');
+    return response is PlusApiResultDeviceVO ? response : null;
+  }
+
+  /// Batch mark notifications as read
   Future<PlusApiResultVoid?> batchMarkAsRead(NotificationBatchReadForm body) async {
     final response = await _client.put(ApiPaths.appPath('/notification/batch/read'), body: body, contentType: 'application/json');
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 发送测试消息
+  /// Send test notification
   Future<PlusApiResultVoid?> sendTest(TestNotificationForm body) async {
     final response = await _client.post(ApiPaths.appPath('/notification/test'), body: body, contentType: 'application/json');
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 订阅列表
+  /// List subscriptions
   Future<PlusApiResultListString?> listSubscriptions() async {
     final response = await _client.get(ApiPaths.appPath('/notification/subscriptions'));
     return response is PlusApiResultListString ? response : null;
   }
 
-  /// 订阅主题
+  /// Subscribe topic
   Future<PlusApiResultVoid?> subscribeTopic(TopicSubscribeForm body) async {
     final response = await _client.post(ApiPaths.appPath('/notification/subscriptions'), body: body, contentType: 'application/json');
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 获取设备列表
+  /// List devices
   Future<PlusApiResultListDeviceVO?> listDevices() async {
     final response = await _client.get(ApiPaths.appPath('/notification/devices'));
     return response is PlusApiResultListDeviceVO ? response : null;
   }
 
-  /// 注册推送设备
-  Future<PlusApiResultVoid?> registerDevice(DeviceRegisterForm body) async {
+  /// Register device
+  Future<PlusApiResultDeviceVO?> registerDevice(DeviceRegisterForm body) async {
     final response = await _client.post(ApiPaths.appPath('/notification/devices'), body: body, contentType: 'application/json');
-    return response is PlusApiResultVoid ? response : null;
+    return response is PlusApiResultDeviceVO ? response : null;
   }
 
-  /// 获取消息列表
+  /// List device messages
+  Future<PlusApiResultListDeviceMessageVO?> listDeviceMessages(String deviceId, Map<String, dynamic>? params) async {
+    final response = await _client.get(ApiPaths.appPath('/notification/devices/${deviceId}/messages'), params: params);
+    return response is PlusApiResultListDeviceMessageVO ? response : null;
+  }
+
+  /// Send device message
+  Future<PlusApiResultDeviceMessageVO?> sendDeviceMessage(String deviceId, DeviceMessageSendForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/notification/devices/${deviceId}/messages'), body: body, contentType: 'application/json');
+    return response is PlusApiResultDeviceMessageVO ? response : null;
+  }
+
+  /// Control device
+  Future<PlusApiResultBoolean?> controlDevice(String deviceId, DeviceControlForm body) async {
+    final response = await _client.post(ApiPaths.appPath('/notification/devices/${deviceId}/control'), body: body, contentType: 'application/json');
+    return response is PlusApiResultBoolean ? response : null;
+  }
+
+  /// List notifications
   Future<PlusApiResultPageNotificationVO?> listNotifications(Map<String, dynamic>? params) async {
     final response = await _client.get(ApiPaths.appPath('/notification'), params: params);
     return response is PlusApiResultPageNotificationVO ? response : null;
   }
 
-  /// 获取消息详情
+  /// Get notification detail
   Future<PlusApiResultNotificationDetailVO?> getNotificationDetail(String notificationId) async {
     final response = await _client.get(ApiPaths.appPath('/notification/${notificationId}'));
     return response is PlusApiResultNotificationDetailVO ? response : null;
   }
 
-  /// 删除消息
+  /// Delete notification
   Future<PlusApiResultVoid?> deleteNotification(String notificationId) async {
     final response = await _client.delete(ApiPaths.appPath('/notification/${notificationId}'));
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 未读消息统计
+  /// Get unread notification count
   Future<PlusApiResultMapStringInteger?> getUnreadCount() async {
     final response = await _client.get(ApiPaths.appPath('/notification/unread/count'));
     return response is PlusApiResultMapStringInteger ? response : null;
   }
 
-  /// 消息类型
+  /// List notification types
   Future<PlusApiResultListNotificationTypeVO?> listNotificationTypes() async {
     final response = await _client.get(ApiPaths.appPath('/notification/types'));
     return response is PlusApiResultListNotificationTypeVO ? response : null;
   }
 
-  /// 取消订阅
+  /// Unsubscribe topic
   Future<PlusApiResultVoid?> unsubscribeTopic(String topic) async {
     final response = await _client.delete(ApiPaths.appPath('/notification/subscriptions/${topic}'));
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 注销推送设备
+  /// Unregister device
   Future<PlusApiResultVoid?> unregisterDevice(String deviceToken) async {
     final response = await _client.delete(ApiPaths.appPath('/notification/devices/${deviceToken}'));
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 清空消息
+  /// Clear notifications
   Future<PlusApiResultVoid?> clearAllNotifications(Map<String, dynamic>? params) async {
     final response = await _client.delete(ApiPaths.appPath('/notification/clear'), params: params);
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 批量删除消息
+  /// Batch delete notifications
   Future<PlusApiResultVoid?> batchDeleteNotifications() async {
     final response = await _client.delete(ApiPaths.appPath('/notification/batch'));
     return response is PlusApiResultVoid ? response : null;

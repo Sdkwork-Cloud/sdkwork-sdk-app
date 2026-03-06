@@ -3,15 +3,15 @@ import type { PointsExchangeRecordVO } from './points-exchange-record-vo';
 import type { SortObject } from './sort-object';
 
 export interface PagePointsExchangeRecordVO {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: PointsExchangeRecordVO[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

@@ -14,4 +14,5 @@ type AppVO struct {
 	AppType string `json:"appType"`
 	Status string `json:"status"`
 	ProjectId int `json:"projectId"`
+	InstallSkill AppInstallSkill `json:"installSkill"`
 }

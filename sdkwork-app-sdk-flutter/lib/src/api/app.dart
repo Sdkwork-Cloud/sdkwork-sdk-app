@@ -6,42 +6,6 @@ class AppApi {
   
   AppApi(this._client);
 
-  /// 获取笔记详情
-  Future<PlusApiResultNoteVO?> getNoteDetail(String noteId) async {
-    final response = await _client.get(ApiPaths.appPath('/notes/${noteId}'));
-    return response is PlusApiResultNoteVO ? response : null;
-  }
-
-  /// 更新笔记
-  Future<PlusApiResultNoteOperationVO?> updateNote(String noteId, NoteUpdateRequest body) async {
-    final response = await _client.put(ApiPaths.appPath('/notes/${noteId}'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 删除笔记
-  Future<PlusApiResultVoid?> deleteNote(String noteId) async {
-    final response = await _client.delete(ApiPaths.appPath('/notes/${noteId}'));
-    return response is PlusApiResultVoid ? response : null;
-  }
-
-  /// 移动笔记
-  Future<PlusApiResultNoteOperationVO?> moveNote(String noteId, NoteMoveRequest body) async {
-    final response = await _client.put(ApiPaths.appPath('/notes/${noteId}/move'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 更新文件夹
-  Future<PlusApiResultNoteFolderVO?> updateFolder(String folderId, NoteFolderUpdateRequest body) async {
-    final response = await _client.put(ApiPaths.appPath('/notes/folders/${folderId}'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteFolderVO ? response : null;
-  }
-
-  /// 删除文件夹
-  Future<PlusApiResultNoteOperationVO?> deleteFolder(String folderId) async {
-    final response = await _client.delete(ApiPaths.appPath('/notes/folders/${folderId}'));
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
   /// 获取应用详情
   Future<PlusApiResultAppDetailVO?> getApp(String appId) async {
     final response = await _client.get(ApiPaths.appPath('/app/manage/${appId}'));
@@ -58,48 +22,6 @@ class AppApi {
   Future<PlusApiResultVoid?> deleteApp(String appId) async {
     final response = await _client.delete(ApiPaths.appPath('/app/manage/${appId}'));
     return response is PlusApiResultVoid ? response : null;
-  }
-
-  /// 获取笔记列表
-  Future<PlusApiResultPageNoteVO?> listNotes(Map<String, dynamic>? params) async {
-    final response = await _client.get(ApiPaths.appPath('/notes'), params: params);
-    return response is PlusApiResultPageNoteVO ? response : null;
-  }
-
-  /// 创建笔记
-  Future<PlusApiResultNoteOperationVO?> createNote(NoteCreateRequest body) async {
-    final response = await _client.post(ApiPaths.appPath('/notes'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 收藏笔记
-  Future<PlusApiResultNoteOperationVO?> favoriteNote(String noteId) async {
-    final response = await _client.post(ApiPaths.appPath('/notes/${noteId}/favorite'));
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 取消收藏笔记
-  Future<PlusApiResultNoteOperationVO?> unfavoriteNote(String noteId) async {
-    final response = await _client.delete(ApiPaths.appPath('/notes/${noteId}/favorite'));
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 复制笔记
-  Future<PlusApiResultNoteOperationVO?> copyNote(String noteId, NoteCopyRequest body) async {
-    final response = await _client.post(ApiPaths.appPath('/notes/${noteId}/copy'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteOperationVO ? response : null;
-  }
-
-  /// 获取文件夹列表
-  Future<PlusApiResultListNoteFolderVO?> listFolders() async {
-    final response = await _client.get(ApiPaths.appPath('/notes/folders'));
-    return response is PlusApiResultListNoteFolderVO ? response : null;
-  }
-
-  /// 创建文件夹
-  Future<PlusApiResultNoteFolderVO?> createFolder(NoteFolderCreateRequest body) async {
-    final response = await _client.post(ApiPaths.appPath('/notes/folders'), body: body, contentType: 'application/json');
-    return response is PlusApiResultNoteFolderVO ? response : null;
   }
 
   /// 创建应用
@@ -120,10 +42,10 @@ class AppApi {
     return response is PlusApiResultVoid ? response : null;
   }
 
-  /// 获取笔记统计
-  Future<PlusApiResultNoteStatisticsVO?> getNoteStatistics() async {
-    final response = await _client.get(ApiPaths.appPath('/notes/statistics'));
-    return response is PlusApiResultNoteStatisticsVO ? response : null;
+  /// 检查发布就绪状态
+  Future<PlusApiResultAppPublishReadinessVO?> checkPublishReadiness(String appId) async {
+    final response = await _client.get(ApiPaths.appPath('/app/manage/${appId}/publish/readiness'));
+    return response is PlusApiResultAppPublishReadinessVO ? response : null;
   }
 
   /// 获取应用统计
@@ -154,11 +76,5 @@ class AppApi {
   Future<PlusApiResultAccountSummaryVO?> getAccountSummary() async {
     final response = await _client.get(ApiPaths.appPath('/account/summary'));
     return response is PlusApiResultAccountSummaryVO ? response : null;
-  }
-
-  /// 批量删除笔记
-  Future<PlusApiResultNoteOperationVO?> batchDeleteNotes() async {
-    final response = await _client.delete(ApiPaths.appPath('/notes/batch'));
-    return response is PlusApiResultNoteOperationVO ? response : null;
   }
 }

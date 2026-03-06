@@ -8,3 +8,4 @@ class PaymentStatisticsVO:
     success_payments: int = None
     failed_payments: int = None
     closed_payments: int = None
+    timeout_payments: int = None

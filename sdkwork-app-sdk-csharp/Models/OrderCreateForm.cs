@@ -16,5 +16,6 @@ namespace App.Models
         public string? Remark { get; set; }
         public string? SourceChannel { get; set; }
         public int? RechargePoints { get; set; }
+        public bool? OrderPayloadValid { get; set; }
     }
 }

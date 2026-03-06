@@ -20,16 +20,6 @@ class HistoryApi(private val client: HttpClient) {
         return client.delete(ApiPaths.appPath("/history/browse"), params) as? PlusApiResultVoid
     }
 
-    /** 获取登录历史 */
-    suspend fun getLogin(params: Map<String, Any>? = null): PlusApiResultPageMapStringObject? {
-        return client.get(ApiPaths.appPath("/user/history/login"), params) as? PlusApiResultPageMapStringObject
-    }
-
-    /** 获取生成历史 */
-    suspend fun getGeneration(params: Map<String, Any>? = null): PlusApiResultPageMapStringObject? {
-        return client.get(ApiPaths.appPath("/user/history/generations"), params) as? PlusApiResultPageMapStringObject
-    }
-
     /** 历史统计 */
     suspend fun getHistoryStatistics(): PlusApiResultHistoryStatisticsVO? {
         return client.get(ApiPaths.appPath("/history/statistics")) as? PlusApiResultHistoryStatisticsVO

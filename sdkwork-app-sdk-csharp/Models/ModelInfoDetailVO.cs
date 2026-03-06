@@ -9,7 +9,9 @@ namespace App.Models
         public string? CreatedAt { get; set; }
         public string? UpdatedAt { get; set; }
         public string? ModelId { get; set; }
+        public string? ModelKey { get; set; }
         public string? Model { get; set; }
+        public string? VendorModel { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Channel { get; set; }
@@ -25,6 +27,8 @@ namespace App.Models
         public ModelLimitInfo? LimitInfo { get; set; }
         public ModelPrice? PriceInfo { get; set; }
         public ModelMetadata? Metadata { get; set; }
+        public Dictionary<string, object>? ProductSupportInfo { get; set; }
+        public List<ModelPriceVO>? PriceRules { get; set; }
         public double? DefaultTemperature { get; set; }
         public double? DefaultTopP { get; set; }
         public double? DefaultFrequencyPenalty { get; set; }

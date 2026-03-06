@@ -24,6 +24,36 @@ func (a *SocialApi) MarkMessagesAsRead(query map[string]interface{}) (sdktypes.P
     return decodeResult[sdktypes.PlusApiResultVoid](raw)
 }
 
+// 处理好友申请
+func (a *SocialApi) ProcessFriendRequest(requestId string, body sdktypes.FriendRequestProcessForm) (sdktypes.PlusApiResultFriendRequestVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/social/friend-requests/%s/process", requestId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultFriendRequestVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultFriendRequestVO](raw)
+}
+
+// 更新联系人分组
+func (a *SocialApi) UpdateContactGroup(groupId string, body sdktypes.ContactGroupUpdateForm) (sdktypes.PlusApiResultContactGroupVO, error) {
+    raw, err := a.client.Put(AppApiPath(fmt.Sprintf("/social/contact-groups/%s", groupId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultContactGroupVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultContactGroupVO](raw)
+}
+
+// 删除联系人分组
+func (a *SocialApi) DeleteContactGroup(groupId string) (sdktypes.PlusApiResultVoid, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/social/contact-groups/%s", groupId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultVoid
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultVoid](raw)
+}
+
 // 发送私信
 func (a *SocialApi) SendMessage(body sdktypes.SendMessageForm) (sdktypes.PlusApiResultPrivateMessageVO, error) {
     raw, err := a.client.Post(AppApiPath("/social/messages"), body, nil, nil, "")
@@ -32,6 +62,26 @@ func (a *SocialApi) SendMessage(body sdktypes.SendMessageForm) (sdktypes.PlusApi
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultPrivateMessageVO](raw)
+}
+
+// 获取好友申请列表
+func (a *SocialApi) ListFriendRequests() (sdktypes.PlusApiResultListFriendRequestVO, error) {
+    raw, err := a.client.Get(AppApiPath("/social/friend-requests"), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListFriendRequestVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListFriendRequestVO](raw)
+}
+
+// 发送好友申请
+func (a *SocialApi) SendFriendRequest(body sdktypes.FriendRequestCreateForm) (sdktypes.PlusApiResultFriendRequestVO, error) {
+    raw, err := a.client.Post(AppApiPath("/social/friend-requests"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultFriendRequestVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultFriendRequestVO](raw)
 }
 
 // 关注用户
@@ -64,6 +114,26 @@ func (a *SocialApi) BatchCheckFollowStatus(body sdktypes.BatchFollowCheckForm) (
     return decodeResult[sdktypes.PlusApiResultListFollowCheckVO](raw)
 }
 
+// 获取联系人分组
+func (a *SocialApi) ListContactGroups() (sdktypes.PlusApiResultListContactGroupVO, error) {
+    raw, err := a.client.Get(AppApiPath("/social/contact-groups"), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListContactGroupVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListContactGroupVO](raw)
+}
+
+// 创建联系人分组
+func (a *SocialApi) CreateContactGroup(body sdktypes.ContactGroupCreateForm) (sdktypes.PlusApiResultContactGroupVO, error) {
+    raw, err := a.client.Post(AppApiPath("/social/contact-groups"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultContactGroupVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultContactGroupVO](raw)
+}
+
 // 拉黑用户
 func (a *SocialApi) BlockUser(userId string) (sdktypes.PlusApiResultVoid, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/social/block/%s", userId)), nil, nil, nil, "")
@@ -77,6 +147,16 @@ func (a *SocialApi) BlockUser(userId string) (sdktypes.PlusApiResultVoid, error)
 // 取消拉黑
 func (a *SocialApi) UnblockUser(userId string) (sdktypes.PlusApiResultVoid, error) {
     raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/social/block/%s", userId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultVoid
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultVoid](raw)
+}
+
+// 更新好友备注
+func (a *SocialApi) UpdateFriendRemark(contactId string, body sdktypes.FriendRemarkUpdateForm) (sdktypes.PlusApiResultVoid, error) {
+    raw, err := a.client.Patch(AppApiPath(fmt.Sprintf("/social/contacts/%s/remark", contactId)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.PlusApiResultVoid
         return zero, err
@@ -152,6 +232,46 @@ func (a *SocialApi) GetConversationMessages(userId string, query map[string]inte
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultPagePrivateMessageVO](raw)
+}
+
+// 获取联系人列表
+func (a *SocialApi) ListContacts(query map[string]interface{}) (sdktypes.PlusApiResultListContactFriendVO, error) {
+    raw, err := a.client.Get(AppApiPath("/social/contacts"), query, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultListContactFriendVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultListContactFriendVO](raw)
+}
+
+// 获取联系人详情
+func (a *SocialApi) GetContactDetail(contactId string) (sdktypes.PlusApiResultContactFriendVO, error) {
+    raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/social/contacts/%s", contactId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultContactFriendVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultContactFriendVO](raw)
+}
+
+// 删除联系人
+func (a *SocialApi) DeleteContact(contactId string) (sdktypes.PlusApiResultVoid, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/social/contacts/%s", contactId)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultVoid
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultVoid](raw)
+}
+
+// 获取联系人统计
+func (a *SocialApi) GetContactStats() (sdktypes.PlusApiResultContactStatsVO, error) {
+    raw, err := a.client.Get(AppApiPath("/social/contacts/stats"), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultContactStatsVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultContactStatsVO](raw)
 }
 
 // 获取黑名单

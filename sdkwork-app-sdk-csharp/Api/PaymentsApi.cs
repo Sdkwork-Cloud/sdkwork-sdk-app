@@ -32,6 +32,14 @@ namespace App.Api
         }
 
         /// <summary>
+        /// 补单/对账
+        /// </summary>
+        public async Task<PlusApiResultPaymentStatusVO?> ReconcilePaymentAsync(PaymentReconcileForm body)
+        {
+            return await _client.PostAsync<PlusApiResultPaymentStatusVO>(ApiPaths.AppPath("/payments/reconcile"), body);
+        }
+
+        /// <summary>
         /// 通用支付回调
         /// </summary>
         public async Task<PaymentCallbackResponse?> PaymentCallbackAsync(string provider, PaymentCallbackRequest body)

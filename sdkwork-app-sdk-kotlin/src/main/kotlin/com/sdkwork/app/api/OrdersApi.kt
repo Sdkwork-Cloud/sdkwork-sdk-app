@@ -50,6 +50,11 @@ class OrdersApi(private val client: HttpClient) {
         return client.get(ApiPaths.appPath("/orders/$orderId/status")) as? PlusApiResultOrderStatusVO
     }
 
+    /** 查询订单是否支付成功 */
+    suspend fun getOrderPaymentSuccess(orderId: String): PlusApiResultOrderPaymentSuccessVO? {
+        return client.get(ApiPaths.appPath("/orders/$orderId/payment-success")) as? PlusApiResultOrderPaymentSuccessVO
+    }
+
     /** 获取订单统计 */
     suspend fun getOrderStatistics(): PlusApiResultOrderStatisticsVO? {
         return client.get(ApiPaths.appPath("/orders/statistics")) as? PlusApiResultOrderStatisticsVO

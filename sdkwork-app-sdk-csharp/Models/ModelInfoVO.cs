@@ -9,7 +9,9 @@ namespace App.Models
         public string? CreatedAt { get; set; }
         public string? UpdatedAt { get; set; }
         public string? ModelId { get; set; }
+        public string? ModelKey { get; set; }
         public string? Model { get; set; }
+        public string? VendorModel { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Channel { get; set; }

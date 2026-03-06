@@ -1,11 +1,13 @@
 package types
 
-// 模型信息响应
+// Model summary response
 type ModelInfoVO struct {
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
 	ModelId string `json:"modelId"`
+	ModelKey string `json:"modelKey"`
 	Model string `json:"model"`
+	VendorModel string `json:"vendorModel"`
 	Name string `json:"name"`
 	Description string `json:"description"`
 	Channel string `json:"channel"`

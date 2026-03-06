@@ -3,15 +3,15 @@ import type { SortObject } from './sort-object';
 import type { VoteDetailVO } from './vote-detail-vo';
 
 export interface PageVoteDetailVO {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: VoteDetailVO[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

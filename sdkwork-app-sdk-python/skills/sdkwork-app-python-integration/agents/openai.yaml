@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK App python Integration"
-  short_description: "Integrate sdkwork-app-sdk-python with staged progressive loading."
-  default_prompt: "Use $sdkwork-app-python-integration to integrate sdkwork-app-sdk-python into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

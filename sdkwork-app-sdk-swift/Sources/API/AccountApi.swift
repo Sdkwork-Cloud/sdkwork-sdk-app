@@ -61,6 +61,12 @@ public class AccountApi {
         return response as? PlusApiResultPageHistoryVO
     }
 
+    /// 获取积分兑换现金比例
+    public func getPointsToCashRate() async throws -> PlusApiResultBigDecimal? {
+        let response = try await client.get(ApiPaths.appPath("/account/points/exchange-rate"))
+        return response as? PlusApiResultBigDecimal
+    }
+
     /// 获取现金账户信息
     public func getCash() async throws -> PlusApiResultCashAccountInfoVO? {
         let response = try await client.get(ApiPaths.appPath("/account/cash"))

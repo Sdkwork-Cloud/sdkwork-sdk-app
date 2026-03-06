@@ -15,6 +15,7 @@ class DocumentDetailVO:
     description: str = None
     tags: List[str] = None
     status: str = None
+    favorited: bool = None
     summary: str = None
     word_count: int = None
     char_count: int = None

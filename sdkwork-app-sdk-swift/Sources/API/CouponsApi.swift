@@ -13,9 +13,27 @@ public class CouponsApi {
         return response as? PlusApiResultUserCouponVO
     }
 
+    /// 积分兑换优惠券
+    public func exchangeCouponByPoints(couponId: String, body: CouponPointsExchangeForm) async throws -> PlusApiResultUserCouponVO? {
+        let response = try await client.post(ApiPaths.appPath("/coupons/\(couponId)/exchange/points"), body: body)
+        return response as? PlusApiResultUserCouponVO
+    }
+
+    /// 兑换优惠券
+    public func redeemCoupon(body: CouponRedeemForm) async throws -> PlusApiResultUserCouponVO? {
+        let response = try await client.post(ApiPaths.appPath("/coupons/redeem"), body: body)
+        return response as? PlusApiResultUserCouponVO
+    }
+
     /// 使用优惠券
     public func useCoupon(userCouponId: String, params: [String: Any]? = nil) async throws -> PlusApiResultUserCouponVO? {
         let response = try await client.post(ApiPaths.appPath("/coupons/my/\(userCouponId)/use"), body: nil, params: params)
+        return response as? PlusApiResultUserCouponVO
+    }
+
+    /// 回滚积分兑换优惠券
+    public func rollbackPointsExchangeCoupon(userCouponId: String, body: CouponRollbackForm? = nil) async throws -> PlusApiResultUserCouponVO? {
+        let response = try await client.post(ApiPaths.appPath("/coupons/my/\(userCouponId)/rollback"), body: body)
         return response as? PlusApiResultUserCouponVO
     }
 

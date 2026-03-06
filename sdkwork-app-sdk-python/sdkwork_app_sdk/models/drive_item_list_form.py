@@ -8,6 +8,9 @@ class DriveItemListForm:
     asset_type: str = None
     folder_id: str = None
     disk_id: str = None
+    include_archived: bool = None
+    include_deleted: bool = None
+    favorite_only: bool = None
     sort_field: str = None
     sort_direction: str = None
     page_num: int = None

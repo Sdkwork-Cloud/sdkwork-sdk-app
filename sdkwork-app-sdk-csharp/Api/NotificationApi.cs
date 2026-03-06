@@ -16,7 +16,15 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 标记已读
+        /// Mark notification as unread
+        /// </summary>
+        public async Task<PlusApiResultNotificationVO?> MarkAsUnreadAsync(string notificationId)
+        {
+            return await _client.PutAsync<PlusApiResultNotificationVO>(ApiPaths.AppPath($"/notification/{notificationId}/unread"), null);
+        }
+
+        /// <summary>
+        /// Mark notification as read
         /// </summary>
         public async Task<PlusApiResultNotificationVO?> MarkAsReadAsync(string notificationId)
         {
@@ -24,7 +32,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取推送设置
+        /// Get notification settings
         /// </summary>
         public async Task<PlusApiResultNotificationSettingsVO?> GetNotificationSettingsAsync()
         {
@@ -32,7 +40,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 更新推送设置
+        /// Update notification settings
         /// </summary>
         public async Task<PlusApiResultNotificationSettingsVO?> UpdateNotificationSettingsAsync(NotificationSettingsUpdateForm body)
         {
@@ -40,7 +48,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 更新类型推送设置
+        /// Update type settings
         /// </summary>
         public async Task<PlusApiResultVoid?> UpdateTypeSettingsAsync(string type, NotificationTypeSettingsForm body)
         {
@@ -48,7 +56,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 全部标记已读
+        /// Mark all notifications as read
         /// </summary>
         public async Task<PlusApiResultVoid?> MarkAllAsReadAsync(Dictionary<string, object>? query = null)
         {
@@ -56,7 +64,15 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 批量标记已读
+        /// Update device status
+        /// </summary>
+        public async Task<PlusApiResultDeviceVO?> UpdateDeviceStatusAsync(string deviceId, DeviceStatusUpdateForm body)
+        {
+            return await _client.PutAsync<PlusApiResultDeviceVO>(ApiPaths.AppPath($"/notification/devices/{deviceId}/status"), body);
+        }
+
+        /// <summary>
+        /// Batch mark notifications as read
         /// </summary>
         public async Task<PlusApiResultVoid?> BatchMarkAsReadAsync(NotificationBatchReadForm body)
         {
@@ -64,7 +80,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 发送测试消息
+        /// Send test notification
         /// </summary>
         public async Task<PlusApiResultVoid?> SendTestAsync(TestNotificationForm body)
         {
@@ -72,7 +88,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 订阅列表
+        /// List subscriptions
         /// </summary>
         public async Task<PlusApiResultListString?> ListSubscriptionsAsync()
         {
@@ -80,7 +96,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 订阅主题
+        /// Subscribe topic
         /// </summary>
         public async Task<PlusApiResultVoid?> SubscribeTopicAsync(TopicSubscribeForm body)
         {
@@ -88,7 +104,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取设备列表
+        /// List devices
         /// </summary>
         public async Task<PlusApiResultListDeviceVO?> ListDevicesAsync()
         {
@@ -96,15 +112,39 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 注册推送设备
+        /// Register device
         /// </summary>
-        public async Task<PlusApiResultVoid?> RegisterDeviceAsync(DeviceRegisterForm body)
+        public async Task<PlusApiResultDeviceVO?> RegisterDeviceAsync(DeviceRegisterForm body)
         {
-            return await _client.PostAsync<PlusApiResultVoid>(ApiPaths.AppPath("/notification/devices"), body);
+            return await _client.PostAsync<PlusApiResultDeviceVO>(ApiPaths.AppPath("/notification/devices"), body);
         }
 
         /// <summary>
-        /// 获取消息列表
+        /// List device messages
+        /// </summary>
+        public async Task<PlusApiResultListDeviceMessageVO?> ListDeviceMessagesAsync(string deviceId, Dictionary<string, object>? query = null)
+        {
+            return await _client.GetAsync<PlusApiResultListDeviceMessageVO>(ApiPaths.AppPath($"/notification/devices/{deviceId}/messages"), query);
+        }
+
+        /// <summary>
+        /// Send device message
+        /// </summary>
+        public async Task<PlusApiResultDeviceMessageVO?> SendDeviceMessageAsync(string deviceId, DeviceMessageSendForm body)
+        {
+            return await _client.PostAsync<PlusApiResultDeviceMessageVO>(ApiPaths.AppPath($"/notification/devices/{deviceId}/messages"), body);
+        }
+
+        /// <summary>
+        /// Control device
+        /// </summary>
+        public async Task<PlusApiResultBoolean?> ControlDeviceAsync(string deviceId, DeviceControlForm body)
+        {
+            return await _client.PostAsync<PlusApiResultBoolean>(ApiPaths.AppPath($"/notification/devices/{deviceId}/control"), body);
+        }
+
+        /// <summary>
+        /// List notifications
         /// </summary>
         public async Task<PlusApiResultPageNotificationVO?> ListNotificationsAsync(Dictionary<string, object>? query = null)
         {
@@ -112,7 +152,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取消息详情
+        /// Get notification detail
         /// </summary>
         public async Task<PlusApiResultNotificationDetailVO?> GetNotificationDetailAsync(string notificationId)
         {
@@ -120,7 +160,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 删除消息
+        /// Delete notification
         /// </summary>
         public async Task<PlusApiResultVoid?> DeleteNotificationAsync(string notificationId)
         {
@@ -128,7 +168,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 未读消息统计
+        /// Get unread notification count
         /// </summary>
         public async Task<PlusApiResultMapStringInteger?> GetUnreadCountAsync()
         {
@@ -136,7 +176,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 消息类型
+        /// List notification types
         /// </summary>
         public async Task<PlusApiResultListNotificationTypeVO?> ListNotificationTypesAsync()
         {
@@ -144,7 +184,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 取消订阅
+        /// Unsubscribe topic
         /// </summary>
         public async Task<PlusApiResultVoid?> UnsubscribeTopicAsync(string topic)
         {
@@ -152,7 +192,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 注销推送设备
+        /// Unregister device
         /// </summary>
         public async Task<PlusApiResultVoid?> UnregisterDeviceAsync(string deviceToken)
         {
@@ -160,7 +200,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 清空消息
+        /// Clear notifications
         /// </summary>
         public async Task<PlusApiResultVoid?> ClearAllNotificationsAsync(Dictionary<string, object>? query = null)
         {
@@ -168,7 +208,7 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 批量删除消息
+        /// Batch delete notifications
         /// </summary>
         public async Task<PlusApiResultVoid?> BatchDeleteNotificationsAsync()
         {

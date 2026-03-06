@@ -18,6 +18,11 @@ namespace App.Models
         public double? Discount { get; set; }
         public int? MinConsume { get; set; }
         public string? AcquireAt { get; set; }
+        public string? AcquireRequestNo { get; set; }
+        public string? AcquireType { get; set; }
+        public int? PointCost { get; set; }
+        public bool? PointsRefunded { get; set; }
+        public string? PointsRefundAt { get; set; }
         public string? UseAt { get; set; }
         public string? ExpireAt { get; set; }
         public string? Status { get; set; }

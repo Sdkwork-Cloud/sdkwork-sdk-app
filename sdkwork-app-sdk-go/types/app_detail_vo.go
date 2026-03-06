@@ -15,6 +15,10 @@ type AppDetailVO struct {
 	Status string `json:"status"`
 	ProjectId int `json:"projectId"`
 	Platforms AppPlatforms `json:"platforms"`
+	InstallPlatforms AppPlatforms `json:"installPlatforms"`
+	InstallSkill AppInstallSkill `json:"installSkill"`
+	InstallConfig AppInstallConfig `json:"installConfig"`
+	Config AppConfig `json:"config"`
 	PackageName string `json:"packageName"`
 	BundleId string `json:"bundleId"`
 	StoreUrl string `json:"storeUrl"`

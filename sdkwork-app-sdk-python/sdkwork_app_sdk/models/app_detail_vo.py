@@ -17,6 +17,10 @@ class AppDetailVO:
     status: str = None
     project_id: int = None
     platforms: AppPlatforms = None
+    install_platforms: AppPlatforms = None
+    install_skill: AppInstallSkill = None
+    install_config: AppInstallConfig = None
+    config: AppConfig = None
     package_name: str = None
     bundle_id: str = None
     store_url: str = None

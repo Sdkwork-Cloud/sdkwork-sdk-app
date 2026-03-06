@@ -10,6 +10,14 @@ export interface NoteListQueryRequest {
   sortOrder?: string;
   /** 文件夹ID */
   folderId?: string;
+  /** 磁盘ID */
+  diskId?: string;
   /** 关键词 */
   keyword?: string;
+  /** 是否包含已归档笔记 */
+  includeArchived?: boolean;
+  /** 是否包含已删除笔记 */
+  includeDeleted?: boolean;
+  /** 是否仅返回收藏笔记 */
+  favoriteOnly?: boolean;
 }

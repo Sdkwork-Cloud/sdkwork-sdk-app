@@ -1,6 +1,6 @@
 package types
 
-
+// Prompt enhance request
 type PromptEnhanceRequest struct {
 	Prompt string `json:"prompt"`
 	Scene string `json:"scene"`

@@ -7,121 +7,151 @@ public class NotificationApi {
         self.client = client
     }
 
-    /// 标记已读
+    /// Mark notification as unread
+    public func markAsUnread(notificationId: String) async throws -> PlusApiResultNotificationVO? {
+        let response = try await client.put(ApiPaths.appPath("/notification/\(notificationId)/unread"), body: nil)
+        return response as? PlusApiResultNotificationVO
+    }
+
+    /// Mark notification as read
     public func markAsRead(notificationId: String) async throws -> PlusApiResultNotificationVO? {
         let response = try await client.put(ApiPaths.appPath("/notification/\(notificationId)/read"), body: nil)
         return response as? PlusApiResultNotificationVO
     }
 
-    /// 获取推送设置
+    /// Get notification settings
     public func getNotificationSettings() async throws -> PlusApiResultNotificationSettingsVO? {
         let response = try await client.get(ApiPaths.appPath("/notification/settings"))
         return response as? PlusApiResultNotificationSettingsVO
     }
 
-    /// 更新推送设置
+    /// Update notification settings
     public func updateNotificationSettings(body: NotificationSettingsUpdateForm) async throws -> PlusApiResultNotificationSettingsVO? {
         let response = try await client.put(ApiPaths.appPath("/notification/settings"), body: body)
         return response as? PlusApiResultNotificationSettingsVO
     }
 
-    /// 更新类型推送设置
+    /// Update type settings
     public func updateTypeSettings(type: String, body: NotificationTypeSettingsForm) async throws -> PlusApiResultVoid? {
         let response = try await client.put(ApiPaths.appPath("/notification/settings/\(type)"), body: body)
         return response as? PlusApiResultVoid
     }
 
-    /// 全部标记已读
+    /// Mark all notifications as read
     public func markAllAsRead(params: [String: Any]? = nil) async throws -> PlusApiResultVoid? {
         let response = try await client.put(ApiPaths.appPath("/notification/read/all"), body: nil, params: params)
         return response as? PlusApiResultVoid
     }
 
-    /// 批量标记已读
+    /// Update device status
+    public func updateDeviceStatus(deviceId: String, body: DeviceStatusUpdateForm) async throws -> PlusApiResultDeviceVO? {
+        let response = try await client.put(ApiPaths.appPath("/notification/devices/\(deviceId)/status"), body: body)
+        return response as? PlusApiResultDeviceVO
+    }
+
+    /// Batch mark notifications as read
     public func batchMarkAsRead(body: NotificationBatchReadForm) async throws -> PlusApiResultVoid? {
         let response = try await client.put(ApiPaths.appPath("/notification/batch/read"), body: body)
         return response as? PlusApiResultVoid
     }
 
-    /// 发送测试消息
+    /// Send test notification
     public func sendTest(body: TestNotificationForm) async throws -> PlusApiResultVoid? {
         let response = try await client.post(ApiPaths.appPath("/notification/test"), body: body)
         return response as? PlusApiResultVoid
     }
 
-    /// 订阅列表
+    /// List subscriptions
     public func listSubscriptions() async throws -> PlusApiResultListString? {
         let response = try await client.get(ApiPaths.appPath("/notification/subscriptions"))
         return response as? PlusApiResultListString
     }
 
-    /// 订阅主题
+    /// Subscribe topic
     public func subscribeTopic(body: TopicSubscribeForm) async throws -> PlusApiResultVoid? {
         let response = try await client.post(ApiPaths.appPath("/notification/subscriptions"), body: body)
         return response as? PlusApiResultVoid
     }
 
-    /// 获取设备列表
+    /// List devices
     public func listDevices() async throws -> PlusApiResultListDeviceVO? {
         let response = try await client.get(ApiPaths.appPath("/notification/devices"))
         return response as? PlusApiResultListDeviceVO
     }
 
-    /// 注册推送设备
-    public func registerDevice(body: DeviceRegisterForm) async throws -> PlusApiResultVoid? {
+    /// Register device
+    public func registerDevice(body: DeviceRegisterForm) async throws -> PlusApiResultDeviceVO? {
         let response = try await client.post(ApiPaths.appPath("/notification/devices"), body: body)
-        return response as? PlusApiResultVoid
+        return response as? PlusApiResultDeviceVO
     }
 
-    /// 获取消息列表
+    /// List device messages
+    public func listDeviceMessages(deviceId: String, params: [String: Any]? = nil) async throws -> PlusApiResultListDeviceMessageVO? {
+        let response = try await client.get(ApiPaths.appPath("/notification/devices/\(deviceId)/messages"), params: params)
+        return response as? PlusApiResultListDeviceMessageVO
+    }
+
+    /// Send device message
+    public func sendDeviceMessage(deviceId: String, body: DeviceMessageSendForm) async throws -> PlusApiResultDeviceMessageVO? {
+        let response = try await client.post(ApiPaths.appPath("/notification/devices/\(deviceId)/messages"), body: body)
+        return response as? PlusApiResultDeviceMessageVO
+    }
+
+    /// Control device
+    public func controlDevice(deviceId: String, body: DeviceControlForm) async throws -> PlusApiResultBoolean? {
+        let response = try await client.post(ApiPaths.appPath("/notification/devices/\(deviceId)/control"), body: body)
+        return response as? PlusApiResultBoolean
+    }
+
+    /// List notifications
     public func listNotifications(params: [String: Any]? = nil) async throws -> PlusApiResultPageNotificationVO? {
         let response = try await client.get(ApiPaths.appPath("/notification"), params: params)
         return response as? PlusApiResultPageNotificationVO
     }
 
-    /// 获取消息详情
+    /// Get notification detail
     public func getNotificationDetail(notificationId: String) async throws -> PlusApiResultNotificationDetailVO? {
         let response = try await client.get(ApiPaths.appPath("/notification/\(notificationId)"))
         return response as? PlusApiResultNotificationDetailVO
     }
 
-    /// 删除消息
+    /// Delete notification
     public func deleteNotification(notificationId: String) async throws -> PlusApiResultVoid? {
         let response = try await client.delete(ApiPaths.appPath("/notification/\(notificationId)"))
         return response as? PlusApiResultVoid
     }
 
-    /// 未读消息统计
+    /// Get unread notification count
     public func getUnreadCount() async throws -> PlusApiResultMapStringInteger? {
         let response = try await client.get(ApiPaths.appPath("/notification/unread/count"))
         return response as? PlusApiResultMapStringInteger
     }
 
-    /// 消息类型
+    /// List notification types
     public func listNotificationTypes() async throws -> PlusApiResultListNotificationTypeVO? {
         let response = try await client.get(ApiPaths.appPath("/notification/types"))
         return response as? PlusApiResultListNotificationTypeVO
     }
 
-    /// 取消订阅
+    /// Unsubscribe topic
     public func unsubscribeTopic(topic: String) async throws -> PlusApiResultVoid? {
         let response = try await client.delete(ApiPaths.appPath("/notification/subscriptions/\(topic)"))
         return response as? PlusApiResultVoid
     }
 
-    /// 注销推送设备
+    /// Unregister device
     public func unregisterDevice(deviceToken: String) async throws -> PlusApiResultVoid? {
         let response = try await client.delete(ApiPaths.appPath("/notification/devices/\(deviceToken)"))
         return response as? PlusApiResultVoid
     }
 
-    /// 清空消息
+    /// Clear notifications
     public func clearAllNotifications(params: [String: Any]? = nil) async throws -> PlusApiResultVoid? {
         let response = try await client.delete(ApiPaths.appPath("/notification/clear"), params: params)
         return response as? PlusApiResultVoid
     }
 
-    /// 批量删除消息
+    /// Batch delete notifications
     public func batchDeleteNotifications() async throws -> PlusApiResultVoid? {
         let response = try await client.delete(ApiPaths.appPath("/notification/batch"))
         return response as? PlusApiResultVoid

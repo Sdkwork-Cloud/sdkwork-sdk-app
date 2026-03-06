@@ -3,23 +3,25 @@ package com.sdkwork.app;
 import com.sdkwork.common.core.Types;
 import com.sdkwork.app.http.HttpClient;
 import com.sdkwork.app.api.WorkspacesApi;
-import com.sdkwork.app.api.VoiceSpeakersApi;
+import com.sdkwork.app.api.VoiceSpeakerApi;
 import com.sdkwork.app.api.VideoApi;
-import com.sdkwork.app.api.SettingsApi;
-import com.sdkwork.app.api.ProfileApi;
-import com.sdkwork.app.api.PasswordApi;
-import com.sdkwork.app.api.AddressApi;
+import com.sdkwork.app.api.UserApi;
+import com.sdkwork.app.api.ToolApi;
 import com.sdkwork.app.api.TenantApi;
 import com.sdkwork.app.api.SocialApi;
+import com.sdkwork.app.api.SkillApi;
 import com.sdkwork.app.api.ShopsApi;
 import com.sdkwork.app.api.ShareApi;
+import com.sdkwork.app.api.SettingsApi;
 import com.sdkwork.app.api.AiApi;
 import com.sdkwork.app.api.ProjectsApi;
+import com.sdkwork.app.api.ProductsApi;
 import com.sdkwork.app.api.PartnerApi;
 import com.sdkwork.app.api.NotificationApi;
-import com.sdkwork.app.api.AppApi;
+import com.sdkwork.app.api.NotesApi;
 import com.sdkwork.app.api.NewsApi;
 import com.sdkwork.app.api.MusicApi;
+import com.sdkwork.app.api.KnowledgeDocumentsApi;
 import com.sdkwork.app.api.InvoiceApi;
 import com.sdkwork.app.api.ImageApi;
 import com.sdkwork.app.api.StyleApi;
@@ -27,7 +29,7 @@ import com.sdkwork.app.api.FileSystemApi;
 import com.sdkwork.app.api.FeedbackApi;
 import com.sdkwork.app.api.FavoriteApi;
 import com.sdkwork.app.api.DriveApi;
-import com.sdkwork.app.api.AppDocumentsApi;
+import com.sdkwork.app.api.DocumentsApi;
 import com.sdkwork.app.api.DashboardApi;
 import com.sdkwork.app.api.CollectionApi;
 import com.sdkwork.app.api.ChatApi;
@@ -35,77 +37,59 @@ import com.sdkwork.app.api.CharacterApi;
 import com.sdkwork.app.api.CategoryApi;
 import com.sdkwork.app.api.CartApi;
 import com.sdkwork.app.api.AssetsApi;
+import com.sdkwork.app.api.AppApi;
 import com.sdkwork.app.api.AnnouncementApi;
+import com.sdkwork.app.api.AgentApi;
 import com.sdkwork.app.api.AdvertApi;
+import com.sdkwork.app.api.WalletApi;
 import com.sdkwork.app.api.VoteApi;
 import com.sdkwork.app.api.VipApi;
-import com.sdkwork.app.api.DeactivateApi;
-import com.sdkwork.app.api.BindApi;
-import com.sdkwork.app.api.AvatarApi;
 import com.sdkwork.app.api.UploadApi;
 import com.sdkwork.app.api.SearchApi;
+import com.sdkwork.app.api.RtcApi;
 import com.sdkwork.app.api.PaymentsApi;
 import com.sdkwork.app.api.OrganizationApi;
-import com.sdkwork.app.api.DisableApi;
-import com.sdkwork.app.api.ActivateApi;
-import com.sdkwork.app.api.PositionApi;
-import com.sdkwork.app.api.DepartmentApi;
 import com.sdkwork.app.api.OrdersApi;
-import com.sdkwork.app.api.ModelsApi;
+import com.sdkwork.app.api.ModelApi;
 import com.sdkwork.app.api.HistoryApi;
-import com.sdkwork.app.api.VoiceSpeakerApi;
 import com.sdkwork.app.api.SoundEffectApi;
+import com.sdkwork.app.api.GenerationApi;
 import com.sdkwork.app.api.AudioApi;
 import com.sdkwork.app.api.FeedApi;
 import com.sdkwork.app.api.CurrencyApi;
 import com.sdkwork.app.api.CouponsApi;
 import com.sdkwork.app.api.CommentsApi;
-import com.sdkwork.app.api.SmsApi;
-import com.sdkwork.app.api.RegisterApi;
-import com.sdkwork.app.api.RefreshApi;
-import com.sdkwork.app.api.QrApi;
-import com.sdkwork.app.api.PhoneApi;
-import com.sdkwork.app.api.OauthApi;
-import com.sdkwork.app.api.LogoutApi;
-import com.sdkwork.app.api.LoginApi;
+import com.sdkwork.app.api.AuthApi;
 import com.sdkwork.app.api.AuditApi;
 import com.sdkwork.app.api.AnalyticsApi;
+import com.sdkwork.app.api.AgentMemoryApi;
 import com.sdkwork.app.api.ActivityApi;
 import com.sdkwork.app.api.AccountApi;
 import com.sdkwork.app.api.AbApi;
 import com.sdkwork.app.api.SkuApi;
-import com.sdkwork.app.api.ProductsApi;
-import com.sdkwork.app.api.PositionsApi;
-import com.sdkwork.app.api.MembersApi;
-import com.sdkwork.app.api.DepartmentsApi;
-import com.sdkwork.app.api.ChildrenApi;
-import com.sdkwork.app.api.StatisticsApi;
-import com.sdkwork.app.api.MemberApi;
-import com.sdkwork.app.api.ListApi;
-import com.sdkwork.app.api.CodeApi;
-import com.sdkwork.app.api.AuthApi;
-import com.sdkwork.app.api.GenerationApi;
 
 public class SdkworkAppClient {
     private final HttpClient httpClient;
     private WorkspacesApi workspaces;
-    private VoiceSpeakersApi voiceSpeakers;
+    private VoiceSpeakerApi voiceSpeaker;
     private VideoApi video;
-    private SettingsApi settings;
-    private ProfileApi profile;
-    private PasswordApi password;
-    private AddressApi address;
+    private UserApi user;
+    private ToolApi tool;
     private TenantApi tenant;
     private SocialApi social;
+    private SkillApi skill;
     private ShopsApi shops;
     private ShareApi share;
+    private SettingsApi settings;
     private AiApi ai;
     private ProjectsApi projects;
+    private ProductsApi products;
     private PartnerApi partner;
     private NotificationApi notification;
-    private AppApi app;
+    private NotesApi notes;
     private NewsApi news;
     private MusicApi music;
+    private KnowledgeDocumentsApi knowledgeDocuments;
     private InvoiceApi invoice;
     private ImageApi image;
     private StyleApi style;
@@ -113,7 +97,7 @@ public class SdkworkAppClient {
     private FeedbackApi feedback;
     private FavoriteApi favorite;
     private DriveApi drive;
-    private AppDocumentsApi appDocuments;
+    private DocumentsApi documents;
     private DashboardApi dashboard;
     private CollectionApi collection;
     private ChatApi chat;
@@ -121,77 +105,59 @@ public class SdkworkAppClient {
     private CategoryApi category;
     private CartApi cart;
     private AssetsApi assets;
+    private AppApi app;
     private AnnouncementApi announcement;
+    private AgentApi agent;
     private AdvertApi advert;
+    private WalletApi wallet;
     private VoteApi vote;
     private VipApi vip;
-    private DeactivateApi deactivate;
-    private BindApi bind;
-    private AvatarApi avatar;
     private UploadApi upload;
     private SearchApi search;
+    private RtcApi rtc;
     private PaymentsApi payments;
     private OrganizationApi organization;
-    private DisableApi disable;
-    private ActivateApi activate;
-    private PositionApi position;
-    private DepartmentApi department;
     private OrdersApi orders;
-    private ModelsApi models;
+    private ModelApi model;
     private HistoryApi history;
-    private VoiceSpeakerApi voiceSpeaker;
     private SoundEffectApi soundEffect;
+    private GenerationApi generation;
     private AudioApi audio;
     private FeedApi feed;
     private CurrencyApi currency;
     private CouponsApi coupons;
     private CommentsApi comments;
-    private SmsApi sms;
-    private RegisterApi register;
-    private RefreshApi refresh;
-    private QrApi qr;
-    private PhoneApi phone;
-    private OauthApi oauth;
-    private LogoutApi logout;
-    private LoginApi login;
+    private AuthApi auth;
     private AuditApi audit;
     private AnalyticsApi analytics;
+    private AgentMemoryApi agentMemory;
     private ActivityApi activity;
     private AccountApi account;
     private AbApi ab;
     private SkuApi sku;
-    private ProductsApi products;
-    private PositionsApi positions;
-    private MembersApi members;
-    private DepartmentsApi departments;
-    private ChildrenApi children;
-    private StatisticsApi statistics;
-    private MemberApi member;
-    private ListApi list;
-    private CodeApi code;
-    private AuthApi auth;
-    private GenerationApi generation;
 
     public SdkworkAppClient(String baseUrl) {
         this.httpClient = new HttpClient(baseUrl);
         this.workspaces = new WorkspacesApi(httpClient);
-        this.voiceSpeakers = new VoiceSpeakersApi(httpClient);
+        this.voiceSpeaker = new VoiceSpeakerApi(httpClient);
         this.video = new VideoApi(httpClient);
-        this.settings = new SettingsApi(httpClient);
-        this.profile = new ProfileApi(httpClient);
-        this.password = new PasswordApi(httpClient);
-        this.address = new AddressApi(httpClient);
+        this.user = new UserApi(httpClient);
+        this.tool = new ToolApi(httpClient);
         this.tenant = new TenantApi(httpClient);
         this.social = new SocialApi(httpClient);
+        this.skill = new SkillApi(httpClient);
         this.shops = new ShopsApi(httpClient);
         this.share = new ShareApi(httpClient);
+        this.settings = new SettingsApi(httpClient);
         this.ai = new AiApi(httpClient);
         this.projects = new ProjectsApi(httpClient);
+        this.products = new ProductsApi(httpClient);
         this.partner = new PartnerApi(httpClient);
         this.notification = new NotificationApi(httpClient);
-        this.app = new AppApi(httpClient);
+        this.notes = new NotesApi(httpClient);
         this.news = new NewsApi(httpClient);
         this.music = new MusicApi(httpClient);
+        this.knowledgeDocuments = new KnowledgeDocumentsApi(httpClient);
         this.invoice = new InvoiceApi(httpClient);
         this.image = new ImageApi(httpClient);
         this.style = new StyleApi(httpClient);
@@ -199,7 +165,7 @@ public class SdkworkAppClient {
         this.feedback = new FeedbackApi(httpClient);
         this.favorite = new FavoriteApi(httpClient);
         this.drive = new DriveApi(httpClient);
-        this.appDocuments = new AppDocumentsApi(httpClient);
+        this.documents = new DocumentsApi(httpClient);
         this.dashboard = new DashboardApi(httpClient);
         this.collection = new CollectionApi(httpClient);
         this.chat = new ChatApi(httpClient);
@@ -207,78 +173,60 @@ public class SdkworkAppClient {
         this.category = new CategoryApi(httpClient);
         this.cart = new CartApi(httpClient);
         this.assets = new AssetsApi(httpClient);
+        this.app = new AppApi(httpClient);
         this.announcement = new AnnouncementApi(httpClient);
+        this.agent = new AgentApi(httpClient);
         this.advert = new AdvertApi(httpClient);
+        this.wallet = new WalletApi(httpClient);
         this.vote = new VoteApi(httpClient);
         this.vip = new VipApi(httpClient);
-        this.deactivate = new DeactivateApi(httpClient);
-        this.bind = new BindApi(httpClient);
-        this.avatar = new AvatarApi(httpClient);
         this.upload = new UploadApi(httpClient);
         this.search = new SearchApi(httpClient);
+        this.rtc = new RtcApi(httpClient);
         this.payments = new PaymentsApi(httpClient);
         this.organization = new OrganizationApi(httpClient);
-        this.disable = new DisableApi(httpClient);
-        this.activate = new ActivateApi(httpClient);
-        this.position = new PositionApi(httpClient);
-        this.department = new DepartmentApi(httpClient);
         this.orders = new OrdersApi(httpClient);
-        this.models = new ModelsApi(httpClient);
+        this.model = new ModelApi(httpClient);
         this.history = new HistoryApi(httpClient);
-        this.voiceSpeaker = new VoiceSpeakerApi(httpClient);
         this.soundEffect = new SoundEffectApi(httpClient);
+        this.generation = new GenerationApi(httpClient);
         this.audio = new AudioApi(httpClient);
         this.feed = new FeedApi(httpClient);
         this.currency = new CurrencyApi(httpClient);
         this.coupons = new CouponsApi(httpClient);
         this.comments = new CommentsApi(httpClient);
-        this.sms = new SmsApi(httpClient);
-        this.register = new RegisterApi(httpClient);
-        this.refresh = new RefreshApi(httpClient);
-        this.qr = new QrApi(httpClient);
-        this.phone = new PhoneApi(httpClient);
-        this.oauth = new OauthApi(httpClient);
-        this.logout = new LogoutApi(httpClient);
-        this.login = new LoginApi(httpClient);
+        this.auth = new AuthApi(httpClient);
         this.audit = new AuditApi(httpClient);
         this.analytics = new AnalyticsApi(httpClient);
+        this.agentMemory = new AgentMemoryApi(httpClient);
         this.activity = new ActivityApi(httpClient);
         this.account = new AccountApi(httpClient);
         this.ab = new AbApi(httpClient);
         this.sku = new SkuApi(httpClient);
-        this.products = new ProductsApi(httpClient);
-        this.positions = new PositionsApi(httpClient);
-        this.members = new MembersApi(httpClient);
-        this.departments = new DepartmentsApi(httpClient);
-        this.children = new ChildrenApi(httpClient);
-        this.statistics = new StatisticsApi(httpClient);
-        this.member = new MemberApi(httpClient);
-        this.list = new ListApi(httpClient);
-        this.code = new CodeApi(httpClient);
-        this.auth = new AuthApi(httpClient);
-        this.generation = new GenerationApi(httpClient);
     }
 
     public SdkworkAppClient(Types.SdkConfig config) {
         this.httpClient = new HttpClient(config);
         this.workspaces = new WorkspacesApi(httpClient);
-        this.voiceSpeakers = new VoiceSpeakersApi(httpClient);
+        this.voiceSpeaker = new VoiceSpeakerApi(httpClient);
         this.video = new VideoApi(httpClient);
-        this.settings = new SettingsApi(httpClient);
-        this.profile = new ProfileApi(httpClient);
-        this.password = new PasswordApi(httpClient);
-        this.address = new AddressApi(httpClient);
+        this.user = new UserApi(httpClient);
+        this.tool = new ToolApi(httpClient);
         this.tenant = new TenantApi(httpClient);
         this.social = new SocialApi(httpClient);
+        this.skill = new SkillApi(httpClient);
         this.shops = new ShopsApi(httpClient);
         this.share = new ShareApi(httpClient);
+        this.settings = new SettingsApi(httpClient);
         this.ai = new AiApi(httpClient);
         this.projects = new ProjectsApi(httpClient);
+        this.products = new ProductsApi(httpClient);
         this.partner = new PartnerApi(httpClient);
         this.notification = new NotificationApi(httpClient);
-        this.app = new AppApi(httpClient);
+        this.notes = new NotesApi(httpClient);
         this.news = new NewsApi(httpClient);
         this.music = new MusicApi(httpClient);
+        this.knowledgeDocuments = new KnowledgeDocumentsApi(httpClient);
         this.invoice = new InvoiceApi(httpClient);
         this.image = new ImageApi(httpClient);
         this.style = new StyleApi(httpClient);
@@ -286,7 +234,7 @@ public class SdkworkAppClient {
         this.feedback = new FeedbackApi(httpClient);
         this.favorite = new FavoriteApi(httpClient);
         this.drive = new DriveApi(httpClient);
-        this.appDocuments = new AppDocumentsApi(httpClient);
+        this.documents = new DocumentsApi(httpClient);
         this.dashboard = new DashboardApi(httpClient);
         this.collection = new CollectionApi(httpClient);
         this.chat = new ChatApi(httpClient);
@@ -294,84 +242,56 @@ public class SdkworkAppClient {
         this.category = new CategoryApi(httpClient);
         this.cart = new CartApi(httpClient);
         this.assets = new AssetsApi(httpClient);
+        this.app = new AppApi(httpClient);
         this.announcement = new AnnouncementApi(httpClient);
+        this.agent = new AgentApi(httpClient);
         this.advert = new AdvertApi(httpClient);
+        this.wallet = new WalletApi(httpClient);
         this.vote = new VoteApi(httpClient);
         this.vip = new VipApi(httpClient);
-        this.deactivate = new DeactivateApi(httpClient);
-        this.bind = new BindApi(httpClient);
-        this.avatar = new AvatarApi(httpClient);
         this.upload = new UploadApi(httpClient);
         this.search = new SearchApi(httpClient);
+        this.rtc = new RtcApi(httpClient);
         this.payments = new PaymentsApi(httpClient);
         this.organization = new OrganizationApi(httpClient);
-        this.disable = new DisableApi(httpClient);
-        this.activate = new ActivateApi(httpClient);
-        this.position = new PositionApi(httpClient);
-        this.department = new DepartmentApi(httpClient);
         this.orders = new OrdersApi(httpClient);
-        this.models = new ModelsApi(httpClient);
+        this.model = new ModelApi(httpClient);
         this.history = new HistoryApi(httpClient);
-        this.voiceSpeaker = new VoiceSpeakerApi(httpClient);
         this.soundEffect = new SoundEffectApi(httpClient);
+        this.generation = new GenerationApi(httpClient);
         this.audio = new AudioApi(httpClient);
         this.feed = new FeedApi(httpClient);
         this.currency = new CurrencyApi(httpClient);
         this.coupons = new CouponsApi(httpClient);
         this.comments = new CommentsApi(httpClient);
-        this.sms = new SmsApi(httpClient);
-        this.register = new RegisterApi(httpClient);
-        this.refresh = new RefreshApi(httpClient);
-        this.qr = new QrApi(httpClient);
-        this.phone = new PhoneApi(httpClient);
-        this.oauth = new OauthApi(httpClient);
-        this.logout = new LogoutApi(httpClient);
-        this.login = new LoginApi(httpClient);
+        this.auth = new AuthApi(httpClient);
         this.audit = new AuditApi(httpClient);
         this.analytics = new AnalyticsApi(httpClient);
+        this.agentMemory = new AgentMemoryApi(httpClient);
         this.activity = new ActivityApi(httpClient);
         this.account = new AccountApi(httpClient);
         this.ab = new AbApi(httpClient);
         this.sku = new SkuApi(httpClient);
-        this.products = new ProductsApi(httpClient);
-        this.positions = new PositionsApi(httpClient);
-        this.members = new MembersApi(httpClient);
-        this.departments = new DepartmentsApi(httpClient);
-        this.children = new ChildrenApi(httpClient);
-        this.statistics = new StatisticsApi(httpClient);
-        this.member = new MemberApi(httpClient);
-        this.list = new ListApi(httpClient);
-        this.code = new CodeApi(httpClient);
-        this.auth = new AuthApi(httpClient);
-        this.generation = new GenerationApi(httpClient);
     }
 
     public WorkspacesApi getWorkspaces() {
         return this.workspaces;
     }
 
-    public VoiceSpeakersApi getVoiceSpeakers() {
-        return this.voiceSpeakers;
+    public VoiceSpeakerApi getVoiceSpeaker() {
+        return this.voiceSpeaker;
     }
 
     public VideoApi getVideo() {
         return this.video;
     }
 
-    public SettingsApi getSettings() {
-        return this.settings;
+    public UserApi getUser() {
+        return this.user;
     }
 
-    public ProfileApi getProfile() {
-        return this.profile;
-    }
-
-    public PasswordApi getPassword() {
-        return this.password;
-    }
-
-    public AddressApi getAddress() {
-        return this.address;
+    public ToolApi getTool() {
+        return this.tool;
     }
 
     public TenantApi getTenant() {
@@ -382,12 +302,20 @@ public class SdkworkAppClient {
         return this.social;
     }
 
+    public SkillApi getSkill() {
+        return this.skill;
+    }
+
     public ShopsApi getShops() {
         return this.shops;
     }
 
     public ShareApi getShare() {
         return this.share;
+    }
+
+    public SettingsApi getSettings() {
+        return this.settings;
     }
 
     public AiApi getAi() {
@@ -398,6 +326,10 @@ public class SdkworkAppClient {
         return this.projects;
     }
 
+    public ProductsApi getProducts() {
+        return this.products;
+    }
+
     public PartnerApi getPartner() {
         return this.partner;
     }
@@ -406,8 +338,8 @@ public class SdkworkAppClient {
         return this.notification;
     }
 
-    public AppApi getApp() {
-        return this.app;
+    public NotesApi getNotes() {
+        return this.notes;
     }
 
     public NewsApi getNews() {
@@ -416,6 +348,10 @@ public class SdkworkAppClient {
 
     public MusicApi getMusic() {
         return this.music;
+    }
+
+    public KnowledgeDocumentsApi getKnowledgeDocuments() {
+        return this.knowledgeDocuments;
     }
 
     public InvoiceApi getInvoice() {
@@ -446,8 +382,8 @@ public class SdkworkAppClient {
         return this.drive;
     }
 
-    public AppDocumentsApi getAppDocuments() {
-        return this.appDocuments;
+    public DocumentsApi getDocuments() {
+        return this.documents;
     }
 
     public DashboardApi getDashboard() {
@@ -478,12 +414,24 @@ public class SdkworkAppClient {
         return this.assets;
     }
 
+    public AppApi getApp() {
+        return this.app;
+    }
+
     public AnnouncementApi getAnnouncement() {
         return this.announcement;
     }
 
+    public AgentApi getAgent() {
+        return this.agent;
+    }
+
     public AdvertApi getAdvert() {
         return this.advert;
+    }
+
+    public WalletApi getWallet() {
+        return this.wallet;
     }
 
     public VoteApi getVote() {
@@ -494,24 +442,16 @@ public class SdkworkAppClient {
         return this.vip;
     }
 
-    public DeactivateApi getDeactivate() {
-        return this.deactivate;
-    }
-
-    public BindApi getBind() {
-        return this.bind;
-    }
-
-    public AvatarApi getAvatar() {
-        return this.avatar;
-    }
-
     public UploadApi getUpload() {
         return this.upload;
     }
 
     public SearchApi getSearch() {
         return this.search;
+    }
+
+    public RtcApi getRtc() {
+        return this.rtc;
     }
 
     public PaymentsApi getPayments() {
@@ -522,40 +462,24 @@ public class SdkworkAppClient {
         return this.organization;
     }
 
-    public DisableApi getDisable() {
-        return this.disable;
-    }
-
-    public ActivateApi getActivate() {
-        return this.activate;
-    }
-
-    public PositionApi getPosition() {
-        return this.position;
-    }
-
-    public DepartmentApi getDepartment() {
-        return this.department;
-    }
-
     public OrdersApi getOrders() {
         return this.orders;
     }
 
-    public ModelsApi getModels() {
-        return this.models;
+    public ModelApi getModel() {
+        return this.model;
     }
 
     public HistoryApi getHistory() {
         return this.history;
     }
 
-    public VoiceSpeakerApi getVoiceSpeaker() {
-        return this.voiceSpeaker;
-    }
-
     public SoundEffectApi getSoundEffect() {
         return this.soundEffect;
+    }
+
+    public GenerationApi getGeneration() {
+        return this.generation;
     }
 
     public AudioApi getAudio() {
@@ -578,36 +502,8 @@ public class SdkworkAppClient {
         return this.comments;
     }
 
-    public SmsApi getSms() {
-        return this.sms;
-    }
-
-    public RegisterApi getRegister() {
-        return this.register;
-    }
-
-    public RefreshApi getRefresh() {
-        return this.refresh;
-    }
-
-    public QrApi getQr() {
-        return this.qr;
-    }
-
-    public PhoneApi getPhone() {
-        return this.phone;
-    }
-
-    public OauthApi getOauth() {
-        return this.oauth;
-    }
-
-    public LogoutApi getLogout() {
-        return this.logout;
-    }
-
-    public LoginApi getLogin() {
-        return this.login;
+    public AuthApi getAuth() {
+        return this.auth;
     }
 
     public AuditApi getAudit() {
@@ -616,6 +512,10 @@ public class SdkworkAppClient {
 
     public AnalyticsApi getAnalytics() {
         return this.analytics;
+    }
+
+    public AgentMemoryApi getAgentMemory() {
+        return this.agentMemory;
     }
 
     public ActivityApi getActivity() {
@@ -632,50 +532,6 @@ public class SdkworkAppClient {
 
     public SkuApi getSku() {
         return this.sku;
-    }
-
-    public ProductsApi getProducts() {
-        return this.products;
-    }
-
-    public PositionsApi getPositions() {
-        return this.positions;
-    }
-
-    public MembersApi getMembers() {
-        return this.members;
-    }
-
-    public DepartmentsApi getDepartments() {
-        return this.departments;
-    }
-
-    public ChildrenApi getChildren() {
-        return this.children;
-    }
-
-    public StatisticsApi getStatistics() {
-        return this.statistics;
-    }
-
-    public MemberApi getMember() {
-        return this.member;
-    }
-
-    public ListApi getList() {
-        return this.list;
-    }
-
-    public CodeApi getCode() {
-        return this.code;
-    }
-
-    public AuthApi getAuth() {
-        return this.auth;
-    }
-
-    public GenerationApi getGeneration() {
-        return this.generation;
     }
 
     public SdkworkAppClient setApiKey(String apiKey) {

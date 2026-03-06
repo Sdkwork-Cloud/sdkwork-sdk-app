@@ -7,4 +7,5 @@ class NoteCreateRequest:
     title: str = None
     content: str = None
     folder_id: str = None
+    disk_id: str = None
     tags: List[str] = None

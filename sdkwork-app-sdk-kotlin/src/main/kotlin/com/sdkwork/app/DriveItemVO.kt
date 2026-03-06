@@ -16,6 +16,7 @@ data class DriveItemVO(
     val path: String? = null,
     val objectKey: String? = null,
     val status: String? = null,
+    val favorited: Boolean? = null,
     val resource: FileMediaResource? = null,
     val coverImage: ImageMediaResource? = null
 )

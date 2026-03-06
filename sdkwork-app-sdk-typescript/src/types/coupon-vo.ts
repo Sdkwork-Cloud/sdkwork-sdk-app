@@ -8,7 +8,7 @@ export interface CouponVO {
   couponId?: string;
   /** 优惠券名称 */
   name?: string;
-  /** 优惠券类型: DISCOUNT-折扣券, CASH-代金券, GIFT-礼品券 */
+  /** 优惠券类型: DISCOUNT-折扣券, CASH-代金券, GIFT-礼品券, POINTS_EXCHANGE-积分兑换券 */
   type?: string;
   /** 类型名称 */
   typeName?: string;
@@ -16,6 +16,8 @@ export interface CouponVO {
   description?: string;
   /** 优惠金额(分) */
   amount?: number;
+  /** 兑换所需积分，0表示免费领取 */
+  pointCost?: number;
   /** 折扣率 */
   discount?: number;
   /** 最低消费金额(分) */
@@ -32,18 +34,20 @@ export interface CouponVO {
   receivedCount?: number;
   /** 已使用数量 */
   usedCount?: number;
-  /** 状态: ACTIVE-有效, INACTIVE-无效, DELETED-已删除 */
+  /** 状态: UNUSED-可领, INACTIVE-不可用, USED/EXPIRED-历史状态 */
   status?: string;
   /** 状态名称 */
   statusName?: string;
   /** 是否可叠加 */
   stackable?: boolean;
   /** 适用范围类型 */
-  scopeType?: number;
+  scopeType?: 'DEFAULT' | 'ALL' | 'VIP_ONLY' | 'CUSTOM';
   /** 适用范围值 */
   scopeValue?: string;
   /** 剩余数量 */
   remainingCount?: number;
   /** 是否可领取 */
   canReceive?: boolean;
+  /** 是否支持积分兑换 */
+  pointsExchange?: boolean;
 }

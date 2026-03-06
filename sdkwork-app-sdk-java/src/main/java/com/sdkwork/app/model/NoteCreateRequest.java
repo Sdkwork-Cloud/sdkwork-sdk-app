@@ -4,6 +4,7 @@ public class NoteCreateRequest {
     private String title;
     private String content;
     private String folderId;
+    private String diskId;
     private List<String> tags;
 
     public String getTitle() {
@@ -28,6 +29,14 @@ public class NoteCreateRequest {
     
     public void setFolderId(String folderId) {
         this.folderId = folderId;
+    }
+
+    public String getDiskId() {
+        return this.diskId;
+    }
+    
+    public void setDiskId(String diskId) {
+        this.diskId = diskId;
     }
 
     public List<String> getTags() {

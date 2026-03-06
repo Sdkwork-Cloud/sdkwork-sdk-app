@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { BrowseHistoryAddForm, PlusApiResultBrowseStatisticsVO, PlusApiResultHistoryStatisticsVO, PlusApiResultListGenerationHistoryVO, PlusApiResultListOperationHistoryVO, PlusApiResultListSessionInfoVO, PlusApiResultPageBrowseHistoryVO, PlusApiResultPageGenerationHistoryVO, PlusApiResultPageLoginHistoryVO, PlusApiResultPageMapStringObject, PlusApiResultPageOperationHistoryVO, PlusApiResultSessionInfoVO, PlusApiResultVoid } from '../types';
+import type { BrowseHistoryAddForm, PlusApiResultBrowseStatisticsVO, PlusApiResultHistoryStatisticsVO, PlusApiResultListGenerationHistoryVO, PlusApiResultListOperationHistoryVO, PlusApiResultListSessionInfoVO, PlusApiResultPageBrowseHistoryVO, PlusApiResultPageGenerationHistoryVO, PlusApiResultPageLoginHistoryVO, PlusApiResultPageOperationHistoryVO, PlusApiResultSessionInfoVO, PlusApiResultVoid } from '../types';
 
 
 export class HistoryApi {
@@ -24,16 +24,6 @@ export class HistoryApi {
 /** 清空浏览历史 */
   async clearBrowse(params?: QueryParams): Promise<PlusApiResultVoid> {
     return this.client.delete<PlusApiResultVoid>(appApiPath(`/history/browse`), params);
-  }
-
-/** 获取登录历史 */
-  async getLogin(params?: QueryParams): Promise<PlusApiResultPageMapStringObject> {
-    return this.client.get<PlusApiResultPageMapStringObject>(appApiPath(`/user/history/login`), params);
-  }
-
-/** 获取生成历史 */
-  async getGeneration(params?: QueryParams): Promise<PlusApiResultPageMapStringObject> {
-    return this.client.get<PlusApiResultPageMapStringObject>(appApiPath(`/user/history/generations`), params);
   }
 
 /** 历史统计 */

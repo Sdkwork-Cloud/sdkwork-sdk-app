@@ -5,16 +5,6 @@ import com.sdkwork.app.http.HttpClient
 
 class SettingsApi(private val client: HttpClient) {
 
-    /** 获取用户设置 */
-    suspend fun getUser(): PlusApiResultUserSettingsVO? {
-        return client.get(ApiPaths.appPath("/user/settings")) as? PlusApiResultUserSettingsVO
-    }
-
-    /** 更新用户设置 */
-    suspend fun updateUser(body: UserSettingsUpdateForm): PlusApiResultUserSettingsVO? {
-        return client.put(ApiPaths.appPath("/user/settings"), body) as? PlusApiResultUserSettingsVO
-    }
-
     /** 获取模块设置 */
     suspend fun getModule(module: String): PlusApiResultMapStringObject? {
         return client.get(ApiPaths.appPath("/settings/$module")) as? PlusApiResultMapStringObject

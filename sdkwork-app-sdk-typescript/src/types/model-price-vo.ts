@@ -1,27 +1,61 @@
-/** 模型价格响应 */
+/** Model pricing rule */
 export interface ModelPriceVO {
   /** 创建时间 */
   createdAt?: string;
   /** 更新时间 */
   updatedAt?: string;
-  /** 模型标识 */
+  /** Model alias */
   model?: string;
-  /** 计量单位 */
+  /** Model id */
+  modelId?: number;
+  /** Canonical model key */
+  modelKey?: string;
+  /** Channel */
+  channel?: string;
+  /** Product code */
+  productCode?: string;
+  /** Feature code */
+  featureCode?: string;
+  /** Billing type */
+  billingType?: string;
+  /** Price item type */
+  priceItemType?: string;
+  /** Tier name */
+  tierName?: string;
+  /** Rule priority */
+  rulePriority?: number;
+  /** Unit */
   unit?: string;
-  /** 货币 */
+  /** Unit size */
+  unitSize?: number;
+  /** Currency */
   currency?: string;
-  /** 基础价格 */
+  /** Base price */
   price?: number;
-  /** 输入价格 */
+  /** Input price */
   inputPrice?: number;
-  /** 输出价格 */
+  /** Output price */
   outputPrice?: number;
-  /** 批量输入价格 */
+  /** Batch input price */
   batchInputPrice?: number;
-  /** 批量输出价格 */
+  /** Batch output price */
   batchOutputPrice?: number;
-  /** 缓存输入价格 */
+  /** Cached input price */
   cachedInputPrice?: number;
-  /** 批量缓存输入价格 */
+  /** Batch cached input price */
   batchCachedInputPrice?: number;
+  /** Min usage */
+  minUsage?: number;
+  /** Max usage */
+  maxUsage?: number;
+  /** Effective from */
+  effectiveFrom?: string;
+  /** Effective to */
+  effectiveTo?: string;
+  /** Is default rule */
+  defaultRule?: boolean;
+  /** Rule status */
+  status?: string;
+  /** Rule metadata */
+  metadata?: Record<string, unknown>;
 }

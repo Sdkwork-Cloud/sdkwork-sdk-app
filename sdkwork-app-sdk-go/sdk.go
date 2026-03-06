@@ -8,23 +8,25 @@ import (
 type SdkworkAppClient struct {
     http *sdkhttp.Client
     Workspaces *api.WorkspacesApi
-    VoiceSpeakers *api.VoiceSpeakersApi
+    VoiceSpeaker *api.VoiceSpeakerApi
     Video *api.VideoApi
-    Settings *api.SettingsApi
-    Profile *api.ProfileApi
-    Password *api.PasswordApi
-    Address *api.AddressApi
+    User *api.UserApi
+    Tool *api.ToolApi
     Tenant *api.TenantApi
     Social *api.SocialApi
+    Skill *api.SkillApi
     Shops *api.ShopsApi
     Share *api.ShareApi
+    Settings *api.SettingsApi
     Ai *api.AiApi
     Projects *api.ProjectsApi
+    Products *api.ProductsApi
     Partner *api.PartnerApi
     Notification *api.NotificationApi
-    App *api.AppApi
+    Notes *api.NotesApi
     News *api.NewsApi
     Music *api.MusicApi
+    KnowledgeDocuments *api.KnowledgeDocumentsApi
     Invoice *api.InvoiceApi
     Image *api.ImageApi
     Style *api.StyleApi
@@ -32,7 +34,7 @@ type SdkworkAppClient struct {
     Feedback *api.FeedbackApi
     Favorite *api.FavoriteApi
     Drive *api.DriveApi
-    AppDocuments *api.AppDocumentsApi
+    Documents *api.DocumentsApi
     Dashboard *api.DashboardApi
     Collection *api.CollectionApi
     Chat *api.ChatApi
@@ -40,56 +42,36 @@ type SdkworkAppClient struct {
     Category *api.CategoryApi
     Cart *api.CartApi
     Assets *api.AssetsApi
+    App *api.AppApi
     Announcement *api.AnnouncementApi
+    Agent *api.AgentApi
     Advert *api.AdvertApi
+    Wallet *api.WalletApi
     Vote *api.VoteApi
     Vip *api.VipApi
-    Deactivate *api.DeactivateApi
-    Bind *api.BindApi
-    Avatar *api.AvatarApi
     Upload *api.UploadApi
     Search *api.SearchApi
+    Rtc *api.RtcApi
     Payments *api.PaymentsApi
     Organization *api.OrganizationApi
-    Disable *api.DisableApi
-    Activate *api.ActivateApi
-    Position *api.PositionApi
-    Department *api.DepartmentApi
     Orders *api.OrdersApi
-    Models *api.ModelsApi
+    Model *api.ModelApi
     History *api.HistoryApi
-    VoiceSpeaker *api.VoiceSpeakerApi
     SoundEffect *api.SoundEffectApi
+    Generation *api.GenerationApi
     Audio *api.AudioApi
     Feed *api.FeedApi
     Currency *api.CurrencyApi
     Coupons *api.CouponsApi
     Comments *api.CommentsApi
-    Sms *api.SmsApi
-    Register *api.RegisterApi
-    Refresh *api.RefreshApi
-    Qr *api.QrApi
-    Phone *api.PhoneApi
-    Oauth *api.OauthApi
-    Logout *api.LogoutApi
-    Login *api.LoginApi
+    Auth *api.AuthApi
     Audit *api.AuditApi
     Analytics *api.AnalyticsApi
+    AgentMemory *api.AgentMemoryApi
     Activity *api.ActivityApi
     Account *api.AccountApi
     Ab *api.AbApi
     Sku *api.SkuApi
-    Products *api.ProductsApi
-    Positions *api.PositionsApi
-    Members *api.MembersApi
-    Departments *api.DepartmentsApi
-    Children *api.ChildrenApi
-    Statistics *api.StatisticsApi
-    Member *api.MemberApi
-    List *api.ListApi
-    Code *api.CodeApi
-    Auth *api.AuthApi
-    Generation *api.GenerationApi
 }
 
 func NewSdkworkAppClient(baseURL string) *SdkworkAppClient {
@@ -102,23 +84,25 @@ func NewSdkworkAppClientWithConfig(config sdkhttp.Config) *SdkworkAppClient {
     return &SdkworkAppClient{
         http: client,
         Workspaces: api.NewWorkspacesApi(client),
-        VoiceSpeakers: api.NewVoiceSpeakersApi(client),
+        VoiceSpeaker: api.NewVoiceSpeakerApi(client),
         Video: api.NewVideoApi(client),
-        Settings: api.NewSettingsApi(client),
-        Profile: api.NewProfileApi(client),
-        Password: api.NewPasswordApi(client),
-        Address: api.NewAddressApi(client),
+        User: api.NewUserApi(client),
+        Tool: api.NewToolApi(client),
         Tenant: api.NewTenantApi(client),
         Social: api.NewSocialApi(client),
+        Skill: api.NewSkillApi(client),
         Shops: api.NewShopsApi(client),
         Share: api.NewShareApi(client),
+        Settings: api.NewSettingsApi(client),
         Ai: api.NewAiApi(client),
         Projects: api.NewProjectsApi(client),
+        Products: api.NewProductsApi(client),
         Partner: api.NewPartnerApi(client),
         Notification: api.NewNotificationApi(client),
-        App: api.NewAppApi(client),
+        Notes: api.NewNotesApi(client),
         News: api.NewNewsApi(client),
         Music: api.NewMusicApi(client),
+        KnowledgeDocuments: api.NewKnowledgeDocumentsApi(client),
         Invoice: api.NewInvoiceApi(client),
         Image: api.NewImageApi(client),
         Style: api.NewStyleApi(client),
@@ -126,7 +110,7 @@ func NewSdkworkAppClientWithConfig(config sdkhttp.Config) *SdkworkAppClient {
         Feedback: api.NewFeedbackApi(client),
         Favorite: api.NewFavoriteApi(client),
         Drive: api.NewDriveApi(client),
-        AppDocuments: api.NewAppDocumentsApi(client),
+        Documents: api.NewDocumentsApi(client),
         Dashboard: api.NewDashboardApi(client),
         Collection: api.NewCollectionApi(client),
         Chat: api.NewChatApi(client),
@@ -134,56 +118,36 @@ func NewSdkworkAppClientWithConfig(config sdkhttp.Config) *SdkworkAppClient {
         Category: api.NewCategoryApi(client),
         Cart: api.NewCartApi(client),
         Assets: api.NewAssetsApi(client),
+        App: api.NewAppApi(client),
         Announcement: api.NewAnnouncementApi(client),
+        Agent: api.NewAgentApi(client),
         Advert: api.NewAdvertApi(client),
+        Wallet: api.NewWalletApi(client),
         Vote: api.NewVoteApi(client),
         Vip: api.NewVipApi(client),
-        Deactivate: api.NewDeactivateApi(client),
-        Bind: api.NewBindApi(client),
-        Avatar: api.NewAvatarApi(client),
         Upload: api.NewUploadApi(client),
         Search: api.NewSearchApi(client),
+        Rtc: api.NewRtcApi(client),
         Payments: api.NewPaymentsApi(client),
         Organization: api.NewOrganizationApi(client),
-        Disable: api.NewDisableApi(client),
-        Activate: api.NewActivateApi(client),
-        Position: api.NewPositionApi(client),
-        Department: api.NewDepartmentApi(client),
         Orders: api.NewOrdersApi(client),
-        Models: api.NewModelsApi(client),
+        Model: api.NewModelApi(client),
         History: api.NewHistoryApi(client),
-        VoiceSpeaker: api.NewVoiceSpeakerApi(client),
         SoundEffect: api.NewSoundEffectApi(client),
+        Generation: api.NewGenerationApi(client),
         Audio: api.NewAudioApi(client),
         Feed: api.NewFeedApi(client),
         Currency: api.NewCurrencyApi(client),
         Coupons: api.NewCouponsApi(client),
         Comments: api.NewCommentsApi(client),
-        Sms: api.NewSmsApi(client),
-        Register: api.NewRegisterApi(client),
-        Refresh: api.NewRefreshApi(client),
-        Qr: api.NewQrApi(client),
-        Phone: api.NewPhoneApi(client),
-        Oauth: api.NewOauthApi(client),
-        Logout: api.NewLogoutApi(client),
-        Login: api.NewLoginApi(client),
+        Auth: api.NewAuthApi(client),
         Audit: api.NewAuditApi(client),
         Analytics: api.NewAnalyticsApi(client),
+        AgentMemory: api.NewAgentMemoryApi(client),
         Activity: api.NewActivityApi(client),
         Account: api.NewAccountApi(client),
         Ab: api.NewAbApi(client),
         Sku: api.NewSkuApi(client),
-        Products: api.NewProductsApi(client),
-        Positions: api.NewPositionsApi(client),
-        Members: api.NewMembersApi(client),
-        Departments: api.NewDepartmentsApi(client),
-        Children: api.NewChildrenApi(client),
-        Statistics: api.NewStatisticsApi(client),
-        Member: api.NewMemberApi(client),
-        List: api.NewListApi(client),
-        Code: api.NewCodeApi(client),
-        Auth: api.NewAuthApi(client),
-        Generation: api.NewGenerationApi(client),
     }
 }
 

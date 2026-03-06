@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { PlusApiResultCouponStatisticsVO, PlusApiResultCouponVO, PlusApiResultPageCouponVO, PlusApiResultPageUserCouponVO, PlusApiResultUserCouponVO } from '../types';
+import type { CouponPointsExchangeForm, CouponRedeemForm, CouponRollbackForm, PlusApiResultCouponStatisticsVO, PlusApiResultCouponVO, PlusApiResultPageCouponVO, PlusApiResultPageUserCouponVO, PlusApiResultUserCouponVO } from '../types';
 
 
 export class CouponsApi {
@@ -16,9 +16,24 @@ export class CouponsApi {
     return this.client.post<PlusApiResultUserCouponVO>(appApiPath(`/coupons/${couponId}/receive`));
   }
 
+/** 积分兑换优惠券 */
+  async exchangeCouponByPoints(couponId: string | number, body: CouponPointsExchangeForm): Promise<PlusApiResultUserCouponVO> {
+    return this.client.post<PlusApiResultUserCouponVO>(appApiPath(`/coupons/${couponId}/exchange/points`), body);
+  }
+
+/** 兑换优惠券 */
+  async redeemCoupon(body: CouponRedeemForm): Promise<PlusApiResultUserCouponVO> {
+    return this.client.post<PlusApiResultUserCouponVO>(appApiPath(`/coupons/redeem`), body);
+  }
+
 /** 使用优惠券 */
   async useCoupon(userCouponId: string | number, params?: QueryParams): Promise<PlusApiResultUserCouponVO> {
     return this.client.post<PlusApiResultUserCouponVO>(appApiPath(`/coupons/my/${userCouponId}/use`), undefined, params);
+  }
+
+/** 回滚积分兑换优惠券 */
+  async rollbackPointsExchangeCoupon(userCouponId: string | number, body?: CouponRollbackForm): Promise<PlusApiResultUserCouponVO> {
+    return this.client.post<PlusApiResultUserCouponVO>(appApiPath(`/coupons/my/${userCouponId}/rollback`), body);
   }
 
 /** 取消使用优惠券 */

@@ -57,6 +57,11 @@ public class OrdersApi {
         return (PlusApiResultOrderStatusVO) client.get(ApiPaths.appPath("/orders/" + orderId + "/status"));
     }
 
+    /** 查询订单是否支付成功 */
+    public PlusApiResultOrderPaymentSuccessVO getOrderPaymentSuccess(String orderId) throws Exception {
+        return (PlusApiResultOrderPaymentSuccessVO) client.get(ApiPaths.appPath("/orders/" + orderId + "/payment-success"));
+    }
+
     /** 获取订单统计 */
     public PlusApiResultOrderStatisticsVO getOrderStatistics() throws Exception {
         return (PlusApiResultOrderStatisticsVO) client.get(ApiPaths.appPath("/orders/statistics"));

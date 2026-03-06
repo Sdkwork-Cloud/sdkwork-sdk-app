@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK App typescript Integration"
-  short_description: "Integrate sdkwork-app-sdk-typescript with staged progressive loading."
-  default_prompt: "Use $sdkwork-app-typescript-integration to integrate sdkwork-app-sdk-typescript into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

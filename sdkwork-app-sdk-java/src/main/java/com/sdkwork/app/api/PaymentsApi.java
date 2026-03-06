@@ -22,6 +22,11 @@ public class PaymentsApi {
         return (PlusApiResultVoid) client.post(ApiPaths.appPath("/payments/" + paymentId + "/close"), null);
     }
 
+    /** 补单/对账 */
+    public PlusApiResultPaymentStatusVO reconcilePayment(PaymentReconcileForm body) throws Exception {
+        return (PlusApiResultPaymentStatusVO) client.post(ApiPaths.appPath("/payments/reconcile"), body);
+    }
+
     /** 通用支付回调 */
     public PaymentCallbackResponse paymentCallback(String provider, PaymentCallbackRequest body) throws Exception {
         return (PaymentCallbackResponse) client.post(ApiPaths.appPath("/payments/callback/" + provider + ""), body);

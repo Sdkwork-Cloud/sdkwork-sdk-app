@@ -10,9 +10,24 @@ class CouponsApi(private val client: HttpClient) {
         return client.post(ApiPaths.appPath("/coupons/$couponId/receive"), null) as? PlusApiResultUserCouponVO
     }
 
+    /** 积分兑换优惠券 */
+    suspend fun exchangeCouponByPoints(couponId: String, body: CouponPointsExchangeForm): PlusApiResultUserCouponVO? {
+        return client.post(ApiPaths.appPath("/coupons/$couponId/exchange/points"), body) as? PlusApiResultUserCouponVO
+    }
+
+    /** 兑换优惠券 */
+    suspend fun redeemCoupon(body: CouponRedeemForm): PlusApiResultUserCouponVO? {
+        return client.post(ApiPaths.appPath("/coupons/redeem"), body) as? PlusApiResultUserCouponVO
+    }
+
     /** 使用优惠券 */
     suspend fun useCoupon(userCouponId: String, params: Map<String, Any>? = null): PlusApiResultUserCouponVO? {
         return client.post(ApiPaths.appPath("/coupons/my/$userCouponId/use"), null, params) as? PlusApiResultUserCouponVO
+    }
+
+    /** 回滚积分兑换优惠券 */
+    suspend fun rollbackPointsExchangeCoupon(userCouponId: String, body: CouponRollbackForm? = null): PlusApiResultUserCouponVO? {
+        return client.post(ApiPaths.appPath("/coupons/my/$userCouponId/rollback"), body) as? PlusApiResultUserCouponVO
     }
 
     /** 取消使用优惠券 */

@@ -8,3 +8,4 @@ class AppCreateForm:
     description: str = None
     app_type: str = None
     project_id: int = None
+    install_skill: AppInstallSkill

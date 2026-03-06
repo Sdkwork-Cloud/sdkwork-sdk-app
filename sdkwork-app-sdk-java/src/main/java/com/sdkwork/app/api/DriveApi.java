@@ -12,6 +12,11 @@ public class DriveApi {
         this.client = client;
     }
 
+    /** Restore drive item */
+    public PlusApiResultDriveItemVO restoreItem(String itemId) throws Exception {
+        return (PlusApiResultDriveItemVO) client.put(ApiPaths.appPath("/drive/items/" + itemId + "/restore"), null);
+    }
+
     /** Rename drive item */
     public PlusApiResultDriveItemVO renameItem(String itemId, DriveRenameForm body) throws Exception {
         return (PlusApiResultDriveItemVO) client.put(ApiPaths.appPath("/drive/items/" + itemId + "/rename"), body);
@@ -30,6 +35,21 @@ public class DriveApi {
     /** Update drive file content */
     public PlusApiResultDriveContentVO updateItemContent(String itemId, DriveContentUpdateForm body) throws Exception {
         return (PlusApiResultDriveContentVO) client.put(ApiPaths.appPath("/drive/items/" + itemId + "/content"), body);
+    }
+
+    /** Archive drive item */
+    public PlusApiResultDriveItemVO archiveItem(String itemId) throws Exception {
+        return (PlusApiResultDriveItemVO) client.put(ApiPaths.appPath("/drive/items/" + itemId + "/archive"), null);
+    }
+
+    /** Favorite drive item */
+    public PlusApiResultDriveItemVO favoriteItem(String itemId) throws Exception {
+        return (PlusApiResultDriveItemVO) client.post(ApiPaths.appPath("/drive/items/" + itemId + "/favorite"), null);
+    }
+
+    /** Unfavorite drive item */
+    public PlusApiResultDriveItemVO unfavoriteItem(String itemId) throws Exception {
+        return (PlusApiResultDriveItemVO) client.delete(ApiPaths.appPath("/drive/items/" + itemId + "/favorite"));
     }
 
     /** Copy drive item */

@@ -17,9 +17,34 @@ public class SocialApi {
         return (PlusApiResultVoid) client.put(ApiPaths.appPath("/social/messages/read"), null, params);
     }
 
+    /** 处理好友申请 */
+    public PlusApiResultFriendRequestVO processFriendRequest(String requestId, FriendRequestProcessForm body) throws Exception {
+        return (PlusApiResultFriendRequestVO) client.put(ApiPaths.appPath("/social/friend-requests/" + requestId + "/process"), body);
+    }
+
+    /** 更新联系人分组 */
+    public PlusApiResultContactGroupVO updateContactGroup(String groupId, ContactGroupUpdateForm body) throws Exception {
+        return (PlusApiResultContactGroupVO) client.put(ApiPaths.appPath("/social/contact-groups/" + groupId + ""), body);
+    }
+
+    /** 删除联系人分组 */
+    public PlusApiResultVoid deleteContactGroup(String groupId) throws Exception {
+        return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/social/contact-groups/" + groupId + ""));
+    }
+
     /** 发送私信 */
     public PlusApiResultPrivateMessageVO sendMessage(SendMessageForm body) throws Exception {
         return (PlusApiResultPrivateMessageVO) client.post(ApiPaths.appPath("/social/messages"), body);
+    }
+
+    /** 获取好友申请列表 */
+    public PlusApiResultListFriendRequestVO listFriendRequests() throws Exception {
+        return (PlusApiResultListFriendRequestVO) client.get(ApiPaths.appPath("/social/friend-requests"));
+    }
+
+    /** 发送好友申请 */
+    public PlusApiResultFriendRequestVO sendFriendRequest(FriendRequestCreateForm body) throws Exception {
+        return (PlusApiResultFriendRequestVO) client.post(ApiPaths.appPath("/social/friend-requests"), body);
     }
 
     /** 关注用户 */
@@ -37,6 +62,16 @@ public class SocialApi {
         return (PlusApiResultListFollowCheckVO) client.post(ApiPaths.appPath("/social/follow/check/batch"), body);
     }
 
+    /** 获取联系人分组 */
+    public PlusApiResultListContactGroupVO listContactGroups() throws Exception {
+        return (PlusApiResultListContactGroupVO) client.get(ApiPaths.appPath("/social/contact-groups"));
+    }
+
+    /** 创建联系人分组 */
+    public PlusApiResultContactGroupVO createContactGroup(ContactGroupCreateForm body) throws Exception {
+        return (PlusApiResultContactGroupVO) client.post(ApiPaths.appPath("/social/contact-groups"), body);
+    }
+
     /** 拉黑用户 */
     public PlusApiResultVoid blockUser(String userId) throws Exception {
         return (PlusApiResultVoid) client.post(ApiPaths.appPath("/social/block/" + userId + ""), null);
@@ -45,6 +80,11 @@ public class SocialApi {
     /** 取消拉黑 */
     public PlusApiResultVoid unblockUser(String userId) throws Exception {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/social/block/" + userId + ""));
+    }
+
+    /** 更新好友备注 */
+    public PlusApiResultVoid updateFriendRemark(String contactId, FriendRemarkUpdateForm body) throws Exception {
+        return (PlusApiResultVoid) client.patch(ApiPaths.appPath("/social/contacts/" + contactId + "/remark"), body);
     }
 
     /** 获取关注统计 */
@@ -80,6 +120,26 @@ public class SocialApi {
     /** 获取会话消息 */
     public PlusApiResultPagePrivateMessageVO getConversationMessages(String userId, Map<String, Object> params) throws Exception {
         return (PlusApiResultPagePrivateMessageVO) client.get(ApiPaths.appPath("/social/conversations/" + userId + "/messages"), params);
+    }
+
+    /** 获取联系人列表 */
+    public PlusApiResultListContactFriendVO listContacts(Map<String, Object> params) throws Exception {
+        return (PlusApiResultListContactFriendVO) client.get(ApiPaths.appPath("/social/contacts"), params);
+    }
+
+    /** 获取联系人详情 */
+    public PlusApiResultContactFriendVO getContactDetail(String contactId) throws Exception {
+        return (PlusApiResultContactFriendVO) client.get(ApiPaths.appPath("/social/contacts/" + contactId + ""));
+    }
+
+    /** 删除联系人 */
+    public PlusApiResultVoid deleteContact(String contactId) throws Exception {
+        return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/social/contacts/" + contactId + ""));
+    }
+
+    /** 获取联系人统计 */
+    public PlusApiResultContactStatsVO getContactStats() throws Exception {
+        return (PlusApiResultContactStatsVO) client.get(ApiPaths.appPath("/social/contacts/stats"));
     }
 
     /** 获取黑名单 */

@@ -1,63 +1,72 @@
 import type { ModelLimitInfo } from './model-limit-info';
 import type { ModelMetadata } from './model-metadata';
 import type { ModelPrice } from './model-price';
+import type { ModelPriceVO } from './model-price-vo';
 import type { SceneContent } from './scene-content';
 import type { TagsContent } from './tags-content';
 
-/** 模型详情响应 */
+/** Model detail response */
 export interface ModelInfoDetailVO {
-  /** 创建时间 */
+  /** Created at */
   createdAt?: string;
-  /** 更新时间 */
+  /** Updated at */
   updatedAt?: string;
-  /** 模型ID */
+  /** Model id */
   modelId?: string;
-  /** 模型标识 */
+  /** Canonical model key */
+  modelKey?: string;
+  /** Model alias */
   model?: string;
-  /** 模型名称 */
+  /** Vendor model key */
+  vendorModel?: string;
+  /** Model name */
   name?: string;
-  /** 模型描述 */
+  /** Model description */
   description?: string;
-  /** 渠道 */
+  /** Channel */
   channel?: string;
-  /** 供应商 */
+  /** Vendor */
   vendor?: string;
-  /** 模型类型 */
+  /** Model type */
   modelType?: string;
-  /** 模型系列 */
+  /** Model family */
   family?: string;
-  /** 版本 */
+  /** Version */
   version?: string;
-  /** 是否开源 */
+  /** Whether open source */
   openSource?: boolean;
-  /** API端点 */
+  /** API endpoint */
   apiEndpoint?: string;
-  /** 所有者 */
+  /** Owner */
   ownedBy?: string;
-  /** 使用场景 */
+  /** Scenes */
   scenes?: SceneContent;
-  /** 标签 */
+  /** Tags */
   tags?: TagsContent;
-  /** 限制信息 */
+  /** Limit info */
   limitInfo?: ModelLimitInfo;
-  /** 价格信息 */
+  /** Model price info */
   priceInfo?: ModelPrice;
-  /** 元数据 */
+  /** Metadata */
   metadata?: ModelMetadata;
-  /** 默认温度 */
+  /** Product support and parameter constraints */
+  productSupportInfo?: Record<string, unknown>;
+  /** Pricing rules */
+  priceRules?: ModelPriceVO[];
+  /** Default temperature */
   defaultTemperature?: number;
-  /** 默认TopP */
+  /** Default top_p */
   defaultTopP?: number;
-  /** 默认频率惩罚 */
+  /** Default frequency penalty */
   defaultFrequencyPenalty?: number;
-  /** 默认存在惩罚 */
+  /** Default presence penalty */
   defaultPresencePenalty?: number;
-  /** 状态 */
+  /** Status */
   status?: string;
-  /** 使用次数 */
+  /** Usage count */
   usageCount?: number;
-  /** 总Token数 */
+  /** Total tokens */
   totalTokens?: number;
-  /** 平均响应时间 */
+  /** Average response time */
   avgResponseTime?: number;
 }

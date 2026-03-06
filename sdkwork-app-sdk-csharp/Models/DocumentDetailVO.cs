@@ -17,6 +17,7 @@ namespace App.Models
         public string? Description { get; set; }
         public List<string>? Tags { get; set; }
         public string? Status { get; set; }
+        public bool? Favorited { get; set; }
         public string? Summary { get; set; }
         public int? WordCount { get; set; }
         public int? CharCount { get; set; }

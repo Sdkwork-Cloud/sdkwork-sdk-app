@@ -4,4 +4,5 @@ export interface PaymentStatisticsVO {
   successPayments?: number;
   failedPayments?: number;
   closedPayments?: number;
+  timeoutPayments?: number;
 }

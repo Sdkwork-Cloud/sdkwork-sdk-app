@@ -1,20 +1,12 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import DataExportForm, LanguageSwitchForm, PasswordChangeForm, PlusApiResultAppConfigVO, PlusApiResultAppVersionVO, PlusApiResultDataExportVO, PlusApiResultMapStringBoolean, PlusApiResultMapStringObject, PlusApiResultPrivacySettingsVO, PlusApiResultSecuritySettingsVO, PlusApiResultTwoFactorSetupVO, PlusApiResultUISettingsVO, PlusApiResultUserSettingsVO, PlusApiResultVoid, PrivacySettingsUpdateForm, SecuritySettingsUpdateForm, SettingsUpdateForm, ThemeSwitchForm, TwoFactorToggleForm, UISettingsUpdateForm, UserSettingsUpdateForm
+from ..models import DataExportForm, LanguageSwitchForm, PasswordChangeForm, PlusApiResultAppConfigVO, PlusApiResultAppVersionVO, PlusApiResultDataExportVO, PlusApiResultMapStringBoolean, PlusApiResultMapStringObject, PlusApiResultPrivacySettingsVO, PlusApiResultSecuritySettingsVO, PlusApiResultTwoFactorSetupVO, PlusApiResultUISettingsVO, PlusApiResultVoid, PrivacySettingsUpdateForm, SecuritySettingsUpdateForm, SettingsUpdateForm, ThemeSwitchForm, TwoFactorToggleForm, UISettingsUpdateForm
 
 class SettingsApi:
     """settings API client."""
     
     def __init__(self, client: HttpClient):
         self._client = client
-
-    def get_user(self) -> PlusApiResultUserSettingsVO:
-        """获取用户设置"""
-        return self._client.get(f"/app/v3/api/user/settings")
-
-    def update_user(self, body: UserSettingsUpdateForm) -> PlusApiResultUserSettingsVO:
-        """更新用户设置"""
-        return self._client.put(f"/app/v3/api/user/settings", json=body)
 
     def get_module(self, module: str) -> PlusApiResultMapStringObject:
         """获取模块设置"""

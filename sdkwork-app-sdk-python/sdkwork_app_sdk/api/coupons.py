@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import PlusApiResultCouponStatisticsVO, PlusApiResultCouponVO, PlusApiResultPageCouponVO, PlusApiResultPageUserCouponVO, PlusApiResultUserCouponVO
+from ..models import CouponPointsExchangeForm, CouponRedeemForm, CouponRollbackForm, PlusApiResultCouponStatisticsVO, PlusApiResultCouponVO, PlusApiResultPageCouponVO, PlusApiResultPageUserCouponVO, PlusApiResultUserCouponVO
 
 class CouponsApi:
     """coupons API client."""
@@ -12,9 +12,21 @@ class CouponsApi:
         """领取优惠券"""
         return self._client.post(f"/app/v3/api/coupons/{couponId}/receive")
 
+    def exchange_coupon_by_points(self, couponId: str, body: CouponPointsExchangeForm) -> PlusApiResultUserCouponVO:
+        """积分兑换优惠券"""
+        return self._client.post(f"/app/v3/api/coupons/{couponId}/exchange/points", json=body)
+
+    def redeem_coupon(self, body: CouponRedeemForm) -> PlusApiResultUserCouponVO:
+        """兑换优惠券"""
+        return self._client.post(f"/app/v3/api/coupons/redeem", json=body)
+
     def use_coupon(self, userCouponId: str, params: Optional[Dict[str, Any]] = None) -> PlusApiResultUserCouponVO:
         """使用优惠券"""
         return self._client.post(f"/app/v3/api/coupons/my/{userCouponId}/use", params=params)
+
+    def rollback_points_exchange_coupon(self, userCouponId: str, body: Optional[CouponRollbackForm] = None) -> PlusApiResultUserCouponVO:
+        """回滚积分兑换优惠券"""
+        return self._client.post(f"/app/v3/api/coupons/my/{userCouponId}/rollback", json=body)
 
     def cancel_use_coupon(self, userCouponId: str) -> PlusApiResultUserCouponVO:
         """取消使用优惠券"""

@@ -15,6 +15,11 @@ class PaymentsApi(private val client: HttpClient) {
         return client.post(ApiPaths.appPath("/payments/$paymentId/close"), null) as? PlusApiResultVoid
     }
 
+    /** 补单/对账 */
+    suspend fun reconcilePayment(body: PaymentReconcileForm): PlusApiResultPaymentStatusVO? {
+        return client.post(ApiPaths.appPath("/payments/reconcile"), body) as? PlusApiResultPaymentStatusVO
+    }
+
     /** 通用支付回调 */
     suspend fun paymentCallback(provider: String, body: PaymentCallbackRequest): PaymentCallbackResponse? {
         return client.post(ApiPaths.appPath("/payments/callback/$provider"), body) as? PaymentCallbackResponse

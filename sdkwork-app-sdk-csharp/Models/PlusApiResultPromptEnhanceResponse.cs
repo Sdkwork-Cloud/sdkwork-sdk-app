@@ -6,10 +6,12 @@ namespace App.Models
 {
     public class PlusApiResultPromptEnhanceResponse
     {
-        public int? Code { get; set; }
-        public string? Msg { get; set; }
         public PromptEnhanceResponse? Data { get; set; }
-        public string? Timestamp { get; set; }
-        public string? TraceId { get; set; }
+        public string? Code { get; set; }
+        public string? Msg { get; set; }
+        public string? RequestId { get; set; }
+        public string? Ip { get; set; }
+        public string? Hostname { get; set; }
+        public string? ErrorName { get; set; }
     }
 }

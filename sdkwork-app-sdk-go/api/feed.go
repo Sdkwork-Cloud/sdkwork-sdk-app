@@ -14,7 +14,17 @@ func NewFeedApi(client *sdkhttp.Client) *FeedApi {
     return &FeedApi{client: client}
 }
 
-// 取消点赞Feed
+// Create feed
+func (a *FeedApi) Create(body sdktypes.FeedCreateForm) (sdktypes.PlusApiResultFeedItemVO, error) {
+    raw, err := a.client.Post(AppApiPath("/feeds"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultFeedItemVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
+}
+
+// Unlike feed
 func (a *FeedApi) Unlike(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/feeds/unlike/%s", id)), nil, nil, nil, "")
     if err != nil {
@@ -24,7 +34,7 @@ func (a *FeedApi) Unlike(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 取消收藏Feed
+// Uncollect feed
 func (a *FeedApi) Uncollect(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/feeds/uncollect/%s", id)), nil, nil, nil, "")
     if err != nil {
@@ -34,7 +44,7 @@ func (a *FeedApi) Uncollect(id string) (sdktypes.PlusApiResultFeedItemVO, error)
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 分享Feed
+// Share feed
 func (a *FeedApi) Share(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/feeds/share/%s", id)), nil, nil, nil, "")
     if err != nil {
@@ -44,7 +54,7 @@ func (a *FeedApi) Share(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 点赞Feed
+// Like feed
 func (a *FeedApi) Like(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/feeds/like/%s", id)), nil, nil, nil, "")
     if err != nil {
@@ -54,7 +64,7 @@ func (a *FeedApi) Like(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 收藏Feed
+// Collect feed
 func (a *FeedApi) Collect(id string, query map[string]interface{}) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/feeds/collect/%s", id)), nil, query, nil, "")
     if err != nil {
@@ -64,7 +74,7 @@ func (a *FeedApi) Collect(id string, query map[string]interface{}) (sdktypes.Plu
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 获取置顶Feed
+// Get top feeds
 func (a *FeedApi) GetTopFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/top"), query, nil)
     if err != nil {
@@ -74,7 +84,7 @@ func (a *FeedApi) GetTopFeeds(query map[string]interface{}) (sdktypes.PlusApiRes
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 搜索Feed
+// Search feeds
 func (a *FeedApi) SearchFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/search"), query, nil)
     if err != nil {
@@ -84,7 +94,7 @@ func (a *FeedApi) SearchFeeds(query map[string]interface{}) (sdktypes.PlusApiRes
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取推荐Feed
+// Get recommended feeds
 func (a *FeedApi) GetRecommendedFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/recommend"), query, nil)
     if err != nil {
@@ -94,7 +104,7 @@ func (a *FeedApi) GetRecommendedFeeds(query map[string]interface{}) (sdktypes.Pl
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取最多浏览Feed
+// Get most viewed feeds
 func (a *FeedApi) GetMostViewedFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/most-viewed"), query, nil)
     if err != nil {
@@ -104,7 +114,7 @@ func (a *FeedApi) GetMostViewedFeeds(query map[string]interface{}) (sdktypes.Plu
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取最多点赞Feed
+// Get most liked feeds
 func (a *FeedApi) GetMostLikedFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/most-liked"), query, nil)
     if err != nil {
@@ -114,7 +124,7 @@ func (a *FeedApi) GetMostLikedFeeds(query map[string]interface{}) (sdktypes.Plus
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取Feed列表
+// Get feed list
 func (a *FeedApi) GetFeedList(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/list"), query, nil)
     if err != nil {
@@ -124,7 +134,7 @@ func (a *FeedApi) GetFeedList(query map[string]interface{}) (sdktypes.PlusApiRes
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取热门Feed
+// Get hot feeds
 func (a *FeedApi) GetHotFeeds(query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath("/feeds/hot"), query, nil)
     if err != nil {
@@ -134,7 +144,7 @@ func (a *FeedApi) GetHotFeeds(query map[string]interface{}) (sdktypes.PlusApiRes
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
 }
 
-// 获取Feed详情
+// Get feed detail
 func (a *FeedApi) GetFeedDetail(id string) (sdktypes.PlusApiResultFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/feeds/detail/%s", id)), nil, nil)
     if err != nil {
@@ -144,7 +154,7 @@ func (a *FeedApi) GetFeedDetail(id string) (sdktypes.PlusApiResultFeedItemVO, er
     return decodeResult[sdktypes.PlusApiResultFeedItemVO](raw)
 }
 
-// 检查收藏状态
+// Check collected status
 func (a *FeedApi) CheckCollected(id string) (sdktypes.PlusApiResultBoolean, error) {
     raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/feeds/check-collected/%s", id)), nil, nil)
     if err != nil {
@@ -154,7 +164,7 @@ func (a *FeedApi) CheckCollected(id string) (sdktypes.PlusApiResultBoolean, erro
     return decodeResult[sdktypes.PlusApiResultBoolean](raw)
 }
 
-// 获取分类Feed
+// Get feeds by category
 func (a *FeedApi) GetFeedsByCategory(categoryId string, query map[string]interface{}) (sdktypes.PlusApiResultListFeedItemVO, error) {
     raw, err := a.client.Get(AppApiPath(fmt.Sprintf("/feeds/category/%s", categoryId)), query, nil)
     if err != nil {
@@ -162,4 +172,14 @@ func (a *FeedApi) GetFeedsByCategory(categoryId string, query map[string]interfa
         return zero, err
     }
     return decodeResult[sdktypes.PlusApiResultListFeedItemVO](raw)
+}
+
+// Delete feed
+func (a *FeedApi) Delete(id string) (sdktypes.PlusApiResultBoolean, error) {
+    raw, err := a.client.Delete(AppApiPath(fmt.Sprintf("/feeds/%s", id)), nil, nil)
+    if err != nil {
+        var zero sdktypes.PlusApiResultBoolean
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultBoolean](raw)
 }

@@ -34,6 +34,16 @@ func (a *PaymentsApi) ClosePayment(paymentId string) (sdktypes.PlusApiResultVoid
     return decodeResult[sdktypes.PlusApiResultVoid](raw)
 }
 
+// 补单/对账
+func (a *PaymentsApi) ReconcilePayment(body sdktypes.PaymentReconcileForm) (sdktypes.PlusApiResultPaymentStatusVO, error) {
+    raw, err := a.client.Post(AppApiPath("/payments/reconcile"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultPaymentStatusVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultPaymentStatusVO](raw)
+}
+
 // 通用支付回调
 func (a *PaymentsApi) PaymentCallback(provider string, body sdktypes.PaymentCallbackRequest) (sdktypes.PaymentCallbackResponse, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/payments/callback/%s", provider)), body, nil, nil, "")

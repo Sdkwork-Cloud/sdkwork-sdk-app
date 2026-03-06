@@ -1,7 +1,7 @@
 import { appApiPath } from './paths';
 import type { HttpClient } from '../http/client';
 import type { QueryParams } from '../types/common';
-import type { DataExportForm, LanguageSwitchForm, PasswordChangeForm, PlusApiResultAppConfigVO, PlusApiResultAppVersionVO, PlusApiResultDataExportVO, PlusApiResultMapStringBoolean, PlusApiResultMapStringObject, PlusApiResultPrivacySettingsVO, PlusApiResultSecuritySettingsVO, PlusApiResultTwoFactorSetupVO, PlusApiResultUISettingsVO, PlusApiResultUserSettingsVO, PlusApiResultVoid, PrivacySettingsUpdateForm, SecuritySettingsUpdateForm, SettingsUpdateForm, ThemeSwitchForm, TwoFactorToggleForm, UISettingsUpdateForm, UserSettingsUpdateForm } from '../types';
+import type { DataExportForm, LanguageSwitchForm, PasswordChangeForm, PlusApiResultAppConfigVO, PlusApiResultAppVersionVO, PlusApiResultDataExportVO, PlusApiResultMapStringBoolean, PlusApiResultMapStringObject, PlusApiResultPrivacySettingsVO, PlusApiResultSecuritySettingsVO, PlusApiResultTwoFactorSetupVO, PlusApiResultUISettingsVO, PlusApiResultVoid, PrivacySettingsUpdateForm, SecuritySettingsUpdateForm, SettingsUpdateForm, ThemeSwitchForm, TwoFactorToggleForm, UISettingsUpdateForm } from '../types';
 
 
 export class SettingsApi {
@@ -9,16 +9,6 @@ export class SettingsApi {
   
   constructor(client: HttpClient) { 
     this.client = client; 
-  }
-
-/** 获取用户设置 */
-  async getUser(): Promise<PlusApiResultUserSettingsVO> {
-    return this.client.get<PlusApiResultUserSettingsVO>(appApiPath(`/user/settings`));
-  }
-
-/** 更新用户设置 */
-  async updateUser(body: UserSettingsUpdateForm): Promise<PlusApiResultUserSettingsVO> {
-    return this.client.put<PlusApiResultUserSettingsVO>(appApiPath(`/user/settings`), body);
   }
 
 /** 获取模块设置 */

@@ -4,10 +4,10 @@ import type { OrderItemForm } from './order-item-form';
 export interface OrderCreateForm {
   /** 订单类型 */
   orderType: string;
-  /** 商品ID */
-  productId: string;
-  /** 数量 */
-  quantity: number;
+  /** 商品ID（单商品下单时必填） */
+  productId?: string;
+  /** 数量（单商品下单时可选，默认1） */
+  quantity?: number;
   /** 商品列表 */
   items?: OrderItemForm[];
   /** 收货地址ID */
@@ -22,4 +22,5 @@ export interface OrderCreateForm {
   sourceChannel?: string;
   /** 充值积分 */
   rechargePoints?: number;
+  orderPayloadValid?: boolean;
 }

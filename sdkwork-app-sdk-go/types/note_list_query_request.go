@@ -7,5 +7,9 @@ type NoteListQueryRequest struct {
 	SortField string `json:"sortField"`
 	SortOrder string `json:"sortOrder"`
 	FolderId string `json:"folderId"`
+	DiskId string `json:"diskId"`
 	Keyword string `json:"keyword"`
+	IncludeArchived bool `json:"includeArchived"`
+	IncludeDeleted bool `json:"includeDeleted"`
+	FavoriteOnly bool `json:"favoriteOnly"`
 }

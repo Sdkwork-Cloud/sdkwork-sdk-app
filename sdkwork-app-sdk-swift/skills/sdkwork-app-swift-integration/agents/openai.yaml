@@ -1,8 +1,0 @@
-interface:
-  display_name: "SDKWORK App swift Integration"
-  short_description: "Integrate sdkwork-app-sdk-swift with staged progressive loading."
-  default_prompt: "Use $sdkwork-app-swift-integration to integrate sdkwork-app-sdk-swift into my application with staged progressive loading."
-
-policy:
-  allow_implicit_invocation: true
-

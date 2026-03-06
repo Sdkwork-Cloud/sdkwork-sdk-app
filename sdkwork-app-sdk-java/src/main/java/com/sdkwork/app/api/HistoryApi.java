@@ -27,16 +27,6 @@ public class HistoryApi {
         return (PlusApiResultVoid) client.delete(ApiPaths.appPath("/history/browse"), params);
     }
 
-    /** 获取登录历史 */
-    public PlusApiResultPageMapStringObject getLogin(Map<String, Object> params) throws Exception {
-        return (PlusApiResultPageMapStringObject) client.get(ApiPaths.appPath("/user/history/login"), params);
-    }
-
-    /** 获取生成历史 */
-    public PlusApiResultPageMapStringObject getGeneration(Map<String, Object> params) throws Exception {
-        return (PlusApiResultPageMapStringObject) client.get(ApiPaths.appPath("/user/history/generations"), params);
-    }
-
     /** 历史统计 */
     public PlusApiResultHistoryStatisticsVO getHistoryStatistics() throws Exception {
         return (PlusApiResultHistoryStatisticsVO) client.get(ApiPaths.appPath("/history/statistics"));

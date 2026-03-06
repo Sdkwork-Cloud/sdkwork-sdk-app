@@ -12,5 +12,6 @@ data class AppVO(
     val version: String? = null,
     val appType: String? = null,
     val status: String? = null,
-    val projectId: Int? = null
+    val projectId: Int? = null,
+    val installSkill: AppInstallSkill? = null
 )

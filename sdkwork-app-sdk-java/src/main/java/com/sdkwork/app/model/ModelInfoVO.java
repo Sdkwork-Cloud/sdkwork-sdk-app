@@ -4,7 +4,9 @@ public class ModelInfoVO {
     private String createdAt;
     private String updatedAt;
     private String modelId;
+    private String modelKey;
     private String model;
+    private String vendorModel;
     private String name;
     private String description;
     private String channel;
@@ -39,12 +41,28 @@ public class ModelInfoVO {
         this.modelId = modelId;
     }
 
+    public String getModelKey() {
+        return this.modelKey;
+    }
+    
+    public void setModelKey(String modelKey) {
+        this.modelKey = modelKey;
+    }
+
     public String getModel() {
         return this.model;
     }
     
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getVendorModel() {
+        return this.vendorModel;
+    }
+    
+    public void setVendorModel(String vendorModel) {
+        this.vendorModel = vendorModel;
     }
 
     public String getName() {

@@ -24,9 +24,39 @@ func (a *CouponsApi) ReceiveCoupon(couponId string) (sdktypes.PlusApiResultUserC
     return decodeResult[sdktypes.PlusApiResultUserCouponVO](raw)
 }
 
+// 积分兑换优惠券
+func (a *CouponsApi) ExchangeCouponByPoints(couponId string, body sdktypes.CouponPointsExchangeForm) (sdktypes.PlusApiResultUserCouponVO, error) {
+    raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/coupons/%s/exchange/points", couponId)), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultUserCouponVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultUserCouponVO](raw)
+}
+
+// 兑换优惠券
+func (a *CouponsApi) RedeemCoupon(body sdktypes.CouponRedeemForm) (sdktypes.PlusApiResultUserCouponVO, error) {
+    raw, err := a.client.Post(AppApiPath("/coupons/redeem"), body, nil, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultUserCouponVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultUserCouponVO](raw)
+}
+
 // 使用优惠券
 func (a *CouponsApi) UseCoupon(userCouponId string, query map[string]interface{}) (sdktypes.PlusApiResultUserCouponVO, error) {
     raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/coupons/my/%s/use", userCouponId)), nil, query, nil, "")
+    if err != nil {
+        var zero sdktypes.PlusApiResultUserCouponVO
+        return zero, err
+    }
+    return decodeResult[sdktypes.PlusApiResultUserCouponVO](raw)
+}
+
+// 回滚积分兑换优惠券
+func (a *CouponsApi) RollbackPointsExchangeCoupon(userCouponId string, body *sdktypes.CouponRollbackForm) (sdktypes.PlusApiResultUserCouponVO, error) {
+    raw, err := a.client.Post(AppApiPath(fmt.Sprintf("/coupons/my/%s/rollback", userCouponId)), body, nil, nil, "")
     if err != nil {
         var zero sdktypes.PlusApiResultUserCouponVO
         return zero, err

@@ -25,18 +25,6 @@ public class HistoryApi {
         return response as? PlusApiResultVoid
     }
 
-    /// 获取登录历史
-    public func getLogin(params: [String: Any]? = nil) async throws -> PlusApiResultPageMapStringObject? {
-        let response = try await client.get(ApiPaths.appPath("/user/history/login"), params: params)
-        return response as? PlusApiResultPageMapStringObject
-    }
-
-    /// 获取生成历史
-    public func getGeneration(params: [String: Any]? = nil) async throws -> PlusApiResultPageMapStringObject? {
-        let response = try await client.get(ApiPaths.appPath("/user/history/generations"), params: params)
-        return response as? PlusApiResultPageMapStringObject
-    }
-
     /// 历史统计
     public func getHistoryStatistics() async throws -> PlusApiResultHistoryStatisticsVO? {
         let response = try await client.get(ApiPaths.appPath("/history/statistics"))

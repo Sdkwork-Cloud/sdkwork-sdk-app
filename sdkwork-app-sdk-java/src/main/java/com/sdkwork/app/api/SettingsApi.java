@@ -12,16 +12,6 @@ public class SettingsApi {
         this.client = client;
     }
 
-    /** 获取用户设置 */
-    public PlusApiResultUserSettingsVO getUser() throws Exception {
-        return (PlusApiResultUserSettingsVO) client.get(ApiPaths.appPath("/user/settings"));
-    }
-
-    /** 更新用户设置 */
-    public PlusApiResultUserSettingsVO updateUser(UserSettingsUpdateForm body) throws Exception {
-        return (PlusApiResultUserSettingsVO) client.put(ApiPaths.appPath("/user/settings"), body);
-    }
-
     /** 获取模块设置 */
     public PlusApiResultMapStringObject getModule(String module) throws Exception {
         return (PlusApiResultMapStringObject) client.get(ApiPaths.appPath("/settings/" + module + ""));

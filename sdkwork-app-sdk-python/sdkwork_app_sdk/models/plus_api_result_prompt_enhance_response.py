@@ -3,8 +3,11 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class PlusApiResultPromptEnhanceResponse:
-    code: int
+    """API调用结果"""
+    data: PromptEnhanceResponse
+    code: str
     msg: str
-    data: PromptEnhanceResponse = None
-    timestamp: str = None
-    trace_id: str = None
+    request_id: str
+    ip: str = None
+    hostname: str = None
+    error_name: str

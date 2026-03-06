@@ -3,15 +3,15 @@ import type { PaymentStatusVO } from './payment-status-vo';
 import type { SortObject } from './sort-object';
 
 export interface PagePaymentStatusVO {
-  totalPages?: number;
   totalElements?: number;
+  totalPages?: number;
   size?: number;
   content?: PaymentStatusVO[];
   number?: number;
-  sort?: SortObject;
   first?: boolean;
   last?: boolean;
   numberOfElements?: number;
+  sort?: SortObject;
   pageable?: PageableObject;
   empty?: boolean;
 }

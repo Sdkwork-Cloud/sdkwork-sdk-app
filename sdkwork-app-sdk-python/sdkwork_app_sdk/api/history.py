@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Optional
 from ..http_client import HttpClient
-from ..models import BrowseHistoryAddForm, PlusApiResultBrowseStatisticsVO, PlusApiResultHistoryStatisticsVO, PlusApiResultListGenerationHistoryVO, PlusApiResultListOperationHistoryVO, PlusApiResultListSessionInfoVO, PlusApiResultPageBrowseHistoryVO, PlusApiResultPageGenerationHistoryVO, PlusApiResultPageLoginHistoryVO, PlusApiResultPageMapStringObject, PlusApiResultPageOperationHistoryVO, PlusApiResultSessionInfoVO, PlusApiResultVoid
+from ..models import BrowseHistoryAddForm, PlusApiResultBrowseStatisticsVO, PlusApiResultHistoryStatisticsVO, PlusApiResultListGenerationHistoryVO, PlusApiResultListOperationHistoryVO, PlusApiResultListSessionInfoVO, PlusApiResultPageBrowseHistoryVO, PlusApiResultPageGenerationHistoryVO, PlusApiResultPageLoginHistoryVO, PlusApiResultPageOperationHistoryVO, PlusApiResultSessionInfoVO, PlusApiResultVoid
 
 class HistoryApi:
     """history API client."""
@@ -19,14 +19,6 @@ class HistoryApi:
     def clear_browse(self, params: Optional[Dict[str, Any]] = None) -> PlusApiResultVoid:
         """清空浏览历史"""
         return self._client.delete(f"/app/v3/api/history/browse", params=params)
-
-    def get_login(self, params: Optional[Dict[str, Any]] = None) -> PlusApiResultPageMapStringObject:
-        """获取登录历史"""
-        return self._client.get(f"/app/v3/api/user/history/login", params=params)
-
-    def get_generation(self, params: Optional[Dict[str, Any]] = None) -> PlusApiResultPageMapStringObject:
-        """获取生成历史"""
-        return self._client.get(f"/app/v3/api/user/history/generations", params=params)
 
     def get_history_statistics(self) -> PlusApiResultHistoryStatisticsVO:
         """历史统计"""

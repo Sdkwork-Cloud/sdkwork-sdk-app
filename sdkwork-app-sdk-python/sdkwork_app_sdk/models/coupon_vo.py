@@ -12,6 +12,7 @@ class CouponVO:
     type_name: str = None
     description: str = None
     amount: int = None
+    point_cost: int = None
     discount: float = None
     min_consume: int = None
     start_time: str = None
@@ -23,7 +24,8 @@ class CouponVO:
     status: str = None
     status_name: str = None
     stackable: bool = None
-    scope_type: int = None
+    scope_type: str = None
     scope_value: str = None
     remaining_count: int = None
     can_receive: bool = None
+    points_exchange: bool = None

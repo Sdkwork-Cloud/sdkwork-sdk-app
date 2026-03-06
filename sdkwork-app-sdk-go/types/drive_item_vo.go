@@ -17,6 +17,7 @@ type DriveItemVO struct {
 	Path string `json:"path"`
 	ObjectKey string `json:"objectKey"`
 	Status string `json:"status"`
+	Favorited bool `json:"favorited"`
 	Resource FileMediaResource `json:"resource"`
 	CoverImage ImageMediaResource `json:"coverImage"`
 }

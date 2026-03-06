@@ -40,22 +40,6 @@ namespace App.Api
         }
 
         /// <summary>
-        /// 获取登录历史
-        /// </summary>
-        public async Task<PlusApiResultPageMapStringObject?> GetLoginAsync(Dictionary<string, object>? query = null)
-        {
-            return await _client.GetAsync<PlusApiResultPageMapStringObject>(ApiPaths.AppPath("/user/history/login"), query);
-        }
-
-        /// <summary>
-        /// 获取生成历史
-        /// </summary>
-        public async Task<PlusApiResultPageMapStringObject?> GetGenerationAsync(Dictionary<string, object>? query = null)
-        {
-            return await _client.GetAsync<PlusApiResultPageMapStringObject>(ApiPaths.AppPath("/user/history/generations"), query);
-        }
-
-        /// <summary>
         /// 历史统计
         /// </summary>
         public async Task<PlusApiResultHistoryStatisticsVO?> GetHistoryStatisticsAsync()
